@@ -9,6 +9,8 @@ class MessagesController < ApplicationController
     MessageRelayJob.perform_later(message)
   end
 
+
+
   private
 
     def set_chatroom
@@ -16,7 +18,7 @@ class MessagesController < ApplicationController
     end
 
     def message_params
-      params.require(:message).permit(:body)
+      params.require(:message).permit(:body,:image)
     end
 
 end

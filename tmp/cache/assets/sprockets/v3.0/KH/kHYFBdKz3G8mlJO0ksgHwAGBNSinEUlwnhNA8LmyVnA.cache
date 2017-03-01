@@ -1,0 +1,16 @@
+I"}(function() {
+  $(document).on("turbolinks:load", function() {
+    $("#new_message").on("keypress", function(e) {
+      if (e && e.keyCode === 13) {
+        e.preventDefault();
+        return $(this).submit();
+      }
+    });
+    return $("#new_message").on("submit", function(e) {
+      e.preventDefault();
+      return console.log("submited form");
+    });
+  });
+
+}).call(this);
+:ET

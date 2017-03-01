@@ -1,1 +1,3 @@
-<div><strong><%= message.user.firstname %>:</strong> <%= message.body %> </div>
+
+
+<div><%= message.created_at %> <strong><%= message.user.firstname %>:</strong> <%= message.body %> <%= image_tag message.image.url(:medium)  %>  </div>

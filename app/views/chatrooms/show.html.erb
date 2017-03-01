@@ -13,8 +13,15 @@
   <% end %>
 </div>
 
-    <%= form_for [@chatroom, Message.new], remote: true  do |f| %>
+    <%= form_for [@chatroom, Message.new], html: {multipart: true } do |f| %>
       <%= f.text_field :body , rows: 1 , class: "form-control", autofocus:true%>
+      <%= f.file_field :image %>
+  <% end %>
+
+    <%= javascript_tag do %>
+        info = @info
     <% end %>
+
+</div>
 
 </div>
