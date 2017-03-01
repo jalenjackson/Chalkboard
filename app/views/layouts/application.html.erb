@@ -7,13 +7,16 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-brand">
           <%= link_to "Chalkboard", root_path %>
         </div>
         <% if user_signed_in? %>
           <ul class="nav navbar-nav navbar-right">
+            <li>
+              <%= link_to current_user.state , new_pin_path %>
+            </li>
             <li>
               <%= link_to "New Pin", new_pin_path %>
             </li>
@@ -41,7 +44,7 @@
         <% end %>
       </div>
     </nav>
-    <div class="container">
+    <div style = "margin-top:100px;" class="container">
       <% flash.each do |name,msg| %>
         <%= content_tag :div, msg, class: "alert alert-info" %>
       <% end %>

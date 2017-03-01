@@ -21,6 +21,10 @@ gem 'masonry-rails', '~> 0.2.4'
 
 gem 'acts_as_votable', '~> 0.10.0'
 
+gem 'jquery-turbolinks', '~> 2.1'
+
+gem 'redis'
+
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

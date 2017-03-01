@@ -1,0 +1,12 @@
+<div class = "fluid-container">
+  <div class = "row">
+    <div class = "col-sm-2" style = "position:fixed; top: 70px; left: 0;">
+      <% if user_signed_in? %>
+          <h1>Chatrooms</h1>
+          <ul>
+            <% current_user.chatrooms.each do |chatroom| %>
+                <li><%= link_to chatroom.name , chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %></li>
+            <% end %>
+          </ul>
+      <% end %>
+    </div>

@@ -1,0 +1,11 @@
+I"ï(function() {
+  App.chatrooms = App.cable.subscriptions.create("ChatroomsChannel", {
+    connected: function() {},
+    disconnected: function() {},
+    received: function(data) {
+      return console.log(data);
+    }
+  });
+
+}).call(this);
+:ET

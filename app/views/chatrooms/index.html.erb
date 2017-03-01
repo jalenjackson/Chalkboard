@@ -1,16 +1,5 @@
-<div class = "fluid-container">
-  <div class = "row">
-    <div class = "col-sm-2">
-      <% if user_signed_in? %>
-        <h1>Chatrooms</h1>
-          <ul>
-            <% current_user.chatrooms.each do |chatroom| %>
-                <li><%= link_to chatroom.name , "#" %></li>
-            <% end %>
-          </ul>
-      <% end %>
-    </div>
-    <div class = "col-sm-10">
+<%= render 'side_nav' %>
+    <div class = "col-sm-10 col-sm-offset-2">
       <p id="notice"><%= notice %></p>
 
 
