@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :pins
-
+  has_many :comments
   has_many :chatroom_users
   has_many :chatrooms, through: :chatroom_users
   has_many :messages

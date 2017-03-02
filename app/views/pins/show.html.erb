@@ -35,6 +35,8 @@
               <% end %>
               <%= link_to 'delete', pin_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
             </div>
+            <%= render 'comments/comment' %>
+
           </div>
         </div>
       </div>

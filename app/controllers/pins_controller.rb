@@ -12,6 +12,7 @@ class PinsController < ApplicationController
   end
 
   def show
+    @comments = Comment.where(pin_id: @pin).order('created_at DESC')
   end
 
   def edit
