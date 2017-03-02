@@ -1,27 +1,24 @@
 <%= render 'side_nav' %>
 
-<div class = "container-fluid">
+<div class = "container-fluid" style="margin-top: -41px;">
   <div class = "col-sm-10 col-sm-offset-2">
-<p>
-  <strong>Name:</strong>
-  <%= @chatroom.name %>
-</p>
+<h1><%= @chatroom.name %></h1>
 
-<div data-behavior="messages" data-chatroom-id='<%= @chatroom.id %>'>
+<div style = "overflow-y:scroll; height: 450px;" data-behavior="messages" data-chatroom-id='<%= @chatroom.id %>'>
   <% @messages.each do |message| %>
       <%= render message  %>
   <% end %>
 </div>
+    <br>
+    <br>
+    <br>
 
-    <%= form_for [@chatroom, Message.new], html: {multipart: true } do |f| %>
-      <%= f.text_field :body , rows: 1 , class: "form-control", autofocus:true%>
-      <%= f.file_field :image %>
+    <div style = "margin-top: -50px">
+    <%= form_for [@chatroom, Message.new], remote: true, authenticity_token: true do |f| %>
+        <%= f.file_field :image , class: "form-controler"%>
+
+        <%= f.text_field :body , rows: 1 , class: "form-control input-box", autofocus:true%>
+
   <% end %>
-
-    <%= javascript_tag do %>
-        info = @info
-    <% end %>
-
-</div>
-
+    </div>
 </div>
