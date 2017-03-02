@@ -10,7 +10,11 @@
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
+
+
+
         <div class="navbar-brand">
+
           <%= link_to "Chalkboard", root_path %>
         </div>
         <% if user_signed_in? %>
@@ -21,7 +25,11 @@
             <li>
               <%= link_to "New Pin", new_pin_path %>
             </li>
-
+            <%= form_tag pins_path, :method => :get, class: "input-group" do %>
+                <li>
+                  <%= text_field_tag :search, params[:search], class: 'search-box' %>
+                </li>
+            <% end %>
             <li>
               <%= link_to "Chat", chatrooms_path %>
             </li>

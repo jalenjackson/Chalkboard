@@ -25,6 +25,12 @@ gem 'jquery-turbolinks', '~> 2.1'
 
 gem 'redis'
 
+gem 'videojs_rails'
+
+gem 'sunspot_rails'
+
+gem 'sunspot_solr'
+
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

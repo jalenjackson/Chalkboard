@@ -1,5 +1,10 @@
+
 <h1 class = "text-center">Comments</h1>
 <%= render 'comments/form' %>
+
+
+
+
 <% @comments.each do |comment| %><br>
     <% if current_user == comment.user %>
         <span style="color:white; font-size:10px; margin-left: 3px;"><%= link_to "Delete comment", [comment.pin, comment], method: :delete %></span>
@@ -12,6 +17,12 @@
             <p style = "margin-left:3px; color:grey; font-size:12px;"><%= comment.user.firstname %> commented with an image <span class = "glyphicon glyphicon-picture"></span></p>
             <%= image_tag comment.image.url(:medium) , class: 'image-class' %><br><br><br>
             <% end %>
+
+
+
+
+
+
 
       <% if comment.mp3.exists? %>
             <p style = "color:grey; margin-left: 3px; "><%= comment.user.firstname %> commented with a mp3 file <span style = "color: purple ;  font-size:12px;">Press the play button to listen in!</span>  <span style ="color:black;" class = "glyphicon glyphicon-headphones"></span></p>
@@ -47,6 +58,7 @@
                 </div>
               </div><br><br><br><br><br><br>
         </div>
+
 
 
 
