@@ -1,4 +1,9 @@
 <%= form_for([@pin,@pin.comments.build]) do |f| %>
-  <%= f.text_area :content %>
+  <%= f.text_field :content, class: "form-control" %>
+    <%= f.file_field :image, class: "form-control" %>
+    <%= f.label "Mp3" , :mp3 %>
+    <%= f.file_field :mp3, class: "form-control" %>
+
+
     <%= f.submit %>
 <% end %>

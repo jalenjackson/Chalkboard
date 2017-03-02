@@ -11,10 +11,7 @@
         <p class="description">
           <%= @pin.description %>
         </p>
-        <br><br>Created By
-        <p>
-          <%= @pin.user.email %>
-        </p>
+
       </div>
       <div class="panel-footer">
         <div class="row">
@@ -23,6 +20,8 @@
             Submitted by
             <%= @pin.user.email %>
           </div>
+
+
           <div class="col-md-6">
             <div class="btn-group pull-right">
               <%= link_to like_pin_path(@pin), method: :put, class: "btn btn-default" do %>
@@ -31,15 +30,22 @@
                 </span>
               <% end %>
               <% if user_signed_in? %>
-                <%= link_to 'edit', edit_pin_path, class: "btn btn-default" %>
-              <% end %>
+                  <% if current_user == @pin.user %>
+
+            <%= link_to 'edit', edit_pin_path, class: "btn btn-default" %>
               <%= link_to 'delete', pin_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
+                  <% end %>
+              <% end %>
+
             </div>
-            <%= render 'comments/comment' %>
 
           </div>
         </div>
       </div>
+      <%= render 'comments/comment' %>
+
     </div>
+
   </div>
+
 </div>

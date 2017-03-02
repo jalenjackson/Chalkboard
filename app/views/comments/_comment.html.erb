@@ -1,13 +1,20 @@
+<h1 class = "text-center">Comments</h1>
+<%= render 'comments/form' %>
 <% @comments.each do |comment| %><br>
-    <%= comment.user.firstname %>
-    <%= comment.content %>
-
     <% if current_user == comment.user %>
-      <%= link_to "Delete comment", [comment.pin, comment], method: :delete %>
-     <!-- <%= link_to 'Edit comment', edit_pin_comment_path(comment.pin,comment) %> -->
+        <span style="color:white; font-size:10px; margin-left: 3px;"><%= link_to "Delete comment", [comment.pin, comment], method: :delete %></span>
+        <!-- <%= link_to 'Edit comment', edit_pin_comment_path(comment.pin,comment) %> -->
+        <p style = "margin-left: 3px;"><strong><%= comment.user.firstname %></strong>  <span style = "color:grey; font-size:10px;"><%= comment.created_at %></span></p>
+        <p> </p>
+
+    <p style = "margin-left:10px;"><%= comment.content %></p>
+        <% if comment.image.exists? %>
+            <p style = "margin-left:3px; color:grey; font-size:12px;"><%= comment.user.firstname %> commented with an image <span class = "glyphicon glyphicon-picture"></span></p>
+            <%= image_tag comment.image.url(:medium) , class: 'image-class' %><br><br><br>
+            <% end %>
+
 
 
     <%end%>
 <% end %>
 
-<%= render 'comments/form' %>

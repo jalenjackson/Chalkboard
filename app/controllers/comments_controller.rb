@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   before_action :comment_owner, only: [:destroy, :edit , :update]
 
   def create
-    @comment = @post.comments.create(params[:comment].permit(:content))
+    @comment = @post.comments.create(params[:comment].permit(:content, :image, :mp3))
     @comment.user_id = current_user.id
     @comment.save
     if @comment.save
@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.update(params[:comment].permit(:content))
+    if @comment.update(params[:comment].permit(:content, :image, :mp3))
       redirect_to pin_path(@post)
     else
       render 'edit'
