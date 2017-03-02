@@ -1,9 +1,28 @@
 <%= form_for([@pin,@pin.comments.build]) do |f| %>
-  <%= f.text_field :content, class: "form-control" %>
-    <%= f.file_field :image, class: "form-control" %>
-    <%= f.label "Mp3" , :mp3 %>
-    <%= f.file_field :mp3, class: "form-control" %>
+
+    <div style = "float:left; margin-top:-20px;" class = "form-field">
+      <i class="fa fa-commenting-o" aria-hidden="true"></i>
+
+      <%= f.text_field :content, class: "form-control" %>
+
+    </div>
+
+    <div style = "float:left;" class = "form-field">
+
+      <%= f.file_field :image, class: "filestyle", "data-input" => false %>
 
 
-    <%= f.submit %>
+    </div>
+
+
+    <div style = "float:left;" class = "form-field">
+      <%= f.file_field :mp3, class: "filestyle", "data-input" => false %>
+
+    </div>
+
+    <div style = "float:left;" class = "form-field">
+      <%= f.submit  %>
+
+    </div>
+
 <% end %>
