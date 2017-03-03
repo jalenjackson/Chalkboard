@@ -1,0 +1,79 @@
+<nav class="navbar navbar-default navbar-fixed-top nav2">
+  <%= form_tag chatrooms_path, :method => :get, class: "input-group2" do %>
+        <span>
+
+          <i style = "font-size:20px; color:grey"class="fa fa-search font-icon" aria-hidden="true"></i>
+
+          <%= text_field_tag :search, params[:search], class: 'search-box ', placeholder: 'Search' %>
+
+        </span>
+  <% end %>
+
+  <div class="container">
+
+
+
+    <div class="navbar-brand">
+      <a href = "/"><%= image_tag 'logo.png' , class: 'logo-pic'  %></a>
+    </div>
+    <% if user_signed_in? %>
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li>
+            <%= link_to "", new_pin_path, class:"fa fa-file-text-o" %>
+
+          </li>
+          <li>
+
+            <%= link_to "", chatrooms_path, class: "fa fa-users" %>
+          </li>
+
+          <li style = "margin-top: 17px;">
+            <div class = "dropdown">
+              <div class="dropdown">
+                <button class="btn btn-primary btn-circle dropdown-toggle" type="button" data-toggle="dropdown"><%= current_user.firstname[0] + current_user.lastname[0]%>
+
+                  <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li class = "text-center"><span style = "font-size:16px; font-weight: bold;"><%= current_user.firstname + " " + current_user.lastname %></span></li>
+                  <li><%= link_to "Profile", "/user/#{current_user.username}", :style=>'color:grey; font-size:20px; ' %> </li>
+                  <li><%= link_to "Settings", "/user/#{current_user.username}", :style=>'color:grey; font-size:20px; ' %></li>
+                  <li style = "color:grey; font-size:12px;"><%= link_to "Sign Out", destroy_user_session_path, :style=>'color:grey; font-size:14px; ',  method: :delete %></li>
+
+                </ul>
+              </div>
+            </div>
+          </li>
+          <!--<li>
+          </li> -->
+        </ul>
+    <% else %>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <%= link_to "Sign Up", new_user_registration_path %>
+          </li>
+          <li>
+            <%= link_to "Sign In", new_user_session_path %>
+          </li>
+        </ul>
+    <% end %>
+  </div>
+</nav>
+
+<div class = "overlay">
+
+</div>
+<script>
+
+  $(".overlay").hide();
+    $('.search-box').focus( function() {
+        $(".overlay").fadeIn(200);
+    });
+
+    $('.search-box').blur( function() {
+        $(".overlay").fadeOut("slow");
+    });
+
+</script>

@@ -4,7 +4,11 @@ class ChatroomsController < ApplicationController
   # GET /chatrooms
   # GET /chatrooms.json
   def index
-    @chatrooms = Chatroom.all
+    @search = Chatroom.search do
+      fulltext params[:search]
+    end
+    @chatrooms = @search.results
+
   end
 
   # GET /chatrooms/1

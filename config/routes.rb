@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get '/user/:id' => 'pins#profile'
 
   devise_for :users
 

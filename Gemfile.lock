@@ -213,7 +213,7 @@ DEPENDENCIES
   haml (~> 4.0.5)
   jbuilder (~> 2.5)
   jquery-rails
-  jquery-turbolinks (~> 2.1)
+  jquery-turbolinks
   listen (~> 3.0.5)
   masonry-rails (~> 0.2.4)
   paperclip (~> 5.1)

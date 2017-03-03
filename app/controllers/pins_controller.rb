@@ -21,6 +21,17 @@ class PinsController < ApplicationController
   def edit
   end
 
+  def profile
+    if User.find_by_username(params[:id])
+      @username = params[:id]
+      @user = User.find_by_username(params[:id])
+
+    else
+      redirect_to root_path
+    end
+    @user_pin = Pin.all.where('user_id = ?', User.find_by_username(params[:id]).id)
+  end
+
   def update
     if @pin.update(pin_params)
       redirect_to @pin, notice: "Pin was succesfully updated"

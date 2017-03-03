@@ -1,6 +1,6 @@
 <div>
   <br><br>
-  <strong><%= message.user.firstname %></strong><span style = "font-size:10px; color:rgb(160,160,160)"> <%= message.created_at %></span><br>
+  <strong><%= link_to message.user.firstname, "/user/#{message.user.username}" %></strong><span style = "font-size:10px; color:rgb(160,160,160)"> <%= message.created_at %></span><br>
   <p style = "color:rgb(100,100,100); font-size:18px; margin-left: 10px; margin-top:5px;"><%= message.body %> </p>
 
 

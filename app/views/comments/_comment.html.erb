@@ -6,7 +6,6 @@
 
 
 <% @comments.each do |comment| %><br>
-    <% if current_user == comment.user %>
         <span style="color:white; font-size:10px; margin-left: 3px;"><%= link_to "Delete comment", [comment.pin, comment], method: :delete %></span>
         <!-- <%= link_to 'Edit comment', edit_pin_comment_path(comment.pin,comment) %> -->
         <p style = "margin-left: 3px;"><strong><%= comment.user.firstname %></strong>  <span style = "color:grey; font-size:10px;"><%= comment.created_at %></span></p>
@@ -85,7 +84,6 @@
         });
         </script>
     <%end%>
-<% end %>
 
 <% end %>
 

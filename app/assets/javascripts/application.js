@@ -12,10 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
-//= require video
-//= require_tree .
+//= require bootstrap
 //= require masonry/jquery.masonry
+//= require_tree .
 
-$(":file").filestyle({iconName: "glyphicon-inbox"});
+

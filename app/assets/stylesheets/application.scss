@@ -10,16 +10,10 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require 'masonry/basic'
- *= require 'masonry/centered'
- *= require 'masonry/fluid'
- *= require 'masonry/gutters'
- *= require 'masonry/infinitescroll'
- *= require 'masonry/right-to-left'
  *= require 'masonry/transitions'
- *= require 'video-js'
  *= require_tree .
  *= require_self
+
  */
 
 
@@ -54,7 +48,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 100;
 }
 
-nav {
+.nav1 {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
   border-radius: 0 !important;
   border:none !important;
@@ -67,7 +61,7 @@ nav {
   .navbar-brand {
     a {
       color: white;
-      font-weight: lighter;
+      font-weight: bold;
       margin-top: 20px;
       font-size:40px;
       &:hover {
@@ -77,12 +71,74 @@ nav {
   }
 }
 
+.nav2 {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+  border-radius: 0 !important;
+  border:none !important;
+  height:70px;
 
+
+  a {
+    margin-top: 12px;
+    font-weight: 500;
+    color:rgb(70,70,70);
+    font-size:28px;
+    margin-left: -7px;
+  }
+
+}
+
+.fa-cog {
+  color: black;
+}
+.name {
+  font-size:16px !important;
+  color:white !important;
+}
+
+.profile-circle::before{
+  content: "";
+  display: block;
+  position:absolute;
+  top:15px;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background:lightblue;
+  border-radius: 100%;
+
+}
+
+.sign-out{
+  color:grey;
+}
+
+
+
+.btn-circle {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 17px;
+  line-height: 1.428571429;
+  border-radius: 25px;
+}
+
+.caret {
+  display:none;
+}
 
 .input-box {
   border-radius: none !important;
 }
 
+.btn-info {
+  background: url("http://www.777a7.com/img77/ftmvkrobfcsiogocseew.jpg") center center ;
+}
+.btn-primary {
+  border:none;
+}
 .jp-jplayer,.jp-audio {
   width: 70%;
   margin: 3rem auto .5rem auto;
@@ -196,29 +252,70 @@ nav {
 }
 
 
-.input-group {
+.input-group2 {
   position: absolute;
   margin-left: auto;
   margin-right: auto;
-  left: 38%;
-  top:10px;
+  left: 140px;
+  top:22px;
   right: 0;
 }
 
 
 .search-box {
-  border-radius:2em;
+  border-radius:.3em;
+  height: 37px;
+  margin-top:-9px;
+  color:rgb(0,0,0);
+  font-weight: bold;
+  font-size:17px;
+  background: linear-gradient(to left,rgba(220, 220, 220, 1),rgba(235,235, 235, 1));
+  width: 75%;
+  border:none;
 }
-.search-box[type=text] {
+textarea:focus, input:focus{
+  outline: none;
+}
+
+
+.logo-pic {
+  margin-top:-3px;
+  width:57px;
+  height: 50px;
+}
+
+.input[type=text] {
   width: 130px;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
+  -webkit-transition:all 3s ease-in-out;
+  transition: all 3s ease-in-out;
 }
 
 /* When the input field gets focus, change its width to 100% */
-.search-box[type=text]:focus {
-  width: 200%;
+input[type=text]:focus {
 }
+
+.overlay {
+  position: fixed;
+  top:70px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:rgba(0,0,0,0.7);
+   z-index: 999999999;
+}
+
+.link-tag {
+  color:rgb(170,170,170);
+  text-decoration:none;
+  transition: color 400ms ease-in-out;
+}
+
+.link-tag:hover {
+  color:white;
+  text-decoration:none;
+  cursor:pointer;
+}
+
 
 
 @import 'normalize';

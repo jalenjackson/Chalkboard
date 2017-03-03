@@ -1,18 +1,18 @@
 <div class = "fluid-container">
   <div class = "row">
-    <div class = "col-sm-2" style = "position:fixed; top: 70px; left: 0; background:rgb(50,50,50); top: 50px; height:100%;">
+    <div class = "col-sm-2" style = "position:fixed; top: 70px; left: 0; background:rgb(50,50,50); top: 70px; height:100%;">
       <% if user_signed_in? %>
-          <div style = "background:rgb(30,30,30); width:100%; height:auto; position: absolute; top:0; left: 0;">
-            <p style = "color:white; margin-top: 10px; margin-left: 10px; font-size: 17px; color:rgb(225,225,225) ">Chatrooms</p>
+          <div style = "background:rgb(20,20,20); width:100%; height:auto; position: absolute; top:0; left: 0;">
+            <p style = "color:white; margin-top: 10px; margin-left: 10px; font-size: 17px; color:rgb(200,200,200); ">Chatrooms    <i style = "font-size: 18px; "class="fa fa-commenting-o" aria-hidden="true"></i></p>
           </div>
-          <div style = "background:rgb(70,70,100); width:100%; height:auto; position: absolute; top:42px; left: 0;">
-            <p style = "color:white; margin-top: 10px; margin-left: 10px; font-size: 17px; color:rgb(225,225,225) "><%= link_to 'New Chatroom', new_chatroom_path %></p>
+          <div style = "background:rgb(0,0,20); width:100%; height:auto; position: absolute; top:42px; left: 0;">
+            <p style = "color:white; margin-top: 10px; margin-left: 10px; font-size: 17px; color:rgb(225,225,225) "><%= link_to 'New Chatroom', new_chatroom_path, class: "link-tag" %>   <i style = "font-size: 18px;" class="fa fa-plus" aria-hidden="true"></i></p>
           </div>
           <ul>
 
             <br><br><br><br><br>
             <% current_user.chatrooms.each do |chatroom| %>
-                <li><span style = "font-size:17px;"><%= link_to chatroom.name , chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id } %></span></li>
+                <li><span style = "font-size:17px;"><%= link_to chatroom.name , chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id } , class:"link-tag"%>  <i class="fa fa-arrow-left" aria-hidden="true"></i></span></li>
             <% end %>
           </ul>
       <% end %>
