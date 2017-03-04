@@ -1,0 +1,14 @@
+I"â(function() {
+  var ready;
+
+  ready = function() {
+    return $("#pins").masonry({
+      itemSelector: '.box',
+      isFitWidth: true
+    });
+  };
+
+  $.turbo.use('turbolinks:load', 'turbolinks:request-start');
+
+}).call(this);
+:ET

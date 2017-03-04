@@ -96,18 +96,7 @@ h1, h2, h3, h4, h5, h6 {
   color:white !important;
 }
 
-.profile-circle::before{
-  content: "";
-  display: block;
-  position:absolute;
-  top:15px;
-  left: 0;
-  width: 100%;
-  height: 70%;
-  background:lightblue;
-  border-radius: 100%;
 
-}
 
 .sign-out{
   color:grey;
@@ -291,8 +280,7 @@ textarea:focus, input:focus{
 }
 
 /* When the input field gets focus, change its width to 100% */
-input[type=text]:focus {
-}
+
 
 .overlay {
   position: fixed;

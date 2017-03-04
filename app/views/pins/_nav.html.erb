@@ -31,9 +31,8 @@
           </li>
 
           <li style = "margin-top: 17px;">
-            <div class = "dropdown">
               <div class="dropdown">
-                <button class="btn btn-primary btn-circle dropdown-toggle" type="button" data-toggle="dropdown"><%= current_user.firstname[0] + current_user.lastname[0]%>
+                <button class="btn btn-primary btn-circle bootstrap-iso dropdown-toggle" type="button" data-toggle="dropdown"><%= current_user.firstname[0] + current_user.lastname[0]%>
 
                   <span class="caret"></span></button>
                 <ul class="dropdown-menu">
@@ -44,7 +43,6 @@
 
                 </ul>
               </div>
-            </div>
           </li>
           <!--<li>
           </li> -->
@@ -75,5 +73,6 @@
     $('.search-box').blur( function() {
         $(".overlay").fadeOut("slow");
     });
+
 
 </script>
