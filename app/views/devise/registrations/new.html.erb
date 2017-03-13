@@ -1,22 +1,40 @@
-<h2>Sign up</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :username, required: true %>
-    <%= f.input :firstname, required: true %>
-    <%= f.input :lastname, required: true %>
-    <%= f.input :city, required: true %>
-    <%= f.input :state, required: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
+    <br>
+    <h1 class = "text-center"><strong>Sign Up</strong></h1>
+
+    <%= f.input :email, required: true, autofocus: true, input_html: { class: 'special'} , placeholder: "Enter You Email Address", label:false %>
+    <%= f.input :username, required: true, input_html: { class: 'special' } , placeholder: "Enter A Username", label:false%>
+    <%= f.input :firstname, required: true , input_html: { class: 'special'}, placeholder: "What's Your Firstname?", label:false %>
+    <%= f.input :lastname, required: true, input_html: { class: 'special'}, placeholder: "What's Your Lastname?", label:false %>
+    <%= f.input :city, required: true, input_html: { class: 'special'}, placeholder: "Enter Your City", label:false %>
+    <%= f.input :state, required: true, input_html: { class: 'special'}, placeholder: "Enter Your State", label:false %>
+
+
+    <div class = "controls">
+      <%= f.select(:occupation, options_for_select([['Teacher', 'Teacher'], ['Student', 'Student']]), {:prompt => "Are you a teacher or student?"}, class: "form-control dropown",  ) %>
+    </div>
+
+    <div class = "controls">
+      <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']]) , {:prompt => "What is your gender?"}, class: "form-control dropown" ) %>
+    </div>
+
+
+
+    <%= f.input :password,input_html: { class: 'special'} , label:false,   required: true, placeholder: "Enter a password more than 6 characters" %>
+    <%= f.input :password_confirmation, input_html: { class: 'special'}, label:false,  required: true, placeholder: "Re-enter password" %>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Sign up", class: 'special button-special' %>
+    </div>
+    <br>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
+
 <% end %>
+
 
 <%= render "devise/shared/links" %>

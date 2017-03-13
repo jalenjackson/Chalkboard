@@ -1,26 +1,143 @@
 <%= render 'nav' %>
+<%= render 'category' %>
+<% if user_signed_in? %>
+<% if current_user.gender = "Male" %>
+    <% title = "Mr." %>
+
+<% else %>
+    <% title = "Ms." %>
+
+<% end %>
+
+    <%= link_to 'Landing page', page_path('index') %>
 
 
-<div  class="transitions-enabled" id="pins">
+
+    <div style = "margin-top:-57px;" class=" related-box index-box">
+      <% if current_user.occupation == "Teacher" %>
+      <h1 style = "color:rgb(90,90,90)"class = "text-center"><strong><%=title%> <%= current_user.lastname %></strong></h1>
+      </strong></h1>
+      <h1 class = "text-center">
+
+        <span style = "font-weight: bold !important; font-size:14px;"></span>
+        <span style = "color:rgb(80,80,80); font-size: 14px; font-weight: bold;">Stars</span><i class="fa fa-star" aria-hidden="true" style = "margin-left: 15px; font-size:17px; color:#D0C91F ;"></i><strong><span style = "font-size:17px; margin-left:4px;"><%= current_user.stars %></span></i></strong><br>
+
+        <span style = "color:rgb(80,80,80); font-size: 14px; font-weight: bold; margin-left: -60px;">Achievements</span><i class="fa fa-eercast" aria-hidden="true" style = "margin-left: 15px; color: #29ABA4; font-size:17px;"></i><strong><span style = "font-size:17px; margin-left:4px;"><%= current_user.achievements %></span></i></strong><br>
+
+        <span style = "color:rgb(80,80,80); font-size: 14px; margin-left: -14px; font-weight: bold;">Classes</span><i class="fa fa-book" aria-hidden="true" style = "margin-left: 15px; color: #EB7260; font-size:17px;"></i><strong><span style = "font-size:17px; margin-left:4px;"><%= current_user.classrooms.count %></span></i></strong><br>
+
+
+        <span style = "color:rgb(80,80,80); font-size: 14px; font-weight: bold;">Posts</span><i class="fa fa-clipboard" aria-hidden="true" style = "margin-left: 15px; color:#737495; font-size:17px;"></i><strong><span style = "font-size:17px; margin-left:4px;"><%= current_user.pins.count %></span></i></strong><br>
+      </h1><br>
+
+
+
+      <h1 style = "color:rgb(90,90,90)"class = "text-center"><strong>Subjects You Follow</strong></h1>
+<% end %>
+</div>
+          <% end %>
+
+<div class = "head">
+<h1 style = "font-size:35px; font-weight:normal;"class = "text-center image-under">Most Popular<%= @subject %></h1><br>
+</div>
+  <div  style = "margin-top: 0px; margin-left:50px;" >
+
+
+
   <% @pins.each do |pin| %>
-      <div class="box panel panel-default">
-        <%= link_to (image_tag pin.image.url), pin %>
-        <div class="panel-body">
-          <h2>
-            <%= link_to pin.title, pin %>
-          </h2>
-          <p class="user">
-            Published By
-            <%= link_to pin.user.firstname, "/user/#{pin.user.username}" %>
-            <br>
-            <%= pin.created_at %>
-            <%= pin.user.city %>
-            ,
-            <%= pin.user.state %>
-          <p class="glyphicon glyphicon-heart go_right"></p>
-          <p style = "font-size:14px; color:gray"><%= pin.get_upvotes.size %></p>
+
+
+
+      <div style = "width:60%;" class=" panel panel-default go-down">
+        <div style = "background:white; height: 100px; width: 100%;"class = "panel ">
+
+          <p style = "margin-top: 20px; padding-left: 30px;"class="user">
+            <span style = "float: left"><%= avatar_for(pin.user, size:90) %></span>
+
+            <% if pin.user.occupation == "Student" %>
+                <%= link_to pin.user.firstname + " " + pin.user.lastname, "/user/#{pin.user.username}" , class:'user-link'%> <span style="float:right; margin-right: 30px; font-size:22px; font-weight:bold; color:#D79C8C;"><%= pin.user.occupation.upcase %></span></p>
+            <% else %>
+                <%= link_to pin.user.firstname + " " + pin.user.lastname, "/teachers/#{pin.user.username}" , class:'user-link'%> <span style="float:right; margin-right: 30px; font-size:22px; font-weight:bold; color:#D79C8C;"><%= pin.user.occupation.upcase %></span></p>
+            <% end %>
+
+          <p style = "color:rgb(190,190,190); padding-left: 30px;"><%= pin.created_at.strftime(" %b %d, %Y") %></p>
 
         </div>
-      </div>
-  <% end %>
+
+
+
+        <% if pin.image? && !pin.document? && !pin.video_file? %>
+            <%= link_to (image_tag pin.image.url, class:'pin-image'), pin, class:'pin-image'%>
+        <% end %>
+        <% if pin.video_file? && !pin.document? && !pin.image? %>
+            <img class="pin-image" src = "https://blog.majestic.com/wp-content/uploads/2010/10/Video-Icon-crop.png">
+        <% end %>
+        <% if pin.document? && !pin.image? && !pin.video_file? %>
+            <iframe src="<%= pin.document.url %>" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; ; width: 100%; height:600px;" allowfullscreen> </iframe>
+        <% end %>
+
+        <% if (pin.image? && pin.video_file?) && !pin.document?  %>
+            <%= link_to (image_tag pin.image.url, class:'pin-image'), pin, class:'pin-image' %>
+        <% end %>
+
+        <% if (pin.image? && pin.document?) && !pin.video_file? %>
+            <iframe src="<%= pin.document.url %>" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; ; width: 100%; height:600px;" allowfullscreen> </iframe>
+        <% end %>
+
+        <% if (pin.video_file? && pin.document?) && !pin.image? %>
+            <img class = "pin-image" src = "https://blog.majestic.com/wp-content/uploads/2010/10/Video-Icon-crop.png">
+
+        <% end %>
+
+        <% if (pin.video_file? && pin.document?) && pin.image? %>
+            <%= link_to (image_tag pin.image.url, class:'pin-image'), pin %>
+
+        <% end %>
+
+
+
+
+
+
+
+        <div class="panel-body">
+          <% if pin.image? && pin.video_file? && !pin.document? %>
+              <p style = "color: #F17D80;"><%= pin.user.firstname %> attached a video to this post!</p>
+          <% end %>
+          <% if pin.image? && pin.document? && !pin.video_file? %>
+              <p style = "color: #F17D80;"><%= pin.user.firstname %> attached an image to this post! </p>
+          <% end %>
+          <% if pin.video_file? && pin.document? && !pin.image? %>
+              <p style = "color: #F17D80;"><%= pin.user.firstname %> attached a PDF Document to this post!</p>
+          <% end %>
+          <% if pin.video_file? && pin.image? && pin.document? %>
+              <p style = "color: #F17D80;"><%= pin.user.firstname %> attached a video and a PDF Document to this post!</p>
+          <% end %>
+          <% if pin.document? %>
+              <%= link_to "Open PDF In Full Screen", pin.document.url, target: "_blank" %>
+          <% end %>
+
+
+          <h2 class = "text-center"><strong>
+            <%= link_to pin.title, pin, class:'pin-image' %></strong><br>
+            <span  style = "font-size:14px;"><strong style = "color:grey;">Subject: <span style = "color: #E94C6F; "><%= pin.subject %></span></strong></span>
+          </h2>
+
+          <p class="user text-center">
+            Published By
+            <%= link_to pin.user.firstname, "/user/#{pin.user.username}" , class:'pin-image'%>
+
+            <br>
+            <%= pin.user.city %>
+            <%= pin.user.state %>
+          <p class = "text-center" style = "font-size:14px; color:gray"><span class = "glyphicon glyphicon-heart go_right"></span><br><%= pin.get_upvotes.size %></p>
+
+        </div>
+      </div><br>
+
+<% end %>
 </div>
+
+<nav id="page-nav">
+  <%= paginate @pins %>
+</nav>

@@ -1,0 +1,237 @@
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "chatroom_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "chatroom_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mselect sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX "index_chatroom_users_on_chatroom_id" ON "chatroom_users" ("chatroom_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_chatroom_users_on_chatroom_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_chatroom_users_on_chatroom_id' AND type='index'
+[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX "index_chatroom_users_on_user_id" ON "chatroom_users" ("user_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "chatrooms" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "body" varchar)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "classrooms" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "fullname" varchar, "grade" varchar, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "user_id" integer, "subject" varchar)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX "index_classrooms_on_user_id" ON "classrooms" ("user_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "pin_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime, "mp3_file_name" varchar, "mp3_content_type" varchar, "mp3_file_size" integer, "mp3_updated_at" datetime)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_pin_id" ON "comments" ("pin_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_pin_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_pin_id' AND type='index'
+[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_user_id" ON "comments" ("user_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "messages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "chatroom_id" integer, "user_id" integer, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_messages_on_chatroom_id" ON "messages" ("chatroom_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_messages_on_chatroom_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_messages_on_chatroom_id' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX "index_messages_on_user_id" ON "messages" ("user_id")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "pins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "user_id" integer, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime, "video_file_file_name" varchar, "video_file_content_type" varchar, "video_file_file_size" integer, "video_file_updated_at" datetime, "mp4_file_file_name" varchar, "mp4_file_content_type" varchar, "mp4_file_file_size" integer, "mp4_file_updated_at" datetime, "webm_file_file_name" varchar, "webm_file_content_type" varchar, "webm_file_file_size" integer, "webm_file_updated_at" datetime, "ogg_file_file_name" varchar, "ogg_file_content_type" varchar, "ogg_file_file_size" integer, "ogg_file_updated_at" datetime, "thumbnail_file_name" varchar, "thumbnail_content_type" varchar, "thumbnail_file_size" integer, "thumbnail_updated_at" datetime, "published" boolean, "likes" integer DEFAULT 0, "document_file_name" varchar, "document_content_type" varchar, "document_file_size" integer, "document_updated_at" datetime, "subject" varchar)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_pins_on_user_id" ON "pins" ("user_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "relationships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "follower_id" integer, "followed_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_relationships_on_followed_id" ON "relationships" ("followed_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_relationships_on_followed_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_relationships_on_followed_id' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_relationships_on_follower_id_and_followed_id" ON "relationships" ("follower_id", "followed_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_relationships_on_follower_id_and_followed_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_relationships_on_follower_id_and_followed_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_relationships_on_followed_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_relationships_on_followed_id' AND type='index'
+[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX "index_relationships_on_follower_id" ON "relationships" ("follower_id")[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "firstname" varchar, "lastname" varchar, "city" varchar, "state" varchar, "username" varchar, "occupation" varchar, "points" integer DEFAULT 0, "stars" integer DEFAULT 0, "achievements" integer DEFAULT 0, "classes" varchar, "classnum" integer DEFAULT 0, "gender" varchar, "avatar" varchar, "description" text)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "votes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "votable_type" varchar, "votable_id" integer, "voter_type" varchar, "voter_id" integer, "vote_flag" boolean, "vote_scope" varchar, "vote_weight" integer, "created_at" datetime, "updated_at" datetime)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX "index_votes_on_votable_id_and_votable_type_and_vote_scope" ON "votes" ("votable_id", "votable_type", "vote_scope")[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_votes_on_votable_id_and_votable_type_and_vote_scope' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_votes_on_votable_id_and_votable_type_and_vote_scope' AND type='index'
+[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX "index_votes_on_voter_id_and_voter_type_and_vote_scope" ON "votes" ("voter_id", "voter_type", "vote_scope")[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES ('20170310221048')[0m
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES
+('20170228064634'),
+('20170228074558'),
+('20170228075239'),
+('20170228084332'),
+('20170228093910'),
+('20170228100525'),
+('20170228223154'),
+('20170228223251'),
+('20170228223542'),
+('20170301222405'),
+('20170302004107'),
+('20170302044857'),
+('20170302081842'),
+('20170302085453'),
+('20170303040955'),
+('20170306020151'),
+('20170306224552'),
+('20170306233833'),
+('20170306235101'),
+('20170307015637'),
+('20170307040043'),
+('20170307051625'),
+('20170307064641'),
+('20170308061759'),
+('20170309055248'),
+('20170309062000');
+
+[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", 2017-03-10 22:37:11 UTC], ["updated_at", 2017-03-10 22:37:11 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.8ms)[0m  [1m[31mDELETE FROM "chatroom_users"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.036752', '2017-03-10 22:37:12.036752', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.036752', '2017-03-10 22:37:12.036752', 298486374, 298486374, 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatrooms"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.043456', '2017-03-10 22:37:12.043456', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.043456', '2017-03-10 22:37:12.043456', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "chatroomusers"[0m
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "chatroom_users"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.054751', '2017-03-10 22:37:12.054751', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.054751', '2017-03-10 22:37:12.054751', 298486374, 298486374, 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatrooms"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.056226', '2017-03-10 22:37:12.056226', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.056226', '2017-03-10 22:37:12.056226', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatroomusers"[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "chatroom_users"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.065225', '2017-03-10 22:37:12.065225', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.065225', '2017-03-10 22:37:12.065225', 298486374, 298486374, 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatrooms"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.066950', '2017-03-10 22:37:12.066950', 980190962)[0m
+  [1m[36mFixture Insert (0.0ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.066950', '2017-03-10 22:37:12.066950', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatroomusers"[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "chatroom_users"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.076100', '2017-03-10 22:37:12.076100', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.076100', '2017-03-10 22:37:12.076100', 298486374, 298486374, 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatrooms"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.078397', '2017-03-10 22:37:12.078397', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.078397', '2017-03-10 22:37:12.078397', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatroomusers"[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "chatroom_users"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.285550', '2017-03-10 22:37:12.285550', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.285550', '2017-03-10 22:37:12.285550', 298486374, 298486374, 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatrooms"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.288376', '2017-03-10 22:37:12.288376', 980190962)[0m
+  [1m[36mFixture Insert (0.0ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.288376', '2017-03-10 22:37:12.288376', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatroomusers"[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "chatroom_users"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.299817', '2017-03-10 22:37:12.299817', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.299817', '2017-03-10 22:37:12.299817', 298486374, 298486374, 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatrooms"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.301176', '2017-03-10 22:37:12.301176', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.301176', '2017-03-10 22:37:12.301176', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatroomusers"[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (1.0ms)[0m  [1m[31mDELETE FROM "chatroom_users"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.319099', '2017-03-10 22:37:12.319099', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.319099', '2017-03-10 22:37:12.319099', 298486374, 298486374, 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatrooms"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.323262', '2017-03-10 22:37:12.323262', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.323262', '2017-03-10 22:37:12.323262', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatroomusers"[0m
+  [1m[35m (0.9ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "chatroom_users"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.336727', '2017-03-10 22:37:12.336727', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.336727', '2017-03-10 22:37:12.336727', 298486374, 298486374, 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "chatrooms"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.338593', '2017-03-10 22:37:12.338593', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.338593', '2017-03-10 22:37:12.338593', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatroomusers"[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM "chatroom_users"[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.351437', '2017-03-10 22:37:12.351437', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.351437', '2017-03-10 22:37:12.351437', 298486374, 298486374, 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatrooms"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.354789', '2017-03-10 22:37:12.354789', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.354789', '2017-03-10 22:37:12.354789', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "chatroomusers"[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "chatroom_users"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.372095', '2017-03-10 22:37:12.372095', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatroom_users" ("created_at", "updated_at", "id", "chatroom_id", "user_id") VALUES ('2017-03-10 22:37:12.372095', '2017-03-10 22:37:12.372095', 298486374, 298486374, 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatrooms"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.374268', '2017-03-10 22:37:12.374268', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "chatrooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-03-10 22:37:12.374268', '2017-03-10 22:37:12.374268', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "chatroomusers"[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m

@@ -1,48 +1,180 @@
 <%= render 'nav' %>
 
 
-<div class="row" id="pin_show">
-  <div class="col-md-8 col-md-offset-2">
+
+<% if (@pin.video_file? && !@pin.image?) && !@pin.document? %>
+<video style = "width: 100%; height: auto; " id="my-video" class="video-js pin_image" controls autoplay preload="auto"
+       poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+  <source src="<%= @pin.video_file.url %>" type='video/mp4'>
+  <source src="<%= @pin.video_file.url %>" type='video/webm'>
+  <source src="<%= @pin.video_file.url %>" type='video/ogg'>
+  <p class="vjs-no-js">
+    To view this video please enable JavaScript, and consider upgrading to a web browser that
+    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+  </p>
+</video>
+<% end %>
+
+<% if (@pin.image? && !@pin.video_file?) && !@pin.document?  %>
+
+  <%= image_tag @pin.image.url(:medium) , class: 'uploaded-image alone ' %>
+
+
+<% end %>
+
+<% if (@pin.image? && @pin.video_file?) && !@pin.document? %>
+
+    <% type = 'image' %>
+    <video style = "width: 100%; height: auto;" id="my-video" class="video-js pin_image " controls autoplay preload="auto"
+           poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+      <source src="<%= @pin.video_file.url %>" type='video/mp4'>
+      <source src="<%= @pin.video_file.url %>" type='video/webm'>
+      <source src="<%= @pin.video_file.url %>" type='video/ogg'>
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a web browser that
+        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+      </p>
+    </video>
+
+
+<% end %>
+
+<% if (@pin.image? && @pin.document?) && !@pin.video_file? %>
+    <% name = 'image' %>
+    <iframe src="<%= @pin.document.url %>"  frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="  border:1px solid #CCC; border-width:1px; height:auto; width: 100%; height:800px " allowfullscreen> </iframe>
+<% end %>
+
+<% if (@pin.video_file? && @pin.document?) && !@pin.image? %>
+
+    <video style = "width: 100%; height: auto;" id="my-video" class="video-js pin_image " controls autoplay preload="auto"
+           poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+      <source src="<%= @pin.video_file.url %>" type='video/mp4'>
+      <source src="<%= @pin.video_file.url %>" type='video/webm'>
+      <source src="<%= @pin.video_file.url %>" type='video/ogg'>
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a web browser that
+        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+      </p>
+    </video>
+<% end %>
+
+
+
+<% if (@pin.document? && !@pin.video_file?) && !@pin.image? %>
+    <% margintop = 492 %>
+
+    <iframe src="<%= @pin.document.url %>"  frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="  border:1px solid #CCC; border-width:1px; height:auto; width: 100%; height:800px " allowfullscreen> </iframe>
+<% end %>
+
+
+<% if (@pin.image? && @pin.video_file?) && @pin.document? %>
+    <% margintop = 952 %>
+
+    <video style = "width: 100%; height: auto;" id="my-video" class="video-js pin_image " controls autoplay preload="auto"
+           poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+      <source src="<%= @pin.video_file.url %>" type='video/mp4'>
+      <source src="<%= @pin.video_file.url %>" type='video/webm'>
+      <source src="<%= @pin.video_file.url %>" type='video/ogg'>
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a web browser that
+        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+      </p>
+    </video>
+
+
+<% end %>
+
+<div style = "margin-top:10px;" class="row" id="pin_show">
+
+  <div class="col-md-8 col-md-offset">
+
     <div class="panel panel-default">
       <div class="panel-heading pin_image">
-        <%= image_tag @pin.image.url(:medium) %>
-      </div>
-      <div class="panel-body">
-        <h1>
-          <%= @pin.title %>
-        </h1>
-        <p class="description">
-          <%= @pin.description %>
-        </p>
+
+
 
       </div>
-      <div class="panel-footer">
-        <div class="row">
-          <div class="col-md-6">
-            <p class="user"></p>
-            Submitted by
-            <%= @pin.user.email %>
-          </div>
 
 
-          <div class="col-md-6">
-            <div class="btn-group pull-right">
-              <%= link_to like_pin_path(@pin), method: :put, class: "btn btn-default" do %>
-                <span class="glyphicon glyphicon-heart">
-                  <%= @pin.get_upvotes.size %>
+      <div style = "position:absolute; max-height: 500px; left: 100%; width: 375.5px; height: 100%; top: 0px; background:rgb(233,234,254);">
+          <h1 class = "text-center"style = "margin-left: 20px;"><strong>Related</strong></h1>
+
+
+      </div>
+
+
+
+
+      <div style = " background:rgb(233,234,254);"class="panel-body">
+
+        <h1><strong><%= @pin.title %></strong></h1>
+
+        <p class="user"></p>
+        <% if @pin.video_file? && @pin.document? && !@pin.image? %>
+            <p style = "color:#17A697; font-weight:bold;"><%= @pin.user.firstname %> attached a PDF to this post!</p>
+        <% end %>
+        <% if @pin.document? %>
+            <%= link_to "Open PDF In Full Screen", @pin.document.url, target: "_blank" %>
+        <% end %><br>
+        <% if @pin.video_file? && @pin.image? && !@pin.document?%>
+            <p style = "color:#17A697; font-weight:bold;"><%= @pin.user.firstname %> attached an image to this post!  <%= link_to "Take a look!", @pin %> </p>
+        <% end %>
+        <% if @pin.image? && @pin.document? && !@pin.video_file? %>
+            <p style = "color:#17A697; font-weight:bold;"><%= @pin.user.firstname %> attached an image to this post!  <%= link_to "Take a look!", @pin %> </p>
+        <% end %>
+        <% if @pin.image? && @pin.document? && @pin.video_file? %>
+            <p style = "color:#17A697; font-weight:bold;"><%= @pin.user.firstname %> attached an image and a PDF to this post!  <%= link_to "Take a look!", @pin %> </p>
+        <% end %>
+
+        Submitted by
+        <strong><%= @pin.user.firstname %> <%= @pin.user.lastname %>
+          <div style = "float:right; " class="col-md-8">
+            <div class="btn-group">
+              <%= link_to like_pin_path(@pin), method: :put, class: "btn btn-default show-buttons" do %>
+                <span style = " color:#E94C6F;"class="glyphicon glyphicon-heart">
+                  <span style = "margin-left: -10px; color:black; font-family: 'helvetica' "><strong><%= @pin.get_upvotes.size %></strong></span>
                 </span>
               <% end %>
               <% if user_signed_in? %>
                   <% if current_user == @pin.user %>
 
-            <%= link_to 'edit', edit_pin_path, class: "btn btn-default" %>
-              <%= link_to 'delete', pin_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
+                      <span><strong><%= link_to 'edit', edit_pin_path, class: "btn btn-default show-buttons bold" %></strong></span>
+                      <span><strong><%= link_to 'delete', pin_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default show-buttons bold" %></strong></span>
                   <% end %>
               <% end %>
 
             </div>
 
           </div>
+
+      </div>
+
+
+      <div style = "background:rgb(223,224,244);"class="panel-footer">
+        <div class="row">
+          <div class="col-md-6">
+            <p>Published on <%= @pin.created_at.strftime(" %b %d, %Y") %></p>
+            <p class="description" style = "color: rgb(40,40,40); font-weight: normal; font-size:13px;" >
+              <%= @pin.description %>
+            </p><br><br>
+            <p>
+              <span style = "font-size:12px; color:rgb(80,80,80); font-weight:normal; ">Category</span><a style = " color:#E94C6F " href = "">  <%= @pin.subject %></a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div style = "background:rgb(213,214,234);" class="panel-footer">
+        <div class="row">
+          <div class="col-md-6">
+
+
+
+          </div>
+
+
+
           <%= render 'comments/comment' %>
 
         </div>
@@ -53,3 +185,10 @@
   </div>
 
 </div>
+
+
+
+
+
+
+

@@ -4,10 +4,12 @@ class PinsController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
 
   def index
-    @search = Pin.search do
-      fulltext params[:search]
-    end
-    @pins = @search.results
+    search = params[:term].present? ? params[:term] : nil
+    @pins = if search
+              Pin.search(search)
+            else
+              Pin.all.paginate(page: params[:page], per_page: 10)
+            end
   end
 
   def new
@@ -40,6 +42,10 @@ class PinsController < ApplicationController
     end
   end
 
+  def all
+    @user = User.all
+  end
+
   def destroy
     @pin.destroy
     redirect_to root_path
@@ -54,16 +60,34 @@ class PinsController < ApplicationController
     @pin = current_user.pins.build (pin_params)
 
     if @pin.save
-      redirect_to @pin , notice: "Succesfully created new pin"
     else
       render 'new'
     end
   end
 
+  def search
+    @pins = Pin.search(params[:query])
+    if request.xhr?
+      render :json => @pins.to_json
+    else
+      render :index
+    end
+  end
+
+  def category
+    @pin = Pin.where(subject: params[:id])
+    @subject = params[:id]
+    if @pin.blank?
+      @message = "Nothing to show for this subject"
+    end
+
+  end
+
+
   private
 
     def pin_params
-      params.require(:pin).permit(:title, :description, :image, :term, :popularity)
+      params.require(:pin).permit(:title, :description, :subject,  :image, :document, :term, :popularity, :title, :description, :video_file, :mp4_file, :webm_file, :ogg_file, :thumbnail)
     end
 
     def find_pin

@@ -1,0 +1,5 @@
+<% if @pin.new_record? %>
+  alert("Failed to upload");
+  <% else %>
+$(".row").append("<%= j render(@pin) %>");
+<% end %>

@@ -1,0 +1,22 @@
+<% if @classroom.user.gender == "Male" %>
+    <% title = "Mr." %>
+<% else %>
+    <% title = "Ms." %>
+<% end %>
+
+<h1><%= title %><%= @classroom.user.lastname %></h1>
+
+<%= @classroom.fullname.upcase %><br>
+
+<%= @classroom.subject %><br>
+
+<%= @classroom.grade %><br>
+
+<%= @classroom.description.titlecase %><br>
+
+
+
+
+<%= link_to "back" , "/teachers/#{current_user.username}" %>
+<%= link_to "Edit" , edit_classroom_path %>
+<%= link_to "Delete" , classroom_path, method: :delete, data: {confirm: "Are you sure?"} %>

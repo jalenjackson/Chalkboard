@@ -11,6 +11,9 @@
  * It is generally better to create a new file per style scope.
  *
  *= require 'masonry/transitions'
+ *= require jquery.fileupload
+ *= require jquery.fileupload-ui
+
  *= require_tree .
  *= require_self
 
@@ -21,6 +24,14 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "global";
+@import "video";
+
+
+
+
+
+
 
 $white: #FFFFFF;
 $highlight: #EE7964;
@@ -32,12 +43,14 @@ body {
   margin: 0;
   padding:0;
 
+
 }
+
 
 .go_right {
   font-size:20px;
-  display: inline;
-  color:red;
+  text-align: center;
+  color:#E94C6F ;
 }
 
 .likes {
@@ -76,6 +89,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0 !important;
   border:none !important;
   height:70px;
+  background:white;
 
 
   a {
@@ -122,9 +136,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: none !important;
 }
 
-.btn-info {
-  background: url("http://www.777a7.com/img77/ftmvkrobfcsiogocseew.jpg") center center ;
-}
 .btn-primary {
   border:none;
 }
@@ -253,14 +264,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .search-box {
   border-radius:.3em;
-  height: 37px;
-  margin-top:-9px;
+  height: 27px;
+  margin-top:7px;
   color:rgb(0,0,0);
-  font-weight: bold;
+  padding-left: 20px;
+  font-weight: 400;
   font-size:17px;
-  background: linear-gradient(to left,rgba(220, 220, 220, 1),rgba(235,235, 235, 1));
-  width: 75%;
+  background: linear-gradient(to left,rgba(240, 240, 240, 1),rgba(251,251, 251, 1));
+  width: 200px;
   border:none;
+  float:right;
+  margin-right: 340px;
+  border-radius:2em;
 }
 textarea:focus, input:focus{
   outline: none;
@@ -288,7 +303,7 @@ textarea:focus, input:focus{
   left: 0;
   width: 100%;
   height: 100%;
-  background:rgba(0,0,0,0.7);
+  background:rgba(0,0,0,0.3);
    z-index: 999999999;
 }
 
@@ -302,6 +317,449 @@ textarea:focus, input:focus{
   color:white;
   text-decoration:none;
   cursor:pointer;
+}
+
+.video-show {
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+$primary-foreground-color: #fff; // #fff default
+
+// The default color of control backgrounds is mostly black but with a little
+// bit of blue so it can still be seen on all-black video frames, which are common.
+// Try changing to #900
+$primary-background-color: #2B333F;  // #2B333F default
+
+// Try changing to true
+$center-big-play-button: false; // true default
+
+.video-js {
+  /* The base font size controls the size of everything, not just text.
+     All dimensions use em-based sizes so that the scale along with the font size.
+     Try increasing it to 15px and see what happens. */
+  font-size: 10px;
+
+  /* The main font color changes the ICON COLORS as well as the text */
+  color: $primary-foreground-color;
+}
+
+/* The "Big Play Button" is the play button that shows before the video plays.
+   To center it set the align values to center and middle. The typical location
+   of the button is the center, but there is trend towards moving it to a corner
+   where it gets out of the way of valuable content in the poster image.*/
+.vjs-default-skin .vjs-big-play-button {
+  /* The font size is what makes the big play button...big.
+     All width/height values use ems, which are a multiple of the font size.
+     If the .video-js font-size is 10px, then 3em equals 30px.*/
+  font-size: 3em;
+
+  /* We're using SCSS vars here because the values are used in multiple places.
+     Now that font size is set, the following em values will be a multiple of the
+     new font size. If the font-size is 3em (30px), then setting any of
+     the following values to 3em would equal 30px. 3 * font-size. */
+  $big-play-width: 3em;
+  /* 1.5em = 45px default */
+  $big-play-height: 1.5em;
+
+  line-height: $big-play-height;
+  height: $big-play-height;
+  width: $big-play-width;
+
+  /* 0.06666em = 2px default */
+  border: 0.06666em solid $primary-foreground-color;
+  /* 0.3em = 9px default */
+  border-radius: 0.3em;
+
+  @if $center-big-play-button {
+    /* Align center */
+    left: 50%;
+    top: 50%;
+    margin-left: -($big-play-width / 2);
+    margin-top: -($big-play-height / 2);
+  } @else {
+    /* Align top left. 0.5em = 15px default */
+    left: 0.5em;
+    top: 0.5em;
+  }
+}
+
+/* The default color of control backgrounds is mostly black but with a little
+   bit of blue so it can still be seen on all-black video frames, which are common. */
+.video-js .vjs-control-bar,
+.video-js .vjs-big-play-button,
+.video-js .vjs-menu-button .vjs-menu-content {
+  /* IE8 - has no alpha support */
+  background-color: red;
+  /* Opacity: 1.0 = 100%, 0.0 = 0% */
+  background-color: rgba($primary-background-color, 0.7);
+}
+
+// Make a slightly lighter version of the main background
+// for the slider background.
+$slider-bg-color: lighten($primary-background-color, 33%);
+
+/* Slider - used for Volume bar and Progress bar */
+.video-js .vjs-slider {
+  background:red;
+  background:red;
+}
+
+/* The slider bar color is used for the progress bar and the volume bar
+   (the first two can be removed after a fix that's coming) */
+.video-js .vjs-volume-level,
+.video-js .vjs-play-progress,
+.video-js .vjs-slider-bar {
+  background: $primary-foreground-color;
+}
+
+/* The main progress bar also has a bar that shows how much has been loaded. */
+.video-js .vjs-load-progress {
+  /* For IE8 we'll lighten the color */
+  background: lighten($slider-bg-color, 25%);
+  /* Otherwise we'll rely on stacked opacities */
+  background: rgba($slider-bg-color, 0.5);
+}
+
+/* The load progress bar also has internal divs that represent
+   smaller disconnected loaded time ranges */
+.video-js .vjs-load-progress div {
+  /* For IE8 we'll lighten the color */
+  background: lighten($slider-bg-color, 50%);
+  /* Otherwise we'll rely on stacked opacities */
+  background: rgba($slider-bg-color, 0.75);
+}
+
+
+.teacher-class-img {
+  -webkit-filter: drop-shadow(16px 16px 10px rgba(0,0,0,0.9));
+  filter: drop-shadow(16px 16px 10px rgba(0,0,0,0.9));
+  width:100px !important;
+  height: 100px !important;
+}
+
+.comment-form {
+background:  #E9E0D6 ;
+}
+
+.comment-form[type=text] {
+  width: 200px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+.comment-form[type=text]:focus {
+  width: 300%;
+}
+
+.bold {
+  font-weight: bold !important;
+}
+
+.show-buttons{
+  background:rgb(233,234,254);
+  border:none;
+}
+
+.left {
+  left: 0;
+  width:50%;
+  height: 450px;
+  top: 71px;
+}
+
+.alone {
+  width: 100%;
+  height: auto;
+  margin-top: 0px;
+
+}
+
+.index-image {
+  width:500px;
+  max-width: 100%;
+  height: auto;
+
+}
+
+.link-register {
+  font-size: 12px !important;
+}
+
+
+
+.simple_form div.input {
+  margin-bottom: 10px;
+  clear: both; /* Required for Webkit, but not for Gecko */
+}
+
+.simple_form label {
+  float: left;
+  width: 100px;
+  text-align: right;
+  margin: 2px 10px;
+}
+
+div.boolean, .simple_form input[type='submit'] {
+  margin-left: 120px;
+}
+
+div.boolean label, label.collection_radio_buttons {
+  float: none;
+  margin: 0;
+}
+
+label.collection_radio_buttons {
+  margin-right: 10px;
+  vertical-align: -2px;
+  margin-left: 2px;
+}
+
+.field_with_errors {
+  background-color: #ff3333;
+}
+
+.simple_form .error {
+  clear: left;
+  color: black;
+  display: block;
+  margin-left: 120px;
+}
+
+.simple_form .hint {
+  clear: left;
+  margin-left: 120px;
+  color: #555;
+  display: block;
+  font-style: italic;
+}
+
+input.radio {
+  margin-right: 5px;
+  vertical-align: -3px;
+}
+
+input.check_boxes {
+  margin-left: 3px;
+  vertical-align: -3px;
+}
+
+label.collection_check_boxes {
+  float: none;
+  margin: 0;
+  vertical-align: -2px;
+  margin-left: 2px;
+}
+
+.form-inputs {
+  margin: 0 auto;
+  background: #A7DBDB;
+  width: 500px;
+  border-radius: .5em;
+
+}
+
+.special {
+  border-radius: .2em;
+  background: #E9E0D6;
+  width: 350px;
+  margin-left: 80px;
+  margin-top: 25px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out, width 0.4s ease-in-out;
+}
+
+
+/* When the input field gets focus, change its width to 100% */
+.special[type=text]:focus {
+  width: 400px;
+  margin-left: 70px;
+}
+
+.controls {
+  margin: 0 auto;
+}
+
+.dropown {
+  margin: 0 auto;
+  width: 350px;
+  margin-left: 80px;
+  margin-top: 10px;
+  background:  #D79C8C;
+
+}
+
+.button-special {
+  margin-left: 80px !important;
+}
+
+.categories{
+  width:100%;
+  height:140px;
+  background:red;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  z-index: 9999999999;
+
+}
+
+.box-category{
+  background:rgb(200,200,200);
+  height: 70px;
+  border-radius: .5em;
+  transition: background 300ms ease-in-out;
+  cursor:pointer;
+}
+
+.box-category:hover p {
+  color: white;
+}
+
+.box-text {
+  font-size:14px;
+  text-align: center;
+  color:white;
+  padding-top:23px;
+}
+
+.pin-image {
+  width:90%;
+  margin-left: 2.5%;
+  vertical-align: middle;
+  height: auto;
+}
+
+.related-box{
+  width:400px;
+  left:800px;
+  top:356px;
+  position: absolute;
+  height:100%;
+
+}
+
+.image-under {
+
+}
+
+.user-link {
+  color: #17A697;
+  font-weight:bold;
+  font-size:17px;
+}
+
+.index-box{
+
+
+}
+
+.profile-link-name {
+  font-size:12px;
+}
+
+
+.button__badge {
+  background-color: #E94C6F;
+  border-radius: 2px;
+  color: white;
+  margin-top: 6px;
+  margin-left: 15px;
+  padding: 1px 3px;
+  font-size: 10px;
+
+
+  position: absolute; /* Position the badge within the relatively positioned button */
+  top: 0;
+  right: 0;
+}
+
+
+.img-container {
+  top: 71px;
+  left: 0;
+  width: 100%;
+  height: 210px;
+  position: absolute;
+
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+
+.follow {
+  float:right;
+  background: #E9514C    ;
+  width: 170px;
+  height: 50px;
+  box-shadow: 0 10px 7px 0 rgba(0, 0, 0, 0.22);
+
+
+}
+
+
+.teacher-image {
+  width:90%;
+  margin-left: 5%;
+  vertical-align: middle;
+  height: auto;
+  margin-top: 20px;
+}
+
+.nothing-to-show{
+  left: 30%;
+
+  margin:0 auto ;
+  margin-top: -70px;
+}
+
+.nav-text {
+  font-size:13px;
+}
+
+.nav-link {
+font-size:16px;
+font-weight: bold;
+font-family: helvetica;
+}
+
+.middle {
+  position: absolute;
+  left:47%;
+
+}
+
+.go-down {
+  transform:translateY(600px);
+  opacity: 0.2;
+}
+
+.go-up {
+  animation: ani 500ms ease-in-out forwards 1 ;
+}
+
+@keyframes ani {
+  0% {
+    transform:translateY(600px);
+    opacity: 0;
+  }
+  90%{
+    opacity:0.2;
+  }
+  95% {
+    opacity:0.5;
+  }
+  100%{
+    transform:translateY(0px);
+    opacity:1;
+  }
 }
 
 

@@ -1,0 +1,103 @@
+
+
+<%= render 'nav' %>
+
+<% if !@pin.blank? %>
+<div class=" related-box">
+  <h1 style = "color:rgb(90,90,90)"class = "text-center"><strong>Related</strong></h1>
+
+<% end %>
+</div>
+<br><br>
+<h1 style = "font-size:55px;"class = "text-center image-under">Latest on <%= @subject %></h1><br>
+<div  style = "margin-top: 20px;"class="transitions-enabled" id="pins">
+  <% if @pin.blank? %>
+      <h1 style = "margin-top:150px; font-weight:bold; "class = "text-center"><i style = "color:darkred; font-size:30px; " class="fa fa-frown-o" aria-hidden="true"></i>  <%= @message %></h1>
+  <% end %>
+
+  <% @pin.each do |pin| %>
+
+
+      <div style = "width:60%;" class=" panel panel-default">
+
+
+
+        <% if pin.image? && !pin.document? && !pin.video_file? %>
+            <%= link_to (image_tag pin.image.url, class:'pin-image'), pin, class:'pin-image'%>
+            <% type = "Image" %>
+        <% end %>
+        <% if pin.video_file? && !pin.document? && !pin.image? %>
+            <img class="pin-image" src = "https://blog.majestic.com/wp-content/uploads/2010/10/Video-Icon-crop.png">
+            <% type = "Video" %>
+        <% end %>
+        <% if pin.document? && !pin.image? && !pin.video_file? %>
+            <iframe src="<%= pin.document.url %>" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; ; width: 100%; height:600px;" allowfullscreen> </iframe>
+            <% type = "Document" %>
+        <% end %>
+
+        <% if (pin.image? && pin.video_file?) && !pin.document?  %>
+            <%= link_to (image_tag pin.image.url, class:'pin-image'), pin, class:'pin-image' %>
+            <% type = "Image & Video" %>
+        <% end %>
+
+        <% if (pin.image? && pin.document?) && !pin.video_file? %>
+            <iframe src="<%= pin.document.url %>" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; ; width: 100%; height:600px;" allowfullscreen> </iframe>
+            <% type = "Image & Document" %>
+        <% end %>
+
+        <% if (pin.video_file? && pin.document?) && !pin.image? %>
+            <img class = "pin-image" src = "https://blog.majestic.com/wp-content/uploads/2010/10/Video-Icon-crop.png">
+
+            <% type = "Video & Document" %>
+        <% end %>
+
+        <% if (pin.video_file? && pin.document?) && pin.image? %>
+            <%= link_to (image_tag pin.image.url, class:'pin-image'), pin %>
+
+            <% type = "Video Document Image" %>
+        <% end %>
+
+
+
+
+
+
+
+        <div class="panel-body">
+          <% if pin.image? && pin.video_file? && !pin.document? %>
+              <p style = "color: #F17D80;"><%= pin.user.firstname %> attached a video to this post!</p>
+          <% end %>
+          <% if pin.image? && pin.document? && !pin.video_file? %>
+              <p style = "color: #F17D80;"><%= pin.user.firstname %> attached an image to this post! </p>
+          <% end %>
+          <% if pin.video_file? && pin.document? && !pin.image? %>
+              <p style = "color: #F17D80;"><%= pin.user.firstname %> attached a PDF Document to this post!</p>
+          <% end %>
+          <% if pin.video_file? && pin.image? && pin.document? %>
+              <p style = "color: #F17D80;"><%= pin.user.firstname %> attached a video and a PDF Document to this post!</p>
+          <% end %>
+          <% if pin.document? %>
+              <%= link_to "Open PDF In Full Screen", pin.document.url, target: "_blank" %>
+          <% end %>
+
+          <span style = " color:#737495  ; font-size:16px;"><%= type %></span>
+
+          <h2 class = "text-center"><strong>
+            <%= link_to pin.title, pin, class:'pin-image' %></strong><br>
+            <span  style = "font-size:14px;"><strong style = "color:grey;">Subject: <span style = "color: #E94C6F; "><%= pin.subject %></span></strong></span>
+          </h2>
+
+          <p class="user text-center">
+            Published By
+            <%= link_to pin.user.firstname, "/user/#{pin.user.username}" , class:'pin-image'%>
+
+            <br>
+            <%= pin.created_at.strftime(" %b %d, %Y") %>
+            <%= pin.user.city %>
+            <%= pin.user.state %>
+          <p class = "text-center" style = "font-size:14px; color:gray"><span class = "glyphicon glyphicon-heart go_right"></span><br><%= pin.get_upvotes.size %></p>
+
+        </div>
+      </div><br>
+  <% end %>
+</div>

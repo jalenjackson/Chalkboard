@@ -4,7 +4,7 @@
 
           <i style = "font-size:20px; color:grey"class="fa fa-search font-icon" aria-hidden="true"></i>
 
-          <%= text_field_tag :search, params[:search], class: 'search-box ', placeholder: 'Search' %>
+          <%= text_field_tag :term, params[:term], id:'pins_search', placeholder: 'Search',  class: 'search-box ' %>
 
         </span>
   <% end %>
@@ -30,6 +30,8 @@
             <%= link_to "", chatrooms_path, class: "fa fa-users" %>
           </li>
 
+
+
           <li style = "margin-top: 17px;">
             <div class = "dropdown">
               <div class="dropdown">
@@ -38,7 +40,11 @@
                   <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                   <li class = "text-center"><span style = "font-size:16px; font-weight: bold;"><%= current_user.firstname + " " + current_user.lastname %></span></li>
-                  <li><%= link_to "Profile", "/user/#{current_user.username}", :style=>'color:grey; font-size:20px; ' %> </li>
+                  <% if current_user.occupation == "Teacher" %>
+                      <li><%= link_to "Profile", "/teachers/#{current_user.username}", :style=>'color:grey; font-size:20px; ' %> </li>
+                  <% else %>
+                    <li><%= link_to "Profile", "/user/#{current_user.username}", :style=>'color:grey; font-size:20px; ' %> </li>
+                  <% end %>
                   <li><%= link_to "Settings", "/user/#{current_user.username}", :style=>'color:grey; font-size:20px; ' %></li>
                   <li style = "color:grey; font-size:12px;"><%= link_to "Sign Out", destroy_user_session_path, :style=>'color:grey; font-size:14px; ',  method: :delete %></li>
 

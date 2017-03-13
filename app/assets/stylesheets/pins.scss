@@ -12,8 +12,9 @@
     border-radius: 4px;
     text-align: center;
     img {
-      max-width: 100%;
+      max-width: 100% !important;
       height: auto;
+      width: 100% !important;
     }
     h2 {
       font-size: 22px;
@@ -82,3 +83,4 @@ textarea {
 .image-class {
   margin-left: 15px;
 }
+

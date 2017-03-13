@@ -1,17 +1,19 @@
 
-<h1 class = "text-center">Comments</h1>
+<h1 style = "font-size:16px;"><strong>Comments <%= @comments.count %>
+</strong>      <i class="fa fa-commenting-o" aria-hidden="true"></i></h1>
+<br><br>
 <%= render 'comments/form' %>
 
 
 
-
+<br><br>
 <% @comments.each do |comment| %><br>
         <span style="color:white; font-size:10px; margin-left: 3px;"><%= link_to "Delete comment", [comment.pin, comment], method: :delete %></span>
-        <!-- <%= link_to 'Edit comment', edit_pin_comment_path(comment.pin,comment) %> -->
-        <p style = "margin-left: 3px;"><strong><%= comment.user.firstname %></strong>  <span style = "color:grey; font-size:10px;"><%= comment.created_at %></span></p>
+        <!-- <%= link_to 'Edit comment', edit_pin_comment_path(comment.pin,comment) %> --><br>
+    <p style = "margin-left: 3px; font-weight:normal;"><span style = "float:left;"><%= avatar_for(comment.user, size:70) %></span>  <%= comment.user.firstname %>  <span style = "color:grey; font-size:10px;"><%= comment.created_at.strftime(" %b %d, %Y") %></span></p>
         <p> </p>
 
-    <p style = "margin-left:10px;"><%= comment.content %></p>
+    <p style = "margin-left:83px;">  <%= comment.content %></p>
         <% if comment.image.exists? %>
             <p style = "margin-left:3px; color:grey; font-size:12px;"><%= comment.user.firstname %> commented with an image <span class = "glyphicon glyphicon-picture"></span></p>
             <%= image_tag comment.image.url(:medium) , class: 'image-class' %><br><br><br>
@@ -55,7 +57,7 @@
                     To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
                   </div>
                 </div>
-              </div><br><br><br><br><br><br>
+              </div><br><br><br>
         </div>
 
 

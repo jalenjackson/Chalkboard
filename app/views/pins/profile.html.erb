@@ -1,3 +1,9 @@
+<% if current_user.occupation == "Teacher" %>
+  <script>
+    window.location.href = "/teachers"
+  </script>
+<% end %>
+
 <%= render 'nav' %>
 <div class = "panel">
 

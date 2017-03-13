@@ -1,0 +1,4 @@
+<% @classroom.each do |classroom| %>
+    <h1><%= classroom.fullname %> <%= classroom.subject %> <%= User.find(classroom.user_id).firstname %> <%= User.find(classroom.user_id).lastname %>  <%= User.find(classroom.user_id).city%> , <%= User.find(classroom.user_id).state %> </h1><br>
+
+<% end %>

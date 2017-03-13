@@ -1,0 +1,25 @@
+I"É(function() {
+  var Notifications;
+
+  Notifications = (function() {
+    function Notifications() {
+      this.notifications = $("[data-behavior='notifications']");
+      if (this.notifications.length > 0) {
+        this.setup();
+      }
+    }
+
+    Notifications.prototype.setup = function() {
+      return console.log(this.notifications);
+    };
+
+    return Notifications;
+
+  })();
+
+  jQuery(function() {
+    return new Notifications;
+  });
+
+}).call(this);
+:ET

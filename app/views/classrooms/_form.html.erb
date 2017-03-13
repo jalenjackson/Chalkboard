@@ -1,0 +1,38 @@
+<%= simple_form_for @classroom, html: { multipart: true } do |f| %>
+    <% if @classroom.errors.any? %>
+        <div id="errors">
+          <h2>
+            <%= pluralize(@classroom.errors.count, "error") %>
+            prevented this Pin from saving
+          </h2>
+          <ul>
+            <% @classroom.errors.full_messages.each do |msg| %>
+                <li>
+                  <%= msg %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.input :fullname, input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= f.input :image, input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class = "controls">
+      <%= f.select(:subject, options_for_select([['', ''],['Math', 'Math'], ['English', 'English'], ['Science', 'Science'], ['History', 'History'], ['Geography', 'Geography'], ['Physics', 'Physics'], ['Chemistry', 'Chemistry'], ['Biology', 'Biology'], ['Algebra', 'Algebra'], ['Social Studies', 'Social Studies'], ['Art', 'Art'], ['Physical Education', 'Physical Education'], ['Economics', 'Economics'], ['Writing', 'Writing'], ['Astronomy', 'Astronomy'], ['Mechanics', 'Mechanics'], ['Language', 'Language'], ['ICT', 'ICT'], ['Religious Education', 'Religious Education'], ['Logic', 'Logic'], ['Music', 'Music'], ['Psychology', 'Psychology'], ['Sexual Education', 'Sexual Education'], ['Computer Science', 'Computer Science'], ['General Business', 'General Business'], ['Ethics', 'Ethics'], ['Foreign Languages', 'Foreign Languages'], ['Computers', 'Computers'], ['Greek', 'Greek'], ['Reading', 'Reading'], ['Life Skills', 'Life Skills'], ['Drama', 'Drama'], ['Handwriting', 'Handwriting'], ['Food Tech', 'Food Tech'], ['Cooking Class', 'Cooking Class'], ['Gym', 'Gym'], ['Drivers Education', 'Drivers Education'], ['German', 'German'], ['Urdu', 'Urdu'], ['Human Relations', 'Human Relations'], ['Design And Technology', 'Design And Technology'], ['French', 'French'], ['Values Education', 'Values Education'], ['Accounting', 'Accounting'], ['Philosophy', 'Philosophy'], ['Home Economics', 'Home Economics'],  ['Health', 'Health'], ['Media Studies', 'Media Studies']])) %>
+    </div>
+
+    <div class = "controls">
+      <%= f.select(:grade, options_for_select([['Pre-Kindergarten', 'Pre-Kindergarten'], ['Kindergarten', 'Kindergarten'], ['1st Grade', 'FirstGrade'], ['2nd Grade', 'SecondGrade'], ['3rd Grade', 'ThirdGrade'], ['4th Grade', 'FourthGrade'], ['5th Grade', 'FifthGrade'], ['6th Grade', 'SixthGrade'], ['7th Grade', 'SeventhGrade'], ['8th Grade', 'EigthGrade'], ['9th Grade', 'NinthGrade'], ['10th Grade', 'TenthGrade'], ['11th Grade', 'EleventhGrade'], ['12th Grade', 'TwelfthGrade'], ['Freshman (college)', 'Freshman'], ['Sophmore (college)', 'Sophmore'], ['Junior (college)', 'Junior'], ['Senior (college)', 'Senior'], ['PHD', 'PHD']])) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.input :description, input_html: { class: 'form-control' } %>
+    </div>
+
+    <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>

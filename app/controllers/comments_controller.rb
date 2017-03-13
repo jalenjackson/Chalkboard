@@ -8,6 +8,9 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.save
     if @comment.save
+      (@post.users.uniq - [current_user]).each do |user|
+        Notification.create(recipient: user, actor: current_user, action: "posted", notifiable: @comment)
+      end
       redirect_to pin_path(@post)
     else
       render 'chatrooms/show'

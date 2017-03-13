@@ -1,59 +1,147 @@
 <nav class="navbar navbar-default navbar-fixed-top nav2">
+  <style>
+    input /* be more selective here if you want */ {
+      font-family: FontAwesome, helvetica;
+      color:grey;
+    }
+  </style>
+
+<div class = "password">
   <%= form_tag pins_path, :method => :get, class: "input-group2" do %>
-        <span>
 
-          <i style = "font-size:20px; color:grey"class="fa fa-search font-icon" aria-hidden="true"></i>
 
-          <%= text_field_tag :search, params[:search], class: 'search-box ', placeholder: 'Search' %>
 
-        </span>
+      <%= text_field_tag :term, params[:term], class: 'search-box ', placeholder:"&#xf002; Search ".html_safe,  autocomplete: :off%>
+
   <% end %>
+
+</div>
 
   <div class="container">
 
 
 
-    <div class="navbar-brand">
-      <a href = "/"><%= image_tag 'logo.png' , class: 'logo-pic'  %></a>
-    </div>
     <% if user_signed_in? %>
 
 
+        <ul class="nav navbar-nav navbar-left">
+          <div class="navbar-brand middle">
+            <a href = "/"><%= image_tag 'logo.png' , class: 'logo-pic'  %></a>
+          </div>
+
+
+
+
+          <li>
+
+            <%= link_to '../members', class: 'nsv-link' do %>
+                <span style = "font-size:14px;"><strong>People</strong></span>
+                <i style = "font-size:18px;"class="fa fa-users" aria-hidden="true"></i>
+
+            <% end %>
+          </li>
+
+          <li>
+
+            <%= link_to chatrooms_path, class: 'nsv-link' do %>
+                <span style = "font-size:14px;"><strong>Group Chat</strong></span>
+                <i style = "font-size:18px;"class="fa fa-comments-o" aria-hidden="true"></i>
+
+          <% end %>
+          </li>
+
+
+
+
+
+
+
+
+          <li style = "margin-top: 17px; margin-left: 13px; cursor:pointer;" data-behavior="notifications">
+
+            <div class="dropdown">
+              <span dropdown-toggle" type="button" data-toggle="dropdown"  style = "color:grey"><strong>Notifications</strong></span><a class="dropdown-toggle" type="button" data-toggle="dropdown" data-behavior="notifications-link"><i style = "color:grey; font-size:18px; margin-left:10px; "class="fa fa-globe" aria-hidden="true"></i><span class="button__badge" data-behavior="unread-count" ></span>
+
+
+                <span class="caret"></span></a>
+              <ul style = "width:400px;"class="dropdown-menu" data-behavior="notification-items">
+
+
+              </ul>
+            </div>
+          </li>
+
+
+
+          <li style = "margin-top: 17px; margin-left: 29px; cursor:pointer;" data-behavior="notifications">
+
+            <div class="dropdown">
+              <span dropdown-toggle" type="button" data-toggle="dropdown" style = "color:grey"><strong>Messages</strong></span><a class="dropdown-toggle" type="button" data-toggle="dropdown" data-behavior="notifications-link"><i style = "color:grey; font-size:18px; margin-left:10px;"class="fa fa-commenting-o" aria-hidden="true"></i><span class="button__badge" data-behavior="unread-count" ></span>
+
+
+                <span class="caret"></span></a>
+              <ul style = "width:400px;"class="dropdown-menu" data-behavior="notification-items">
+
+
+              </ul>
+            </div>
+          </li>
+
+
+        </ul>
+
         <ul class="nav navbar-nav navbar-right">
 
-          <li>
-            <%= link_to "", new_pin_path, class:"fa fa-file-text-o" %>
+          <li style = "margin-top: 17px; float:right; ">
 
-          </li>
-          <li>
-
-            <%= link_to "", chatrooms_path, class: "fa fa-users" %>
-          </li>
-
-          <li style = "margin-top: 17px;">
               <div class="dropdown">
-                <button class="btn btn-primary btn-circle bootstrap-iso dropdown-toggle" type="button" data-toggle="dropdown"><%= current_user.firstname[0] + current_user.lastname[0]%>
+                <button style="" class="btn btn-primary btn-circle bootstrap-iso dropdown-toggle" type="button" data-toggle="dropdown"><span style = "font-weight:200;"><%= current_user.firstname[0].upcase + current_user.lastname[0].upcase%></span>
 
                   <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                  <li class = "text-center"><span style = "font-size:16px; font-weight: bold;"><%= current_user.firstname + " " + current_user.lastname %></span></li>
+                  <li class = "text-center"><span style = "font-size:16px; font-weight: bold;"><%= current_user.firstname.titlecase + " " + current_user.lastname.titlecase %></span></li>
+                  <% if current_user.occupation == "Teacher" %>
+                  <li><%= link_to "Profile", "/teachers/#{current_user.username}", :style=>'color:grey; font-size:20px; ' %> </li>
+                  <% else %>
                   <li><%= link_to "Profile", "/user/#{current_user.username}", :style=>'color:grey; font-size:20px; ' %> </li>
-                  <li><%= link_to "Settings", "/user/#{current_user.username}", :style=>'color:grey; font-size:20px; ' %></li>
+                  <% end %>
+                  <li><%= link_to "Settings", "/users/edit", :style=>'color:grey; font-size:20px; ' %></li>
                   <li style = "color:grey; font-size:12px;"><%= link_to "Sign Out", destroy_user_session_path, :style=>'color:grey; font-size:14px; ',  method: :delete %></li>
 
                 </ul>
               </div>
           </li>
+
+          <li>
+            <%= link_to new_pin_path, class:'nav-link'  do %>
+                <i style = "font-size:14px;"class="fa fa-plus-circle" aria-hidden="true"></i>
+                <span style = "font-size:14px;"><strong>Add Post</strong> </span>
+            <% end %>
+
+          </li>
+
+            <% if current_user.occupation == "Teacher" %>
+              <li>
+                <%= link_to new_classroom_path, class: "nav-link" do %>
+
+                <i style = "font-size:14px;"class="fa fa fa-book" aria-hidden="true"></i>
+                    <span style = "font-size:14px;"><strong>Add New Class</strong> </span>
+
+              <% end %>
+              </li>
+          <% end %>
+
+          <li>
           <!--<li>
           </li> -->
         </ul>
     <% else %>
         <ul class="nav navbar-nav navbar-right">
-          <li>
-            <%= link_to "Sign Up", new_user_registration_path %>
+          <li >
+           <%= link_to "Sign Up", new_user_registration_path, :style=>'font-size:14px;'  %>
           </li>
           <li>
-            <%= link_to "Sign In", new_user_session_path %>
+            <%= link_to "Sign In", new_user_session_path, :style=>'font-size:14px;'%>
           </li>
         </ul>
     <% end %>
@@ -63,6 +151,8 @@
 <div class = "overlay">
 
 </div>
+
+
 <script>
 
     $(".overlay").hide();

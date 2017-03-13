@@ -4,11 +4,7 @@ class ChatroomsController < ApplicationController
   # GET /chatrooms
   # GET /chatrooms.json
   def index
-    @search = Chatroom.search do
-      fulltext params[:search]
-    end
-    @chatrooms = @search.results
-
+    @chatrooms = Chatroom.all
   end
 
   # GET /chatrooms/1
@@ -67,13 +63,13 @@ class ChatroomsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_chatroom
-      @chatroom = Chatroom.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_chatroom
+    @chatroom = Chatroom.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def chatroom_params
-      params.require(:chatroom).permit(:name)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def chatroom_params
+    params.require(:chatroom).permit(:name)
+  end
 end

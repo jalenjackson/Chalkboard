@@ -1,0 +1,41 @@
+I"¼(function() {
+  var Notifications,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  Notifications = (function() {
+    function Notifications() {
+      this.handleSuccess = bind(this.handleSuccess, this);
+      this.notifications = $("[data-behavior='notifications']");
+      if (this.notifications.length > 0) {
+        this.setup();
+      }
+    }
+
+    Notifications.prototype.setup = function() {
+      return $.ajax({
+        url: "/notifications.json",
+        dataType: "JSON",
+        method: "GET",
+        success: this.handleSuccess
+      });
+    };
+
+    Notifications.prototype.handleSuccess = function(data) {
+      var items;
+      console.log(data);
+      items = $.map(data, function(notification) {
+        return "<a style = 'font-size:12px; margin-left: 15px;' class = 'dropdown-item' href='" + notification.url + "'> <img src ='" + notification.image + "'> " + notification.actor + " " + notification.action + " " + notification.notifiable.type + "</a><br>";
+      });
+      return $("[data-behavior='notification-items']").html(items);
+    };
+
+    return Notifications;
+
+  })();
+
+  jQuery(function() {
+    return new Notifications;
+  });
+
+}).call(this);
+:ET
