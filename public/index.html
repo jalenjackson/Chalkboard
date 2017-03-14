@@ -77,9 +77,9 @@
                     </li>
                     <li><a href="#support">support</a>
                     </li>
-                    <li><a class = "signup" >Sign Up</a>
+                    <li><a style = "cursor:pointer; " class = "signup" >Sign Up</a>
                     </li>
-                    <li><a class = "signin" >Sign In</a>
+                    <li><a style = "cursor:pointer; " class = "signin" >Sign In</a>
                     </li>
                 </ul>
             </div>
@@ -567,14 +567,7 @@
 
 
 </div>
-<script>
-    $(".signin").click(function(){
-        window.location = "users/sign_in";
-    });
-    $(".signup").click(function(){
-        window.location = "users/sign_up";
-    });
-</script>
+
 <script src="assets/js/jquery-1.11.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/slick.min.js"></script>
@@ -588,6 +581,13 @@
         appMaster.preLoader();
 
 
+    });
+
+    $(".signin").click(function(){
+        window.location = "users/sign_in";
+    });
+    $(".signup").click(function(){
+        window.location = "users/sign_up";
     });
 
 

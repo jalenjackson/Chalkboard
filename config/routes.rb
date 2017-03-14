@@ -54,6 +54,7 @@ end
 
 
 
+
   get '/chatrooms', to: 'chatrooms#index'
 
 

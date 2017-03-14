@@ -558,27 +558,51 @@ label.collection_check_boxes {
 }
 
 .form-inputs {
+  position: relative;
   margin: 0 auto;
-  background: #A7DBDB;
+  margin-top:-50px;
+  background: none;
   width: 500px;
   border-radius: .5em;
+  color:rgb(200,200,200);
+  font-weight:200;
+
 
 }
 
 .special {
   border-radius: .2em;
-  background: #E9E0D6;
+  background: none;
   width: 350px;
+  border:none;
   margin-left: 80px;
   margin-top: 25px;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out, width 0.4s ease-in-out;
+  outline: none;
+  color:white;
+  font-size:18px;
+}
+
+*:focus {
+  outline: none;
+}
+
+
+.sign-up-image {
+  width:130px;
+  height:100px;
+  position: absolute;
+  top:2px;
+  left:50%;
+  margin-left:-25px;
+
 }
 
 
 /* When the input field gets focus, change its width to 100% */
 .special[type=text]:focus {
-  width: 400px;
+  width: 450px;
   margin-left: 70px;
 }
 
