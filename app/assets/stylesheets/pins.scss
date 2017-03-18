@@ -11,6 +11,7 @@
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
     border-radius: 4px;
     text-align: center;
+    background:rgb(41,41,41);
     img {
       max-width: 100% !important;
       height: auto;
@@ -20,13 +21,13 @@
       font-size: 22px;
       margin: 0;
       padding: 25px 10px;
+      color:white;
       a {
-        color: #474747;
+        color: white;
       }
     }
     .user {
       font-size: 12px;
-      border-top: 1px solid #EAEAEA;
       padding: 15px;
       margin: 0;
     }
@@ -83,4 +84,45 @@ textarea {
 .image-class {
   margin-left: 15px;
 }
+
+
+
+.side-navigation{
+  position: fixed;
+  top:0;
+  left:-300px;
+  width:300px;
+  background:rgb(41,41,41);
+  height:100%;
+  z-index:999999999999999999999999;
+}
+
+.activate-ani {
+  animation: ani 300ms ease-in-out forwards;
+}
+
+.de-activate-ani {
+  animation: de-ani 400ms ease-in-out forwards;
+
+}
+
+@keyframes ani {
+   0%{
+     left:-300px;
+   }
+   100%{
+     left:0px;
+   }
+ }
+
+@keyframes de-ani {
+  0%{
+    left:0px;
+  }
+  100%{
+    left:-300px;
+  }
+}
+
+
 

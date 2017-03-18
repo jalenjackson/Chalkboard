@@ -1,10 +1,16 @@
-<nav class="navbar navbar-default navbar-fixed-top nav2">
+<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+<nav style = "height:120px; "class="navbar navbar-default navbar-fixed-top nav2">
   <style>
     input /* be more selective here if you want */ {
       font-family: FontAwesome, helvetica;
       color:grey;
     }
+      .span-logo{
+        font-family: 'VT323', monospace;
+
+      }
   </style>
+
 
 <div class = "password">
   <%= form_tag pins_path, :method => :get, class: "input-group2" do %>
@@ -30,22 +36,25 @@
           </div>
 
 
-
-
           <li>
 
-            <%= link_to '../members', class: 'nsv-link' do %>
-                <span style = "font-size:14px;"><strong>People</strong></span>
-                <i style = "font-size:18px;"class="fa fa-users" aria-hidden="true"></i>
+                <i style = "position:absolute; top:26px;left:-40px; font-size:28px; color:white; cursor:pointer;  "class="fa fa-bars activate" aria-hidden="true"></i>
+
+          </li>
+          <li>
+
+            <%= link_to '../members', class: 'nav-link' do %>
+                <span style = "font-size:14px; color:white; font-weight: 300; ">People</span>
+                <i style = "font-size:18px; color:white; "class="fa fa-users" aria-hidden="true"></i>
 
             <% end %>
           </li>
 
           <li>
 
-            <%= link_to chatrooms_path, class: 'nsv-link' do %>
-                <span style = "font-size:14px;"><strong>Group Chat</strong></span>
-                <i style = "font-size:18px;"class="fa fa-comments-o" aria-hidden="true"></i>
+            <%= link_to chatrooms_path, class: 'nav-link' do %>
+                <span style = "font-size:14px; color:white; font-weight: 300; ">Group Chat</span>
+                <i style = "font-size:18px; color:white;"class="fa fa-comments-o" aria-hidden="true"></i>
 
           <% end %>
           </li>
@@ -60,7 +69,7 @@
           <li style = "margin-top: 17px; margin-left: 13px; cursor:pointer;" data-behavior="notifications">
 
             <div class="dropdown">
-              <span dropdown-toggle" type="button" data-toggle="dropdown"  style = "color:grey"><strong>Notifications</strong></span><a class="dropdown-toggle" type="button" data-toggle="dropdown" data-behavior="notifications-link"><i style = "color:grey; font-size:18px; margin-left:10px; "class="fa fa-globe" aria-hidden="true"></i><span class="button__badge" data-behavior="unread-count" ></span>
+              <span "dropdown-toggle" type="button" data-toggle="dropdown"  style = "color:white; font-weight:320;">Notifications</span><a class="dropdown-toggle" type="button" data-toggle="dropdown" data-behavior="notifications-link"><i style = "color:white; font-size:18px; margin-left:10px; "class="fa fa-globe" aria-hidden="true"></i><span class="button__badge" data-behavior="unread-count" ></span>
 
 
                 <span class="caret"></span></a>
@@ -76,7 +85,7 @@
           <li style = "margin-top: 17px; margin-left: 29px; cursor:pointer;" data-behavior="notifications">
 
             <div class="dropdown">
-              <span dropdown-toggle" type="button" data-toggle="dropdown" style = "color:grey"><strong>Messages</strong></span><a class="dropdown-toggle" type="button" data-toggle="dropdown" data-behavior="notifications-link"><i style = "color:grey; font-size:18px; margin-left:10px;"class="fa fa-commenting-o" aria-hidden="true"></i><span class="button__badge" data-behavior="unread-count" ></span>
+              <span dropdown-toggle" type="button" data-toggle="dropdown" style = "color:white; font-weight:320;">Messages</span><a class="dropdown-toggle" type="button" data-toggle="dropdown" data-behavior="notifications-link"><i style = "color:white; font-size:18px; margin-left:10px;"class="fa fa-commenting-o" aria-hidden="true"></i><span class="button__badge" data-behavior="unread-count" ></span>
 
 
                 <span class="caret"></span></a>
@@ -98,7 +107,7 @@
                 <button style="" class="btn btn-primary btn-circle bootstrap-iso dropdown-toggle" type="button" data-toggle="dropdown"><span style = "font-weight:200;"><%= current_user.firstname[0].upcase + current_user.lastname[0].upcase%></span>
 
                   <span class="caret"></span></button>
-                <ul class="dropdown-menu">
+                <ul style="background:rgb(51,51,51);" class="dropdown-menu">
                   <li class = "text-center"><span style = "font-size:16px; font-weight: bold;"><%= current_user.firstname.titlecase + " " + current_user.lastname.titlecase %></span></li>
                   <% if current_user.occupation == "Teacher" %>
                   <li><%= link_to "Profile", "/teachers/#{current_user.username}", :style=>'color:grey; font-size:20px; ' %> </li>
@@ -112,10 +121,12 @@
               </div>
           </li>
 
+
+
           <li>
             <%= link_to new_pin_path, class:'nav-link'  do %>
-                <i style = "font-size:14px;"class="fa fa-plus-circle" aria-hidden="true"></i>
-                <span style = "font-size:14px;"><strong>Add Post</strong> </span>
+                <i style = "font-size:14px; color:white;"class="fa fa-plus-circle" aria-hidden="true"></i>
+                <span style = "font-size:14px; font-weight:300; color:white; ">Add Post</span>
             <% end %>
 
           </li>
@@ -124,16 +135,12 @@
               <li>
                 <%= link_to new_classroom_path, class: "nav-link" do %>
 
-                <i style = "font-size:14px;"class="fa fa fa-book" aria-hidden="true"></i>
-                    <span style = "font-size:14px;"><strong>Add New Class</strong> </span>
+                <i style = "font-size:14px; color:white;"class="fa fa fa-book" aria-hidden="true"></i>
+                    <span style = "font-size:14px; font-weight:300; color:white;">Add New Class</span>
 
               <% end %>
               </li>
           <% end %>
-
-          <li>
-          <!--<li>
-          </li> -->
         </ul>
     <% else %>
         <ul class="nav navbar-nav navbar-right">
@@ -146,12 +153,27 @@
         </ul>
     <% end %>
   </div>
+  <br>
+
+  <div style="position: absolute; left: 50%;">
+    <div style="position: relative; left: -50%;">
+      <li style = "display:inline; font-size:14px; margin-left:35px; font-weight:400; letter-spacing: 1px; color:white; border-bottom:3px solid white; padding-bottom:10px;">Home</li>
+      <li style = "display:inline; font-size:14px; margin-left:35px; font-weight:400; letter-spacing: 1px; color:white; ">Categories</li>
+      <li style = "display:inline; font-size:14px; margin-left:35px; font-weight:400; letter-spacing: 1px; color:white;">Discussions</li>
+      <li style = "display:inline; font-size:14px; margin-left:35px; font-weight:400; letter-spacing: 1px; color:white;">Teachers</li>
+
+    </div>
+  </div>
 </nav>
 
 <div class = "overlay">
 
 </div>
+<div class = "side-navigation">
 
+  <div style = "background:rgb(34,34,34);border-bottom:2px solid grey; height:95px;width:100%;"><i style = "position:absolute; top:26px;left: 20px; font-size:28px; color:white; cursor:pointer;  "class="fa fa-bars de-activate" aria-hidden="true"></i> <span style = "position:absolute; top:26px;left: -18px;margin-left:100px; color:white;"><%= image_tag 'logo.png', class: 'change-pic' %><span class = "span-logo" style = "margin-left:20px;font-size:20px; ">CHALKBOARD</span></div>
+
+</div>
 
 <script>
 
@@ -163,6 +185,22 @@
     $('.search-box').blur( function() {
         $(".overlay").fadeOut("slow");
     });
+
+    $(".activate").click(function() {
+        $(".side-navigation").addClass("activate-ani");
+        setTimeout(function(){
+          $(".side-navigation").removeClass("de-activate-ani");
+        },100);
+    });
+    $(".de-activate").click(function() {
+        $(".side-navigation").addClass("de-activate-ani");
+        setTimeout(function(){
+            $(".side-navigation").removeClass("activate-ani");
+        },200);
+    });
+
+
+
 
 
 </script>

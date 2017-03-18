@@ -12,34 +12,20 @@
 //
 
 //= require bootstrap
-
 //= require jquery
 //= require jquery-ui
-//= require jquery.turbolinks
 //= require jquery_ujs
-//= require jquery-fileupload/basic
-//= require jquery-fileupload/vendor/tmpl
 //= requre refile
-
-
-
+//= require masonry/jquery.masonry
 
 //= require bootstrap-sprockets
 //= require Chart.bundle
 //= require chartkick
 //= require bootstrap-filestyle
-
 //= require components
+//= require pins.js
 //= require_tree .
 
-$(window).load(function(){
-    $(".go-down").addClass("go-up");
-});
 
-$(document).ready(function() {
-
-    $("#yo").fileUpload();
-
-});
 
 

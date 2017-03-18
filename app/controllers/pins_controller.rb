@@ -48,7 +48,7 @@ class PinsController < ApplicationController
 
   def destroy
     @pin.destroy
-    redirect_to root_path
+    redirect_to pins_path
   end
 
   def upvote
@@ -60,6 +60,7 @@ class PinsController < ApplicationController
     @pin = current_user.pins.build (pin_params)
 
     if @pin.save
+      redirect_to @pin
     else
       render 'new'
     end

@@ -11,8 +11,13 @@
  * It is generally better to create a new file per style scope.
  *
  *= require 'masonry/transitions'
- *= require jquery.fileupload
- *= require jquery.fileupload-ui
+ *= require 'masonry/basic'
+ *= require 'masonry/centered'
+ *= require 'masonry/fluid'
+ *= require 'masonry/gutters'
+ *= require 'masonry/infinitescroll'
+ *= require 'masonry/right-to-left'
+ *= require 'masonry/transitions'
 
  *= require_tree .
  *= require_self
@@ -39,7 +44,7 @@ $dark: #2C3135;
 $light: #EDEFF5;
 
 body {
-  background: #E9E9E9;
+  background: rgb(34,34,34);
   margin: 0;
   padding:0;
 
@@ -89,13 +94,13 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0 !important;
   border:none !important;
   height:70px;
-  background:white;
+  background:rgb(47,47,47);
 
 
   a {
     margin-top: 12px;
     font-weight: 500;
-    color:rgb(70,70,70);
+    color:white;
     font-size:28px;
     margin-left: -7px;
   }
@@ -270,7 +275,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 20px;
   font-weight: 400;
   font-size:17px;
-  background: linear-gradient(to left,rgba(240, 240, 240, 1),rgba(251,251, 251, 1));
+  background: rgb(41,41,41);
   width: 200px;
   border:none;
   float:right;
@@ -752,7 +757,11 @@ label.collection_check_boxes {
 font-size:16px;
 font-weight: bold;
 font-family: helvetica;
+  color:white;
 }
+
+
+
 
 .middle {
   position: absolute;
@@ -760,31 +769,11 @@ font-family: helvetica;
 
 }
 
-.go-down {
-  transform:translateY(600px);
-  opacity: 0.2;
+.change-pic{
+  width:35px;
+  height:30px;
 }
 
-.go-up {
-  animation: ani 500ms ease-in-out forwards 1 ;
-}
-
-@keyframes ani {
-  0% {
-    transform:translateY(600px);
-    opacity: 0;
-  }
-  90%{
-    opacity:0.2;
-  }
-  95% {
-    opacity:0.5;
-  }
-  100%{
-    transform:translateY(0px);
-    opacity:1;
-  }
-}
 
 
 

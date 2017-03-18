@@ -148,7 +148,6 @@
     <orderEntry type="library" scope="PROVIDED" name="chartkick (v2.2.3, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="climate_control (v0.1.0, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cocaine (v0.5.8, RVM: ruby-2.4.0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="coderay (v1.1.1, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v4.2.1, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.4.1, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.12.2, RVM: ruby-2.4.0) [gem]" level="application" />
@@ -172,7 +171,6 @@
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.8.1, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ice_cube (v0.11.1, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.6.3, RVM: ruby-2.4.0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="jquery-fileupload-rails (v0.4.7, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v4.2.2, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jquery-turbolinks (v2.1.0, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jquery-ui-rails (v6.0.1, RVM: ruby-2.4.0) [gem]" level="application" />
@@ -201,8 +199,6 @@
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="paperclip (v5.1.0, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pr_geohash (v1.0.0, RVM: ruby-2.4.0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="pry (v0.10.4, RVM: ruby-2.4.0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="pry-rails (v0.3.5, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pubnub (v4.0.0beta14@52e72c, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puma (v3.8.1, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v2.0.1, RVM: ruby-2.4.0) [gem]" level="application" />
@@ -217,6 +213,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.9.8, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="redis (v3.3.3, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="refile (v0.2.5, RVM: ruby-2.4.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="remotipart (v1.3.1, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v2.3.0, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rsolr (v1.1.2, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass (v3.4.23, RVM: ruby-2.4.0) [gem]" level="application" />
@@ -226,7 +223,6 @@
     <orderEntry type="library" scope="PROVIDED" name="sidetiq (v0.6.3@7bec40, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="simple_form (v3.4.0, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sinatra (v2.0.0.rc1@bbdc72, RVM: ruby-2.4.0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="slop (v3.6.0, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="spring (v2.0.1, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="spring-watcher-listen (v2.0.1, RVM: ruby-2.4.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v3.7.1, RVM: ruby-2.4.0) [gem]" level="application" />
