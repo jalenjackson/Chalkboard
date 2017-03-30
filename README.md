@@ -6,7 +6,7 @@ Chalkboard is a social network for students and teachers. Maybe your a student, 
 
 ## Built With
 
-* [Ruby on Rails](http://api.rubyonrails.org/)[Javascript][Jquery]
+* [Ruby on Rails](http://api.rubyonrails.org/) , Javascript , Jquery
 
 
 ## Authors
