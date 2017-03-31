@@ -1,0 +1,50 @@
+
+<%= form_for @meet do |f| %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+
+
+    <%= f.label :tag_list, "Tags (seperated by commas" %>
+    <%= f.text_field :tag_list %><br>
+
+
+    <%= f.label :description %>
+    <%= f.text_area :description %><br>
+
+
+
+
+    <%= f.label :city %>
+    <%= f.text_field :city %><br>
+
+    <%= f.label :state %>
+    <%= f.text_field :state %><br>
+
+    <%= f.label :address1 %>
+    <%= f.text_field :address1 %><br>
+
+    <%= f.label :address2 %>
+    <%= f.text_field :address2 %><br>
+
+    <%= f.label :video %>
+    <%= f.file_field :video %><br>
+
+
+    <%= f.select(:colorbackground, options_for_select([['', ''],['red', 'red'], ['black', 'black'], ['green', 'green']])) %>
+    <%= f.select(:colorheader, options_for_select([['', ''],['yellow', 'yellow'], ['orange', 'orange'], ['blue', 'blue']])) %>
+
+    <%= f.label :image %>
+    <%= f.file_field :image %><br>
+
+    <%= f.label :image2 %>
+    <%= f.file_field :image2 %><br>
+
+    <%= f.label :colorheader %>
+    <%= f.text_field :colorheader %><br>
+
+
+    <%= f.submit %>
+
+<% end %>
+

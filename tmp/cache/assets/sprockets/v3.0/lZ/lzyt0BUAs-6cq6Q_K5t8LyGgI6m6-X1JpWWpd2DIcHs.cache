@@ -1,0 +1,10 @@
+I"©(function() {
+  jQuery(function() {
+    $("#meet_date").datepicker({
+      dateFormat: 'dd-mm-yy'
+    });
+    return $("#meet_time").timepicker();
+  });
+
+}).call(this);
+:ET

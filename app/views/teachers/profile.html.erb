@@ -1,24 +1,23 @@
-<%= render 'pins/nav' %>
+<%= render 'navs/nav' %>
 
-<% if @teacher.gender == "Male" %>
-    <p style = "display:none; display:none; position:absolute; top: 0; left: 0;"><%= title = 'Mr.' %></p>
+<% if @user.gender == "Male" %>
+    <p class = "teachers-owner-occupation" style = ""><%= title = 'Mr.' %></p>
 <% else %>
-    <p style = "display:none; position:absolute; top: 0; left: 0; "></p><% title = 'Ms.' %>
+    <p class = "teachers-owner-occupation"></p><% title = 'Ms.' %>
 <% end %>
 
-<% if current_user.image? %>
-  <% margintop = 230 %>
+<% if @user.image? %>
+  <% margintop = 370 %>
 
 <% else %>
-<% margintop = 0 %>
+<% margintop = 200 %>
 <% end %>
 
-
-<div style ="background: url(<%= current_user.image.url(:large) %>) no-repeat fixed; background-size: 100% 420px;" class = "img-container">
+<div style ="background: url(<%= @user.image.url(:large) %>) no-repeat fixed; background-size: 100% 420px; pointer-events: none; margin-top:48px;" class = "img-container">
 
 </div>
 
-<span style = "font-weight: bold !important; font-size:14px;"></span>
+<span class = "teachers-owner-span" ></span>
 
 
 
@@ -28,48 +27,114 @@
 
   <h1 style = "margin-top: <%=margintop %>px; font-weight: normal;">
 
-    <% if current_user != @user %>
-        <div class = "follow">
-          <p class="text-center" style = "color:white; font-size:15px; margin-top:15px; font-weight: bold;  ">Add Teacher</p>
-        </div>
-    <% else %>
+    <%= render 'components/follow_button', :user => User.find_by_username(params[:id])%>
 
+    <span class = "teachers-owner-avatar"><%= avatar_for(@user, size:100) %></span>
+    <p style = "font-size:34px; font-weight: normal !important; color:white;"><%= title %><%= @user.lastname %> </p>
 
+    <i style = "color:#E94C6F; margin-top: -20px; font-size:20px;" class="fa fa-star" aria-hidden="true"></i><strong><span style = "font-size:20px; "><%= @user.stars %></span></strong>
 
-    <% end %>
+    <i style = "color:#E94C6F; font-size:20px;" class="fa fa-eercast" aria-hidden="true"></i> <strong><span style = "font-size:20px;"><%= @user.achievements %></span></strong>
+    <i style = "color: #E94C6F; font-size:20px;" class="fa fa-book" aria-hidden="true"></i><strong><span style = "font-size:20px;"><%= @user.classrooms.count %></span></strong>
+    <i style = "color:#E94C6F; font-size:20px;" class="fa fa-clipboard" aria-hidden="true"></i><strong><span style = "font-size:20px;"><%= @user.pins.count %></span></strong>
+    <i style = "color:#E94C6F; font-size:20px;" class="fa fa-user-circle-o" aria-hidden="true"></i><strong><span style = "font-size:20px;"> <%= @user.followers.count %></span></strong>
 
-
-    <span style = "float:left; padding-right: 30px;"><%= avatar_for(@teacher, size:100) %></span>
-    <p style = "font-size:34px; font-weight: normal !important;"><%= title %><%= current_user.lastname %> </p>
-
-    <i style = "color:#E94C6F; margin-top: -20px; font-size:20px;" class="fa fa-star" aria-hidden="true"></i><strong><span style = "font-size:20px; "><%= @teacher.stars %></span></strong>
-
-    <i style = "color:#E94C6F; font-size:20px;" class="fa fa-eercast" aria-hidden="true"></i> <strong><span style = "font-size:20px;"><%= @teacher.achievements %></span></strong>
-    <i style = "color: #E94C6F; font-size:20px;" class="fa fa-book" aria-hidden="true"></i><strong><span style = "font-size:20px;"><%= @teacher.classrooms.count %></span></strong>
-    <i style = "color:#E94C6F; font-size:20px;" class="fa fa-clipboard" aria-hidden="true"></i><strong><span style = "font-size:20px;"><%= @teacher.pins.count %></span></strong>
-
-    <p style = "font-size:14px;"><strong><%= @teacher.city %> , <%= @teacher.state %></strong></p>
+    <p style = "font-size:14px;"><strong><%= @user.city %> , <%= @user.state %></strong></p>
 
   </h1><br><br>
 
   <div class="form-inline">
-    <a style = "margin-left: 50px; color: rgb(100,100,100); font-size:14px;">POSTS</a>
-    <a style = "margin-left: 50px; color: rgb(100,100,100); font-size:14px;">CLASSES</a>
-    <a style = "margin-left: 50px; color: rgb(100,100,100); font-size:14px;">DISCUSSIONS</a>
+    <a style = "margin-left: 50px;font-size:14px;">POSTS</a>
+    <a style = "margin-left: 50px;font-size:14px;"><%= link_to 'DAILY CALENDER', "/teachers/#{@user.username}/calendar" %></a>
+
+    <a style = "margin-left: 50px; font-size:14px;">CLASSES</a>
+    <a style = "margin-left: 50px;  font-size:14px;">DISCUSSIONS</a>
 
   </div>
 
 
 
-  <% if @teacher.classrooms.each.count == 0 && @teacher.pins.each.count == 0 %>
-    <img style = "float:left; "class = "nothing-to-show" src = "https://www.mysoti.com/img/user/mediocre/product/web/245878/245878_show_default.png">
-      <h1 style = " margin-top:170px; margin-left: -200px;   color: rgb(180,180,180); font-size:33px; font-weight: bold; ">Nothing To Show </h1>
-  <% end %>
-
-
-
 <br>
-  <% @teacher.classrooms.each do |classroom| %>
+  <% if @user.videos.present? %>
+  <h1>Videos</h1>
+  <div class="row">
+    <% @user.videos.each do |video| %>
+        <div  class = "border col-xs-3" style = "width:200px; margin-top:10px;margin-left:10px; height:150px;">
+          <% if video.image? %>
+            <%= image_tag video.image.url(:medium), class: 'profile-video-size' %>
+          <% else %>
+            <%= image_tag video.mp4.url(:thumb), class: 'profile-video-size' %>
+          <% end %>
+          <a href = "../videos/<%= video.id %>"><div style ="position:absolute;top:0;left:0;width:100%;height:100%;">
+            <h1 style = "font-size:17px;font-weight:bold; margin-top:100px;"><%= video.title %></h1>
+            <p style = "margin-top:-10px; color:rgb(80,80,80)!important;"><%= video.description[0..30] %>
+            <% if video.description.size > 30 %> ... <% end %>
+            </p>
+            <p style = "margin-top:-12px; font-size:13px; color:grey !important; font-style: italic;"><%= video.created_at.strftime(" %b %d, %Y") %></p>
+          </div></a>
+        </div>
+    <% end %>
+  </div>
+      <% end %>
+<br>
+
+  <% if @user.podcasts.present? %>
+      <h1>Podcasts</h1>
+  <div class="row">
+    <% @user.podcasts.each do |podcast| %>
+        <div class = "border col-xs-3" style = "width:200px; margin-top:10px;margin-left:10px; height:150px;">
+          <%= image_tag podcast.image.url(:medium), class: 'profile-video-size' %>
+          <a href = "../podcasts/<%= podcast.id %>" ><div style ="position:absolute;top:0;left:0;width:100%;height:100%;">
+            <h1 style = "font-size:17px;font-weight:bold; margin-top:100px;"><%= podcast.title %></h1>
+            <p style = "margin-top:-10px;"><%= podcast.description[0..30] %></p>
+            <p style = "margin-top:-12px; font-size:13px; font-style: italic;"><%= podcast.created_at.strftime(" %b %d, %Y") %></p>
+          </div></a>
+        </div>
+    <% end %>
+  </div>
+      <% end %>
+
+  <% if @user.meets.present? %>
+
+<h1>MeetUps</h1>
+  <div class="row">
+    <% @user.meets.each do |meet| %>
+        <div  class = "border col-xs-3" style = "width:200px; margin-top:10px;margin-left:10px; height:150px;">
+          <% if meet.image? %>
+              <a href = "../meets/<%= meet.id %>"><%= image_tag meet.image.url(:medium), class: "profile-video-size" %></a>
+          <% else %>
+              <%= image_tag 'Meets.png' , class: "profile-video-size"  %>
+          <% end %>
+          <a href = "../meets/<%= meet.id %>"><div style ="position:absolute;top:0;left:0;width:100%;height:100%;">
+            <h1 style = "font-size:17px;font-weight:bold; margin-top:100px;"><%= meet.name %></h1>
+            <p style = "margin-top:-15px;"><%= meet.description[0..30] %></p>
+            <p style = "margin-top:-18px; font-size:13px;"><%= meet.created_at.strftime(" %b %d, %Y") %></p>
+          </div></a>
+        </div>
+    <% end %>
+  </div>
+      <% end %>
+
+
+  <% if @user.articles.present? %>
+
+<h1>Articles</h1>
+  <div class="row">
+    <% @user.articles.each do |article| %>
+        <div  class = "border col-xs-3" style = "width:200px; margin-top:10px;margin-left:10px; height:150px;">
+          <%= image_tag article.image.url(:medium), class: 'profile-video-size' %>
+          <a href = "../meets/<%= article.id %>"><div style ="position:absolute;top:0;left:0;width:100%;height:100%;">
+            <h1 style = "font-size:17px;font-weight:bold; margin-top:100px;"><%= article.title %></h1>
+            <p style = "margin-top:-10px;"><%= article.description[0..30] %></p>
+            <p style = "margin-top:-10px; font-size:13px;"><%= article.created_at.strftime(" %b %d, %Y") %></p>
+          </div></a>
+        </div>
+    <% end %>
+  </div>
+<% end %>
+
+  <br>
+  <% @user.classrooms.each do |classroom| %>
 
 
       <div style = "width:40%;" class=" panel panel-default">
@@ -78,7 +143,7 @@
 
           <p style = "margin-top: 20px; padding-left: 30px;"class="user">
             <strong> <%= link_to classroom.fullname.upcase, classroom %>
-          <p style = "color:rgb(190,190,190); padding-left: 30px;"><%= classroom.created_at.strftime(" %b %d, %Y") %></p>
+          <p  style = "color:rgb(190,190,190); padding-left: 30px;"><%= classroom.created_at.strftime(" %b %d, %Y") %></p>
 
         </div>
 
@@ -92,7 +157,9 @@
 
 
 
-<!--<%= pie_chart [["Points",100], ["Stars",20]]  %> -->
+
+
+  <!--<%= pie_chart [["Points",100], ["Stars",20]]  %> -->
 
 
 

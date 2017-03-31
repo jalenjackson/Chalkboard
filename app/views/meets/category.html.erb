@@ -1,0 +1,18 @@
+<div id="tag_cloud">
+  <% tag_cloud Meet.tag_counts, %w[xxs xs s m l xl xxl] do |tag, css_class| %>
+      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div>
+
+
+
+<% @meets.each do |m| %>
+  <%= m.name %>
+    <%= m.description %>
+    <%= m.city %>
+    <%= m.state %>
+
+
+
+
+<% end %>

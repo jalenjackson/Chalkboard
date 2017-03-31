@@ -1,0 +1,100 @@
+<%= render 'navs/nav' %>
+<style>
+  .avatar-image{
+    width:60px !important;
+    height:60px;
+    margin:0 auto;
+    -webkit-border-radius:100%;
+    -moz-border-radius:100%;
+    border-radius:100%;
+    float:none;
+  }
+</style>
+<div class = "container">
+  <div class = "music-heading">
+    <%= image_tag @podcast.image.url(:medium), class: "podcast-image" %>
+    <%= image_tag @podcast.image.url(:medium), class: "podcast-image2" %>
+
+    <div class = "side-info">
+      <div class = "podcasts-showpage-side-info">
+      <h1 class = "podcasts-showpage-side-info-h1"><%= @podcast.title %></h1>
+      <h2 class = "podcasts-showpage-side-info-h2">By <%= @podcast.user.firstname %></h2>
+      <p class = "podcasts-showpage-side-info-p" ><%= @podcast.description[0..350] %></p>
+        <audio style = "" controls>
+          <source src="<%= @podcast.mp3 %>" type="audio/ogg">
+          <source src="<%= @podcast.mp3 %>" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+
+  </div>
+<div style = "margin-top:370px; margin-left:100px;" class="wrapper ">
+  <aside>
+    <section class="address">
+      <span style = ""><%= avatar_for(@podcast.user, size:100) %></span>
+
+      <h3><%= @podcast.user.firstname + " " + @podcast.user.lastname %></h3>
+      <h3 style = "font-size:17px; color:white;"><strong><span style = "background:black;"><%= @podcast.user.occupation %></span></strong></h3>
+      <p>Prinsengracht 281</p>
+      <% if @podcast.user.occupation == "Teacher" %>
+          <a href = "../teachers/<%= @podcast.user.username %>"><button>view profile</button></a>
+      <% else %>
+          <a href = "../teachers/<%= @podcast.user.username %>">view profile<button></button></a>
+      <% end %>
+    </section>
+
+  </aside>
+  <main>
+
+    <section style = "background:linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.4) 100%), orangered url('<%= @podcasts.image.url(:medium) %>') no-repeat center;" class="video-player">
+      <p class = "text-center" style = "margin-top: 70px; font-size:16px; letter-spacing:1px;">Newest Podcast From <%= @podcast.user.firstname %></p>
+
+    </section>
+    <section class="info-box">
+      <div class="hero">
+        <h5 class = "text-center">More Podcasts Related To This Topic</h5>
+        <h1>Views</h1>
+        <%= @podcast.impressionist_count(:filter=>:ip_address) %>
+        <div style = "float:right; " class="col-md-8">
+          <div style = "float:right;" class="btn-group">
+
+
+            <%= link_to  like_podcast_path(@podcast),class: "like", method: :put do %>
+                <p>Like</p>
+                <span><%= @podcast.get_upvotes.size  %></span>
+
+            <% end %>
+
+            <%= link_to unlike_podcast_path(@podcast),class: "like", method: :put do %>
+
+                <p>DisLike</p>
+                <span><%= @podcast.get_downvotes.size  %></span>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <% @pods.each do |pod| %>
+     <a href = "<%= pod.id %>"><section class="weather">
+      <div style = "  background:linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.4) 100%), orangered url('<%= pod.image.url(:medium) %>') no-repeat center;" class="temp">
+        <p class = "text-center" style = "font-size:16px; letter-spacing:1px;"><%= pod.title %></p>
+
+      </div>
+      <h3><%= pod.description[0..30] %><% if pod.description.size > 30 %>...<% end %></h3>
+     </section></a>
+        <% end %>
+
+  </main>
+</div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $(".search label").on("click", function(){
+            $(this).children("span").toggleClass("checked");
+        });
+    });
+</script>

@@ -1,0 +1,21 @@
+<br><br><br><br>
+<%= simple_form_for @article , remote:true , authenticity_token: true do |f| %>
+  <%= f.error_notification %>
+
+    <div class="form-inputs">
+    <%= f.input :document %>
+    </div><br><br>
+    <div class="form-inputs">
+      <%= f.input :image %>
+    </div><br><br>
+    <div class="form-inputs">
+      <%= f.input :title %>
+    </div><br><br>
+    <div class="form-inputs">
+      <%= f.input :description %>
+    </div><br><br>
+
+  <div class="form-actions">
+    <%= f.submit  %>
+  </div>
+<% end %>

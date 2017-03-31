@@ -1,0 +1,11 @@
+<% if @meet.blank? %>
+  <h1>No meetups match that search criteria</h1>
+<% else %>
+  <% @meet.each do |meet| %>
+        <div style = "background:black;" class = "panel">
+        <p><%= link_to meet.name , meet%></p>
+        <p><%= meet.phone %></p>
+        <p><%= meet.city %> , <%= meet.state %> </p>
+        </div>
+  <% end %>
+<% end %>

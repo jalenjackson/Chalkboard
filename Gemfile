@@ -1,10 +1,5 @@
 source 'https://rubygems.org'
 
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
-end
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0', '>= 5.0.1'
@@ -20,6 +15,29 @@ gem 'simple_form', '~> 3.4'
 gem 'masonry-rails', '~> 0.2.4'
 
 gem 'acts_as_votable', '~> 0.10.0'
+
+gem 'fullcalendar-rails'
+
+gem 'momentjs-rails'
+
+gem 'bootstrap-modal-rails'
+gem 'bootstrap-daterangepicker-rails'
+
+gem 'geocoder'
+
+gem 'jplayer-rails'
+
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
+gem 'videojs_rails'
+
+gem 'impressionist'
+
+
+gem 'omniauth-twitter'
+
+
+
 
 gem 'kaminari'
 
@@ -41,7 +59,11 @@ gem 'sunspot_rails'
 
 gem 'sunspot_solr'
 
+gem 'bootstrap-timepicker-rails'
 
+gem 'acts-as-taggable-on', '~> 4.0'
+
+gem 'groupify'
 
 
 gem 'jquery-ui-rails'
@@ -56,6 +78,9 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
+
+gem 'medium-editor-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -81,7 +106,11 @@ gem 'jbuilder', '~> 2.5'
 
 gem "refile"
 
+gem "jquery-slick-rails"
+
 gem 'high_voltage', '~> 3.0.0'
+
+
 
 
 # Use Redis adapter to run Action Cable in production

@@ -1,0 +1,96 @@
+<%= render 'navs/nav' %>
+
+
+<div class ="head meets-showpage-header">
+
+  <% if @meet.video? %>
+      <video class ="video-bg-meet" height="100%" muted loop autoplay>
+        <source src="<%= @meet.video.url %>" type="video/mp4">
+      </video>
+  <% end %>
+
+  <p>Newest Meet Up</p>
+  <h1><%= @meet.name %></h1>
+
+  <figure style = "margin-left: 100px; transform:translateY(300px);">
+    <div>
+      <span>JOIN</span>
+      <span>RSVP</span>
+    </div>
+  </figure>
+</div>
+
+<div style = "height:auto;" class = "container meets-show-container">
+<div  class="border row">
+  <div style = "height:500px; background:white;" class="border col-lg-3">
+    <p class = "meets-showpage-label">Location</p>
+    <p class = "meet-location"><%= @meet.address1.to_s + " " + @meet.city + ", " + @meet.state %> </p>
+    <iframe width="100%" height="400px" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<%= @meet.latitude %>,<%= @meet.longitude %>&amp;key=AIzaSyD8PUZE7mhC69Xmj5DUFpQ__x2ND5XolLo"></iframe>
+
+
+  </div>
+  <div style = "height:500px; background:white;" class="border col-lg-6"><br>
+    <p class ="text-center meet-description-label">What is the meet about?</p>
+    <p class = "meet-description"><%= @meet.description %></p>
+    <p class ="text-center meet-description-label">Recent Meetups</p>
+    <% @meet.user.meets.each do |meet| %>
+      <p><%= meet.name %></p>
+    <% end %>
+    <p class ="text-center meet-description-label">Comments</p>
+
+  </div>
+  <div style = "height:500px; background:white;" class="border col-lg-3">
+    <p class = "meets-showpage-label"> Organizers :</p><br>
+    <%= avatar_for(@meet.user,size:100) %>
+    <p style = " transform:translateX(20px);"><%= @meet.user.firstname + " " + @meet.user.lastname %></p>
+    <button style = "margin-top:-10px; margin-left:20px;"  class = "about "><a style = "color:white !important; font-size:10px !important;" href="mailto:<%=@meet.user.email%>?Subject=Hello" target="_top">CONTACT</a></button>
+    <br>
+    <p class ="meets-showpage-label">Were about</p>
+    <%= raw @meet.tag_list.map { |t| link_to t, tag_path(t) , class:'tags'  }.join(' <i class="fa fa-eercast" aria-hidden="true"></i> ') %>
+  </div>
+</div>
+
+
+<% if @meet.image2? %>
+    <script>
+        $("body").css("background","url(<%= @meet.image2.url(:large) %>)");
+    </script>
+<% end %>
+
+  <% if @meet.colorbackground == "black" %>
+    <script>
+        $("body").css({
+            background:"black url('')"
+        });
+    </script>
+  <% end %>
+  <% if @meet.colorbackground == "green" %>
+      <script>
+          $("body").css({
+              background:"#6E9ECF url('')"
+          });
+      </script>
+  <% end %>
+  <% if @meet.video? %>
+      <script>
+          $(".meets-showpage-header").css({
+              background:"linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.4) 100%)",
+          });
+      </script>
+  <% end %>
+
+
+  <% if @meet.image? %>
+      <script>
+          $(".meets-showpage-header").css({
+              background:"linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.4) 100%), url(<%= @meet.image.url(:large) %>) center center no-repeat",
+              backgroundSize:"100% 100%"
+
+          });
+          $(".container").css("margin-top","80px");
+      </script>
+  <% end %>
+
+
+
+

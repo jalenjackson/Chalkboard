@@ -18,9 +18,13 @@
  *= require 'masonry/infinitescroll'
  *= require 'masonry/right-to-left'
  *= require 'masonry/transitions'
-
+ *= require 'fullcalendar'
+ *= require 'jquery-ui'
+ *= require bootstrap-timepicker
+ *= require medium-editor/medium-editor
  *= require_tree .
  *= require_self
+ *= require video-js
 
  */
 
@@ -29,8 +33,8 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "global";
-@import "video";
+@import 'slick';
+
 
 
 
@@ -47,9 +51,11 @@ body {
   background: rgb(34,34,34);
   margin: 0;
   padding:0;
-
+  oveflow-x:hidden;
 
 }
+
+
 
 
 .go_right {
@@ -58,13 +64,23 @@ body {
   color:#E94C6F ;
 }
 
+.shared-links{
+  color:black !important;
+}
+
 .likes {
   font-size: 10px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 100;
+.group{
+  position: absolute;
+  top:20px;
+  left:50%;
+  background:red;
+  width:200px;
+  height:200px;
 }
+
 
 .nav1 {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
@@ -268,19 +284,19 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .search-box {
-  border-radius:.3em;
-  height: 27px;
-  margin-top:7px;
-  color:rgb(0,0,0);
+  height: 42px;
+  color:white;
   padding-left: 20px;
   font-weight: 400;
   font-size:17px;
   background: rgb(41,41,41);
-  width: 200px;
+  width: 70%;
   border:none;
-  float:right;
-  margin-right: 340px;
-  border-radius:2em;
+  position: absolute;
+  left:10%;
+  top:-17px;
+  border-radius:0;
+
 }
 textarea:focus, input:focus{
   outline: none;
@@ -288,9 +304,10 @@ textarea:focus, input:focus{
 
 
 .logo-pic {
-  margin-top:-3px;
-  width:57px;
-  height: 50px;
+  margin-top:13px;
+  width:37px;
+  height: 30px;
+  margin-left:29px;
 }
 
 .input[type=text] {
@@ -334,111 +351,7 @@ textarea:focus, input:focus{
 
 
 
-$primary-foreground-color: #fff; // #fff default
 
-// The default color of control backgrounds is mostly black but with a little
-// bit of blue so it can still be seen on all-black video frames, which are common.
-// Try changing to #900
-$primary-background-color: #2B333F;  // #2B333F default
-
-// Try changing to true
-$center-big-play-button: false; // true default
-
-.video-js {
-  /* The base font size controls the size of everything, not just text.
-     All dimensions use em-based sizes so that the scale along with the font size.
-     Try increasing it to 15px and see what happens. */
-  font-size: 10px;
-
-  /* The main font color changes the ICON COLORS as well as the text */
-  color: $primary-foreground-color;
-}
-
-/* The "Big Play Button" is the play button that shows before the video plays.
-   To center it set the align values to center and middle. The typical location
-   of the button is the center, but there is trend towards moving it to a corner
-   where it gets out of the way of valuable content in the poster image.*/
-.vjs-default-skin .vjs-big-play-button {
-  /* The font size is what makes the big play button...big.
-     All width/height values use ems, which are a multiple of the font size.
-     If the .video-js font-size is 10px, then 3em equals 30px.*/
-  font-size: 3em;
-
-  /* We're using SCSS vars here because the values are used in multiple places.
-     Now that font size is set, the following em values will be a multiple of the
-     new font size. If the font-size is 3em (30px), then setting any of
-     the following values to 3em would equal 30px. 3 * font-size. */
-  $big-play-width: 3em;
-  /* 1.5em = 45px default */
-  $big-play-height: 1.5em;
-
-  line-height: $big-play-height;
-  height: $big-play-height;
-  width: $big-play-width;
-
-  /* 0.06666em = 2px default */
-  border: 0.06666em solid $primary-foreground-color;
-  /* 0.3em = 9px default */
-  border-radius: 0.3em;
-
-  @if $center-big-play-button {
-    /* Align center */
-    left: 50%;
-    top: 50%;
-    margin-left: -($big-play-width / 2);
-    margin-top: -($big-play-height / 2);
-  } @else {
-    /* Align top left. 0.5em = 15px default */
-    left: 0.5em;
-    top: 0.5em;
-  }
-}
-
-/* The default color of control backgrounds is mostly black but with a little
-   bit of blue so it can still be seen on all-black video frames, which are common. */
-.video-js .vjs-control-bar,
-.video-js .vjs-big-play-button,
-.video-js .vjs-menu-button .vjs-menu-content {
-  /* IE8 - has no alpha support */
-  background-color: red;
-  /* Opacity: 1.0 = 100%, 0.0 = 0% */
-  background-color: rgba($primary-background-color, 0.7);
-}
-
-// Make a slightly lighter version of the main background
-// for the slider background.
-$slider-bg-color: lighten($primary-background-color, 33%);
-
-/* Slider - used for Volume bar and Progress bar */
-.video-js .vjs-slider {
-  background:red;
-  background:red;
-}
-
-/* The slider bar color is used for the progress bar and the volume bar
-   (the first two can be removed after a fix that's coming) */
-.video-js .vjs-volume-level,
-.video-js .vjs-play-progress,
-.video-js .vjs-slider-bar {
-  background: $primary-foreground-color;
-}
-
-/* The main progress bar also has a bar that shows how much has been loaded. */
-.video-js .vjs-load-progress {
-  /* For IE8 we'll lighten the color */
-  background: lighten($slider-bg-color, 25%);
-  /* Otherwise we'll rely on stacked opacities */
-  background: rgba($slider-bg-color, 0.5);
-}
-
-/* The load progress bar also has internal divs that represent
-   smaller disconnected loaded time ranges */
-.video-js .vjs-load-progress div {
-  /* For IE8 we'll lighten the color */
-  background: lighten($slider-bg-color, 50%);
-  /* Otherwise we'll rely on stacked opacities */
-  background: rgba($slider-bg-color, 0.75);
-}
 
 
 .teacher-class-img {
@@ -468,9 +381,13 @@ background:  #E9E0D6 ;
 }
 
 .show-buttons{
-  background:rgb(233,234,254);
+  background:rgb(34,34,34);
   border:none;
+  font-size:20px;
+  text-decoration: none;
 }
+
+
 
 .left {
   left: 0;
@@ -484,6 +401,10 @@ background:  #E9E0D6 ;
   height: auto;
   margin-top: 0px;
 
+}
+
+.index-text {
+  color:black;
 }
 
 .index-image {
@@ -641,22 +562,39 @@ label.collection_check_boxes {
 
 .box-category{
   background:rgb(200,200,200);
-  height: 70px;
+  height: 300px;
   border-radius: .5em;
   transition: background 300ms ease-in-out;
   cursor:pointer;
+}
+
+.box-category2{
+  position: relative;
+  background:rgb(200,200,200);
+  height: 270px;
+  border-radius: .5em;
+  transition: background 300ms ease-in-out;
+  cursor:pointer;
+}
+
+.show-video{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
 }
 
 .box-category:hover p {
   color: white;
 }
 
-.box-text {
-  font-size:14px;
-  text-align: center;
-  color:white;
-  padding-top:23px;
-}
 
 .pin-image {
   width:90%;
@@ -694,20 +632,7 @@ label.collection_check_boxes {
 }
 
 
-.button__badge {
-  background-color: #E94C6F;
-  border-radius: 2px;
-  color: white;
-  margin-top: 6px;
-  margin-left: 15px;
-  padding: 1px 3px;
-  font-size: 10px;
 
-
-  position: absolute; /* Position the badge within the relatively positioned button */
-  top: 0;
-  right: 0;
-}
 
 
 .img-container {
@@ -729,9 +654,14 @@ label.collection_check_boxes {
   width: 170px;
   height: 50px;
   box-shadow: 0 10px 7px 0 rgba(0, 0, 0, 0.22);
-
+  color:white;
+  font-size:17px;
+  text-align: center;
+  border:none;
 
 }
+
+
 
 
 .teacher-image {
@@ -769,12 +699,264 @@ font-family: helvetica;
 
 }
 
-.change-pic{
-  width:35px;
-  height:30px;
+
+
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+.effect{
+  width:100%;
+  height:25px;
+  background:red;
+  position: absolute;
+  top:50%;
+
 }
 
 
+.fc-day{
+}
+
+
+
+.fc-day-header{
+  background:grey;
+  color:white;
+  letter-spacing:1px;
+}
+h2{
+  color:white;
+}
+
+.fc-day-number{
+  color:white;
+}
+
+td span {
+  color:white;
+}
+
+.fc-unthemed td.fc-today span {
+  color:black;
+}
+
+a:link {
+  color: #333333;
+}
+a:visited {
+  color: #FFFFFF;
+}
+a:hover {
+  color: #CCCCCC;
+}
+a:active {
+  color: #333333;
+}
+
+
+.follow-btn {
+  color:white;
+  font-size:15px;
+  margin-top:15px;
+  font-weight: bold;
+}
+
+.dropdown-left{
+  width:100%;
+  position: absolute;
+  top:0;
+  left:0;
+  height:100%;
+}
+
+
+
+p,a,h1,h2{
+  color:white !important;
+}
+
+.dropdown-menu{
+  background:rgb(51,51,51);
+}
+
+
+
+
+#tag_cloud {
+  width:400px;
+  line-height:1.6em;
+  .s {
+    font-size:0.8em;
+  }
+  .m {
+    font-size:1.2em;
+  }
+  .l {
+    font-size:1.8em;
+  }
+}
+
+
+
+
+/* STRUCTURE */
+
+#pagewrap {
+  padding: 5px;
+  width: 960px;
+  margin: 20px auto;
+}
+
+#content {
+  width: 190px;
+  float: left;
+  height:550px;
+  background:white;
+  color:black;
+  padding: 5px 15px;
+}
+
+#middle {
+  width: 464px; /* Account for margins + border values */
+  float: left;
+  margin: 0px 5px 5px 5px;
+  margin-left:12px;
+  transform:translateX(15px);
+  height:700px;
+  background:white;
+  color:black;
+
+}
+
+.about-organization {
+  position: absolute;
+  left:80%;
+  top:5%;
+  width:400px;
+  height:300px;
+  background:rgb(40,40,40);
+  margin-left:15%;
+  z-index:999999;
+  color:black;
+
+}
+
+
+
+#sidebar {
+  width: 230px;
+  height:600px;
+  float: left;
+  white-space:nowrap;
+  margin-left:45px;
+  color:black;
+  background:white;
+}
+footer {
+  clear: both;
+  padding: 0 15px;
+}
+
+/************************************************************************************
+MEDIA QUERIES
+*************************************************************************************/
+/* for 980px or less */
+@media screen and (max-width: 980px) {
+
+  #pagewrap {
+    width: 94%;
+  }
+  #content {
+    width: 41%;
+    padding: 1% 4%;
+  }
+  #middle {
+    width: 41%;
+    padding: 1% 4%;
+    margin: 0px 0px 5px 5px;
+    float: right;
+  }
+
+  #sidebar {
+    clear: both;
+    padding: 1% 4%;
+    width: auto;
+    float: none;
+  }
+
+  .side-left, footer {
+    padding: 1% 4%;
+  }
+}
+
+/* for 700px or less */
+@media screen and (max-width: 600px) {
+
+  #content {
+    width: auto;
+    float: none;
+  }
+
+  #middle {
+    width: auto;
+    float: none;
+    margin-left: 0px;
+  }
+
+  #sidebar {
+    width: auto;
+    float: none;
+  }
+
+}
+
+/* for 480px or less */
+@media screen and (max-width: 480px) {
+
+  .side-left {
+    height: auto;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  #sidebar {
+    display: none;
+  }
+
+}
+
+
+#content {
+  background: #f8f8f8;
+}
+#sidebar {
+  background: #f0efef;
+}
+.side-left, #content, #middle, #sidebar {
+  margin-bottom: 5px;
+}
+
+#pagewrap, .side-left, #content, #middle, #sidebar, footer {
+  border: solid 1px #ccc;
+}
+
+h5{
+  color:black !important;
+}
 
 
 @import 'normalize';

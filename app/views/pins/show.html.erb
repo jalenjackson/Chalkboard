@@ -1,6 +1,10 @@
-<%= render 'nav' %>
+<%= render 'navs/nav' %>
 
-
+<style>
+  p,h1,h2,a{
+    color:white;
+  }
+</style>
 
 <% if (@pin.video_file? && !@pin.image?) && !@pin.document? %>
 <video style = "width: 100%; height: auto; " id="my-video" class="video-js pin_image" controls autoplay preload="auto"
@@ -17,7 +21,7 @@
 
 <% if (@pin.image? && !@pin.video_file?) && !@pin.document?  %>
 
-  <%= image_tag @pin.image.url(:medium) , class: 'uploaded-image alone ' %>
+  <%= image_tag @pin.image.url(:large) , class: 'uploaded-image alone ' %>
 
 
 <% end %>
@@ -96,7 +100,7 @@
       </div>
 
 
-      <div style = "position:absolute; max-height: 500px; left: 100%; width: 375.5px; height: 100%; top: 0px; background:rgb(233,234,254);">
+      <div style = "position:absolute; max-height: 500px; left: 100%; width: 375.5px; height: 100%; top: 0px; background:rgb(34,34,34); border:1px solid white;">
           <h1 class = "text-center"style = "margin-left: 20px;"><strong>Related</strong></h1>
 
 
@@ -105,9 +109,10 @@
 
 
 
-      <div style = " background:rgb(233,234,254);"class="panel-body">
+      <div style = "background:rgb(34,34,34);" class="panel-body">
+        <span style = "float:left; margin-left:-20px;"><%= avatar_for(@pin.user, size:60) %></span>
 
-        <h1><strong><%= @pin.title %></strong></h1>
+        <h1 style = "margin-left:50px; margin-top:5px;"><strong><%= @pin.title %></strong></h1>
 
         <p class="user"></p>
         <% if @pin.video_file? && @pin.document? && !@pin.image? %>
@@ -126,46 +131,51 @@
             <p style = "color:#17A697; font-weight:bold;"><%= @pin.user.firstname %> attached an image and a PDF to this post!  <%= link_to "Take a look!", @pin %> </p>
         <% end %>
 
-        Submitted by
-        <strong><%= @pin.user.firstname %> <%= @pin.user.lastname %>
-          <div style = "float:right; " class="col-md-8">
-            <div class="btn-group">
-              <%= link_to like_pin_path(@pin), method: :put, class: "btn btn-default show-buttons" do %>
-                <span style = " color:#E94C6F;"class="glyphicon glyphicon-heart">
-                  <span style = "margin-left: -10px; color:black; font-family: 'helvetica' "><strong><%= @pin.get_upvotes.size %></strong></span>
-                </span>
-              <% end %>
-              <% if user_signed_in? %>
-                  <% if current_user == @pin.user %>
+        <p>Published on <%= @pin.created_at.strftime(" %b %d, %Y") %> by  <%= @pin.user.firstname %> <%= @pin.user.lastname %></p></p><strong>
+        <br>
+        <% if user_signed_in? %>
+            <% if current_user == @pin.user %>
 
-                      <span><strong><%= link_to 'edit', edit_pin_path, class: "btn btn-default show-buttons bold" %></strong></span>
-                      <span><strong><%= link_to 'delete', pin_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default show-buttons bold" %></strong></span>
-                  <% end %>
+                <span><strong><%= link_to 'edit', edit_pin_path, class: "btn  bold" %></strong></span>
+                <span><strong><%= link_to 'delete', pin_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn  bold" %></strong></span>
+            <% end %>
+        <% end %>
+          <div style = "float:right; " class="col-md-8">
+            <div style = "float:right;" class="btn-group">
+              <%= link_to like_pin_path(@pin),class: "like-btn show-buttons ", method: :put,  remote:true do %>
+                  <div class="heart"></div>
+                  <span class = "likes-count" style = "text-decoration:none; text-underline:none; margin-left: 40px; color:white; font-family: 'helvetica' "><strong><%= @pin.get_upvotes.size %></strong></span>
+                  </span>
+                  <br>
+
               <% end %>
+
+              <span class = "do-you-like like" style = "opacity:0; text-align:center; font-size:15px; position: absolute; background:black; top: -80px; color:white; transition:all 300ms ease-in-out;  margin-top:20px;margin-left:-50px; width:200%">I Love It!</span>
+
 
             </div>
 
-          </div>
+
+                </div>
 
       </div>
 
 
-      <div style = "background:rgb(223,224,244);"class="panel-footer">
+      <div style = "background:rgb(34,34,34);"class="panel-footer">
         <div class="row">
           <div class="col-md-6">
-            <p>Published on <%= @pin.created_at.strftime(" %b %d, %Y") %></p>
             <p class="description" style = "color: rgb(40,40,40); font-weight: normal; font-size:13px;" >
-              <%= @pin.description %>
+            <p><%= @pin.description %></p>
             </p><br><br>
             <p>
-              <span style = "font-size:12px; color:rgb(80,80,80); font-weight:normal; ">Category</span><a style = " color:#E94C6F " href = "">  <%= @pin.subject %></a>
+              <span style = "font-size:12px; color:white; font-weight:normal; ">Category</span><a style = " color:#E94C6F " href = "">  <%= @pin.subject %></a>
             </p>
           </div>
         </div>
       </div>
 
 
-      <div style = "background:rgb(213,214,234);" class="panel-footer">
+      <div style = "background:rgb(34,34,34);" class="panel-footer">
         <div class="row">
           <div class="col-md-6">
 
@@ -185,7 +195,12 @@
   </div>
 
 </div>
+<script>
 
+
+
+
+</script>
 
 
 

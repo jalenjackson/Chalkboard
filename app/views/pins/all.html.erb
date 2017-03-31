@@ -1,5 +1,9 @@
 <% @user.each do |user| %>
     <div class = "panel">
-      <%= user.firstname %> <%= user.lastname %>
+        <% if user.occupation == "Teacher" %>
+      <%= link_to user.firstname + user.lastname  , "teachers/#{user.username}" %>
+        <% else %>
+      <%= link_to user.firstname + user.lastname  , "users/#{user.username}" %>
+          <% end %>
     </div><br>
 <% end %>

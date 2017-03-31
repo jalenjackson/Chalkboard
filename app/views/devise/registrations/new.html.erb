@@ -1,41 +1,134 @@
-<body style="background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.6) 100%), orangered  url(<%= asset_path 'logo.png' %>) 5% 5% no-repeat; "  >
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+<style>
+  body{
+    background: #E9E9E9;
+  }
 
-  <div class="form-inputs">
-    <br>
-    <h1 class = "text-center">Sign Up</h1>
+  .form-signin
+  {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
 
-    <%= f.input :email, required: true, autofocus: true, input_html: { class: 'special'} , placeholder: "Enter You Email Address", label:false %>
-    <%= f.input :username, required: true, input_html: { class: 'special' } , placeholder: "Enter A Username", label:false%>
-    <%= f.input :firstname, required: true , input_html: { class: 'special'}, placeholder: "What's Your Firstname?", label:false %>
-    <%= f.input :lastname, required: true, input_html: { class: 'special'}, placeholder: "What's Your Lastname?", label:false %>
-    <%= f.input :city, required: true, input_html: { class: 'special'}, placeholder: "Enter Your City", label:false %>
-    <%= f.input :state, required: true, input_html: { class: 'special'}, placeholder: "Enter Your State", label:false %>
+  }
+  .form-signin .form-signin-heading, .form-signin .checkbox
+  {
+    margin-bottom: 10px;
+  }
+  .form-signin .checkbox
+  {
+    font-weight: normal;
+  }
+  .form-signin .form-control
+  {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .form-signin .form-control:focus
+  {
+    z-index: 2;
+  }
+  .form-signin input[type="text"]
+  {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .form-signin input[type="password"]
+  {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .account-wall
+  {
+   border: 1px solid lightblue;
+
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  }
+  .login-title
+  {
+    color: rgb(80,80,80) !important;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing:1px;
+    display: block;
+  }
+  .profile-img
+  {
+    width: 107px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+  }
+  .need-help
+  {
+    margin-top: 10px;
+  }
+  .new-account
+  {
+    display: block;
+    margin-top: 10px;
+  }
+
+    .shared-links{
+      color:black;
+    }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <h1 class="text-center login-title">Sign up for Chalkboard</h1>
+      <div class="account-wall">
+        <img class = "profile-img" src = "http://images.iimg.in/c/569f4771c45d324bda8b4660-4-501-0-1453279096/google/user-icon-png-pnglogocom.img?crop=1">
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name),html:{class:'form-signin'}, validate:true ) do |f| %>
+            <%= f.error_notification %>
+
+            <%= f.input :email, required: true, autofocus: true, input_html: { class: 'form-control'} , placeholder: "Enter You Email Address", label:false %>
+            <%= f.input :username, required: true, input_html: { class: 'form-control' } , placeholder: "Enter A Username", label:false%>
+            <%= f.input :firstname, required: true , input_html: { class: 'form-control'}, placeholder: "What's Your Firstname?", label:false %>
+            <%= f.input :lastname, required: true, input_html: { class: 'form-control'}, placeholder: "What's Your Lastname?", label:false %>
+            <%= f.input :city, required: true, input_html: { class: 'form-control'}, placeholder: "Enter Your City", label:false %>
+            <%= f.input :state, required: true, input_html: { class: 'form-control'}, placeholder: "Enter Your State", label:false %>
+            <%= f.select(:themes, options_for_select([['Dracula', 'Dracula'], ['Beauty', 'Beauty'], ['Orange Cream', 'Orange Cream'], ['Light Sea Green', 'Light Sea Green'], ['Light Orange', 'Light Orange'], ['Soft Purple', 'Soft Purple'], ['Lime Green', 'Lime Green'], ['Hot Pink', 'Hot Pink'], ['Roman', 'Roman'], ['Deep Blush', 'Deep Blush']]), {:prompt => "Select A Theme For Chalkboard"}, {class: "form-control selectpicker","data-live-search":"true"} ) %><br>
+
+            <%= f.select(:occupation, options_for_select([['Teacher', 'Teacher'], ['Student', 'Student']]), {:prompt => "Are you a teacher or student?"}, {class: "form-control selectpicker","data-live-search":"true"}  ) %><br>
+
+            <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']]) , {:prompt => "What is your gender?"}, class: "form-control selectpicker " ) %><br>
+
+            <%= f.input :password,input_html: { class: 'form-control'} , label:false,   required: true, placeholder: "Enter a password more than 6 characters" %>
+            <%= f.input :password_confirmation, input_html: { class: 'form-control'}, label:false,  required: true, placeholder: "Re-enter password" %>
 
 
-    <div class = "controls">
-      <%= f.select(:occupation, options_for_select([['Teacher', 'Teacher'], ['Student', 'Student']]), {:prompt => "Are you a teacher or student?"}, class: "form-control dropown",  ) %>
-    </div>
+            <%= f.button :submit, "Sign up", class: 'btn btn-info ' %>
 
-    <div class = "controls">
-      <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']]) , {:prompt => "What is your gender?"}, class: "form-control dropown" ) %>
-    </div>
-
-
-
-    <%= f.input :password,input_html: { class: 'special'} , label:false,   required: true, placeholder: "Enter a password more than 6 characters" %>
-    <%= f.input :password_confirmation, input_html: { class: 'special'}, label:false,  required: true, placeholder: "Re-enter password" %>
-
-    <div class="form-actions">
-      <%= f.button :submit, "Sign up", class: 'special button-special btn btn-primary' %>
-    </div>
-    <br>
+        <% end %>
   </div>
+</div>
 
 
-<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <%= render "devise/shared/links" %>
-</body>

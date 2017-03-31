@@ -17,9 +17,10 @@ class Pin < ApplicationRecord
   belongs_to :user
   has_many :comments
   has_many :users, through: :comments
+  has_many :notifications, dependent: :destroy
 
 
-  has_attached_file :image, styles: {medium: "300x300>" }
+  has_attached_file :image, styles: {medium: "300x300>", large:"1000x1000>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   has_attached_file :document

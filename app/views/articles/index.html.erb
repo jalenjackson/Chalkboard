@@ -1,0 +1,377 @@
+<style>
+  body{
+    background:white !important;
+  }
+  .well-link {
+    text-decoration: none;
+  }
+  .panel-shadow {
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  }
+
+    .panel-heading{
+    height:400px;
+     }
+
+  #pinBoot {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+  }
+  img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+  .white-panel {
+    position: absolute;
+    background: white;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+  }
+  /*
+  stylize any heading tags withing white-panel below
+  */
+
+  .white-panel h1 {
+    font-size: 1em;
+  }
+  .white-panel h1 a {
+    color: #A92733;
+  }
+  .white-panel:hover {
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+    margin-top: -5px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+    .overlay {
+      position: absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.5) ;
+    }
+    .panel-heading{
+      overflow: hidden;
+      position: relative;
+    }
+
+    .first-img {
+      width:100%;
+      height:auto;
+    }
+
+    .panel{
+      background:rgba(0,0,0,0) !important;
+    }
+
+    .frontpage-article-title{
+      font-weight:bold;
+      font-size:30px;
+      color:black !important;
+
+    }
+
+    .frontpage-article-description{
+      font-size:17px !important;
+      color:rgb(50,50,50) !important;
+    }
+    .frontpage-article-time{
+      color:grey !important;
+      font-style: italic;
+      font-size:15px;
+    }
+
+    .avatar-image{
+      border-radius:100%;
+      width:40px !important;
+      height:40px !important;
+      float:left;
+    }
+
+    .frontpage-article-user{
+      color: #02b875 !important;
+      margin-left:50px;
+
+
+    }
+    .frontpage-article-time{
+      margin-left:50px;
+      margin-top:-5px;
+      font-size:12px !important;
+    }
+    .second-img{
+      width:100%;
+      height:auto;
+    }
+    .medal{
+      width:110px !important;
+      height:110px;
+      margin-left:50px;
+      margin-top:-10px;
+    }
+
+
+
+</style>
+<%= render 'navs/nav' %>
+<div style = "margin-top:150px;"class="container">
+  <h1 style = "font-weight:bold; color:black;margin-left:10px;">Popular Articles</h1>
+  <div style = "width:70%;" class="box panel panel-default panel-shadow">
+    <%= image_tag @articles.first.image.url(:large) , class: 'first-img' %>
+  </div>
+
+  <div class="container">
+    <div style = "width:25%; height:100%; background:rgba(0,0,0,0);" class="box ">
+      <h1 class = "frontpage-article-title"><%= @articles.first.title %></h1>
+      <p class = "frontpage-article-description"><%= @articles.first.description %></p><br>
+      <%= avatar_for(current_user,size:20) %>
+      <p class = "frontpage-article-user"><%= @articles.first.user.firstname.titlecase + " " + @articles.first.user.lastname.titlecase %></p>
+      <p class = "frontpage-article-time"><%= @articles.first.created_at.strftime(" %b %d, %Y")  %></p>
+      <p  style = "margin-top:25px;"class = "frontpage-article-time">Article Of The Day</p>
+      <%= image_tag 'medal.png', class: 'medal' %>
+
+    </div>
+
+    <div style = "position:relative; width:48%;" class="box panel panel-default panel-shadow">
+      <%= image_tag @articles.second.image.url(:medium) , class: 'second-img' %>
+      <div  class = "overlay">
+        <h1 style = 'margin-top:70px; color:white !important;' class = "frontpage-article-title text-center"><%= @articles.second.title %></h1>
+        <p style = 'color:white !important;' class = "frontpage-article-description text-center"><%= @articles.second.description %></p><br>
+        <div style = "float:none; margin-left:200px; ">
+          <%= avatar_for(current_user,size:20) %>
+        </div>
+
+        <p style = 'margin-left:-90px !important; color:#02b875 !important;' class = "frontpage-article-user "><%= @articles.fourth.user.firstname.titlecase + " " + @articles.fourth.user.lastname.titlecase %></p>
+        <p style = 'margin-left: -90px; color:white !important;' class = "frontpage-article-time "><%= @articles.fourth.created_at.strftime(" %b %d, %Y")  %></p>
+      </div>
+    </div>
+    <div style = "position:relative;width:48%;" class="box panel panel-default panel-shadow">
+      <%= image_tag @articles.third.image.url(:medium) , class: 'second-img' %>
+      <div  class = "overlay">
+        <h1 style = 'margin-top:70px; color:white !important;' class = "frontpage-article-title text-center"><%= @articles.third.title %></h1>
+        <p style = 'color:white !important;' class = "frontpage-article-description text-center"><%= @articles.third.description %></p><br>
+        <div style = "float:none; margin-left:200px; ">
+        <%= avatar_for(current_user,size:20) %>
+        </div>
+
+        <p style = 'margin-left:-90px !important; color:#02b875 !important;' class = "frontpage-article-user "><%= @videos.fourth.user.firstname.titlecase + " " + @videos.fourth.user.lastname.titlecase %></p>
+        <p style = 'margin-left: -90px; color:white !important;' class = "frontpage-article-time "><%= @videos.fourth.created_at.strftime(" %b %d, %Y")  %></p>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <div style = "margin-top:-50px;"class="row">
+    <section id="pinBoot">
+
+      <% 10.times do |i| %>
+      <article class="white-panel panel-shadow"><img src="<%= @videos.first.image.url(:medium)%>" alt="">
+        <h4><a href="#"><%= @videos.first.title %> </a></h4>
+        <p><%= @videos.first.description %> </p>
+        <%= avatar_for(current_user,size:20) %>
+        <p class = "frontpage-article-user"><%= @videos.first.user.firstname.titlecase + " " + @videos.first.user.lastname.titlecase %></p>
+        <p class = "frontpage-article-time"><%= @videos.first.created_at.strftime(" %b %d, %Y")  %></p>
+        <p style = "font-style:normal; font-weight:bold;"class = "frontpage-article-time">views <%= @videos.first.impressionist_count(:filter=>:ip_address) %></p>
+      </article>
+
+      <% end %>
+
+
+    </section>
+
+
+    <hr>
+
+
+  </div>
+  <p>
+    <br>
+    <br>
+
+  </p>
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#pinBoot').pinterest_grid({
+            no_columns: 4,
+            padding_x: 10,
+            padding_y: 10,
+            margin_bottom: 50,
+            single_column_breakpoint: 700
+        });
+    });
+
+    /*
+     Ref:
+     Thanks to:
+     http://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Style-Grid-Layout-Pinterest-Grid.html
+     */
+
+
+    /*
+     Pinterest Grid Plugin
+     Copyright 2014 Mediademons
+     @author smm 16/04/2014
+
+     usage:
+
+     $(document).ready(function() {
+
+     $('#blog-landing').pinterest_grid({
+     no_columns: 4
+     });
+
+     });
+
+
+     */
+    ;(function ($, window, document, undefined) {
+        var pluginName = 'pinterest_grid',
+            defaults = {
+                padding_x: 10,
+                padding_y: 10,
+                no_columns: 3,
+                margin_bottom: 50,
+                single_column_breakpoint: 700
+            },
+            columns,
+            $article,
+            article_width;
+
+        function Plugin(element, options) {
+            this.element = element;
+            this.options = $.extend({}, defaults, options) ;
+            this._defaults = defaults;
+            this._name = pluginName;
+            this.init();
+        }
+
+        Plugin.prototype.init = function () {
+            var self = this,
+                resize_finish;
+
+            $(window).resize(function() {
+                clearTimeout(resize_finish);
+                resize_finish = setTimeout( function () {
+                    self.make_layout_change(self);
+                }, 11);
+            });
+
+            self.make_layout_change(self);
+
+            setTimeout(function() {
+                $(window).resize();
+            }, 500);
+        };
+
+        Plugin.prototype.calculate = function (single_column_mode) {
+            var self = this,
+                tallest = 0,
+                row = 0,
+                $container = $(this.element),
+                container_width = $container.width();
+            $article = $(this.element).children();
+
+            if(single_column_mode === true) {
+                article_width = $container.width() - self.options.padding_x;
+            } else {
+                article_width = ($container.width() - self.options.padding_x * self.options.no_columns) / self.options.no_columns;
+            }
+
+            $article.each(function() {
+                $(this).css('width', article_width);
+            });
+
+            columns = self.options.no_columns;
+
+            $article.each(function(index) {
+                var current_column,
+                    left_out = 0,
+                    top = 0,
+                    $this = $(this),
+                    prevAll = $this.prevAll(),
+                    tallest = 0;
+
+                if(single_column_mode === false) {
+                    current_column = (index % columns);
+                } else {
+                    current_column = 0;
+                }
+
+                for(var t = 0; t < columns; t++) {
+                    $this.removeClass('c'+t);
+                }
+
+                if(index % columns === 0) {
+                    row++;
+                }
+
+                $this.addClass('c' + current_column);
+                $this.addClass('r' + row);
+
+                prevAll.each(function(index) {
+                    if($(this).hasClass('c' + current_column)) {
+                        top += $(this).outerHeight() + self.options.padding_y;
+                    }
+                });
+
+                if(single_column_mode === true) {
+                    left_out = 0;
+                } else {
+                    left_out = (index % columns) * (article_width + self.options.padding_x);
+                }
+
+                $this.css({
+                    'left': left_out,
+                    'top' : top
+                });
+            });
+
+            this.tallest($container);
+            $(window).resize();
+        };
+
+        Plugin.prototype.tallest = function (_container) {
+            var column_heights = [],
+                largest = 0;
+
+            for(var z = 0; z < columns; z++) {
+                var temp_height = 0;
+                _container.find('.c'+z).each(function() {
+                    temp_height += $(this).outerHeight();
+                });
+                column_heights[z] = temp_height;
+            }
+
+            largest = Math.max.apply(Math, column_heights);
+            _container.css('height', largest + (this.options.padding_y + this.options.margin_bottom));
+        };
+
+        Plugin.prototype.make_layout_change = function (_self) {
+            if($(window).width() < _self.options.single_column_breakpoint) {
+                _self.calculate(true);
+            } else {
+                _self.calculate(false);
+            }
+        };
+
+        $.fn[pluginName] = function (options) {
+            return this.each(function () {
+                if (!$.data(this, 'plugin_' + pluginName)) {
+                    $.data(this, 'plugin_' + pluginName,
+                        new Plugin(this, options));
+                }
+            });
+        }
+
+    })(jQuery, window, document);
+</script>

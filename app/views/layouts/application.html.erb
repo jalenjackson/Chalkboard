@@ -5,13 +5,12 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
 
+
     <%= javascript_include_tag '//cdn.pubnub.com/pubnub-dev.js' %>
     <%= stylesheet_link_tag    '//vjs.zencdn.net/5.0.2/video-js.css' %>
     <link rel="shortcut icon" href="../../landing/favicon.png">
 
-    <!-- Bootstrap 3.3.2 -->
-
-
+    <script src="https://rawgithub.com/soulwire/sketch.js/v1.0/js/sketch.min.js"></script>
     <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/bloodhound.js"></script>
@@ -20,13 +19,612 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+  <% if user_signed_in? %>
 
-    <div style = "margin-top:100px;" class="container">
+  <% if current_user.themes == "Roman" %>
+
+      <div cla ss = "particle" id="container"></div>
+  <% end %>
+      <% end %>
+
       <% flash.each do |name,msg| %>
         <%= content_tag :div, msg, class: "alert alert-info" %>
       <% end %>
       <%= yield %>
-    </div>
+  <div id="remote_container"></div>
+
+
+      <!-- THEMES -->
+
+
+      <% if user_signed_in? %>
+      <% if current_user.themes == "Dracula" %>
+
+      <style>
+        .videos-video-title{
+          color:#FF4C65 !important;
+        }
+      </style>
+  <%end %>
+
+      <%end %>
+    <% if user_signed_in? %>
+    <% if current_user.themes == "Beauty" %>
+      <style>
+        body{
+          background: #E9E9E9;
+        }
+          .nav2, .nav1 {
+            background:white;
+          }
+
+          .videos-video-title{
+            color:#E9E9E9;
+          }
+
+          .search-box{
+            background:white;
+          }
+
+          .dropdown-menu{
+            background:white;
+          }
+
+          p,h1,h2,a, li{
+            color:rgb(80,80,80) !important;
+          }
+
+          .box-text2{
+            color:white !important;
+          }
+
+          .fa {
+            color:#02b875 !important;
+          }
+
+          .box.panel.panel-default{
+            background:white !important;
+          }
+
+          .btn-circle{
+            background:#02b875;
+          }
+
+          .search-box{
+            background: linear-gradient(to left,rgba(220, 220, 220, 1),rgba(245,245, 245, 1)) !important;
+          }
+
+          .side-navigation{
+            background: white;
+          }
+
+          .top-side-nav{
+            background:white;
+          }
+
+          input{
+            color:black!important;
+          }
+
+      </style>
+    <% end %>
+      <% end %>
+
+
+
+
+      <% if user_signed_in? %>
+      <% if current_user.themes == "Orange Cream" %>
+          <style>
+            body{
+              background: #ffb736;
+            }
+            .nav2, .nav1 {
+              background:white;
+            }
+
+            .search-box{
+              background:white;
+            }
+
+            .dropdown-menu{
+              background:white;
+            }
+
+            p,h1,h2,a, li{
+              color:rgb(80,80,80) !important;
+            }
+
+            .box-text2{
+              color:white !important;
+            }
+
+            .fa {
+              color:#ffb736 !important;
+            }
+
+            .box.panel.panel-default{
+              background:white !important;
+            }
+
+            .btn-circle{
+              background:#ffb736;
+            }
+
+            .search-box{
+              background: linear-gradient(to left,rgba(220, 220, 220, 1),rgba(245,245, 245, 1)) !important;
+            }
+
+            .side-navigation{
+              background: white;
+            }
+
+            .top-side-nav{
+              background:white;
+            }
+
+            input{
+              color:black!important;
+            }
+
+          </style>
+      <% end %>
+  <% end %>
+
+
+  <% if user_signed_in? %>
+      <% if current_user.themes == "Light Sea Green" %>
+          <style>
+            body{
+              background: #66b9bf;
+            }
+            .nav2, .nav1 {
+              background:white;
+            }
+
+            .search-box{
+              background:white;
+            }
+
+            .dropdown-menu{
+              background:white;
+            }
+
+            p,h1,h2,a, li{
+              color:rgb(80,80,80) !important;
+            }
+
+            .box-text2{
+              color:white !important;
+            }
+
+            .fa {
+              color:#008b95 !important;
+            }
+
+            .box.panel.panel-default{
+              background:white !important;
+            }
+
+            .btn-circle{
+              background:#008b95;
+            }
+
+            .search-box{
+              background: linear-gradient(to left,rgba(220, 220, 220, 1),rgba(245,245, 245, 1)) !important;
+            }
+
+            .side-navigation{
+              background: white;
+            }
+
+            .top-side-nav{
+              background:white;
+            }
+
+            input{
+              color:black!important;
+            }
+
+          </style>
+      <% end %>
+  <% end %>
+
+
+  <% if user_signed_in? %>
+      <% if current_user.themes == "Soft Purple" %>
+          <style>
+            body{
+              background: #ff3b3f;
+            }
+            .nav2, .nav1 {
+              background:white;
+            }
+
+            .search-box{
+              background:white;
+            }
+
+            .dropdown-menu{
+              background:white;
+            }
+
+            p,h1,h2,a, li{
+              color:rgb(80,80,80) !important;
+            }
+
+            .box-text2{
+              color:white !important;
+            }
+
+            .fa {
+              color:#ff3b3f !important;
+            }
+
+            .box.panel.panel-default{
+              background:white !important;
+            }
+
+            .btn-circle{
+              background:#ff3b3f;
+            }
+
+            .search-box{
+              background: linear-gradient(to left,rgba(220, 220, 220, 1),rgba(245,245, 245, 1)) !important;
+            }
+
+            .side-navigation{
+              background: white;
+            }
+
+            .top-side-nav{
+              background:white;
+            }
+
+            input{
+              color:black!important;
+            }
+
+          </style>
+      <% end %>
+  <% end %>
+
+
+
+  <% if user_signed_in? %>
+      <% if current_user.themes == "Lime Green" %>
+          <style>
+            body{
+              background: #3cc47c;
+            }
+            .nav2, .nav1 {
+              background:white;
+            }
+
+            .search-box{
+              background:white;
+            }
+
+            .dropdown-menu{
+              background:white;
+            }
+
+            p,h1,h2,a, li{
+              color:rgb(80,80,80) !important;
+            }
+
+            .box-text2{
+              color:white !important;
+            }
+
+            .fa {
+              color:#3cc47c !important;
+            }
+
+            .box.panel.panel-default{
+              background:white !important;
+            }
+
+            .btn-circle{
+              background:#3cc47c;
+            }
+
+            .search-box{
+              background: linear-gradient(to left,rgba(220, 220, 220, 1),rgba(245,245, 245, 1)) !important;
+            }
+
+            .side-navigation{
+              background: white;
+            }
+
+            .top-side-nav{
+              background:white;
+            }
+
+            input{
+              color:black!important;
+            }
+
+          </style>
+      <% end %>
+  <% end %>
+
+  <% if user_signed_in? %>
+      <% if current_user.themes == "Deep Blush" %>
+          <style>
+            body{
+              background:  #737495;
+            }
+            .nav2, .nav1 {
+              background:white;
+            }
+
+            .search-box{
+              background:white;
+            }
+
+            .dropdown-menu{
+              background:white;
+            }
+
+            p,h1,h2,a, li{
+              color:rgb(80,80,80) !important;
+            }
+
+            .box-text2{
+              color:white !important;
+            }
+
+            .fa {
+              color: #737495 !important;
+            }
+
+            .box.panel.panel-default{
+              background:white !important;
+            }
+
+            .btn-circle{
+              background: #737495;
+            }
+
+            .search-box{
+              background: linear-gradient(to left,rgba(220, 220, 220, 1),rgba(245,245, 245, 1)) !important;
+            }
+
+            .side-navigation{
+              background: white;
+            }
+
+            .top-side-nav{
+              background:white;
+            }
+
+            input{
+              color:black!important;
+            }
+
+          </style>
+      <% end %>
+  <% end %>
+
+  <% if user_signed_in? %>
+      <% if current_user.themes == "Roman" %>
+          <style>
+
+            #container{
+              position: fixed;
+              top:0;
+              left:0;
+              width:100%;
+              height:100%;
+              z-index: -999999999;
+              background:none; 
+            }
+
+            #debug {
+              position: fixed;
+              top:5;
+              left: 5;
+              width:100px;
+              height:20px;
+            }
+
+            body{
+              background:black;
+            }
+            .nav2, .nav1 {
+              background:white;
+            }
+
+            .search-box{
+              background:white;
+            }
+
+            .dropdown-menu{
+              background:white;
+            }
+
+            p,h1,h2,a, li{
+              color:rgb(80,80,80) !important;
+            }
+
+            .box-text2{
+              color:white !important;
+            }
+
+            .fa {
+              color:#3cc47c !important;
+            }
+
+            .box.panel.panel-default{
+              background:white !important;
+            }
+
+            .btn-circle{
+              background:#3cc47c;
+            }
+
+            .search-box{
+              background: linear-gradient(to left,rgba(220, 220, 220, 1),rgba(245,245, 245, 1)) !important;
+            }
+
+            .side-navigation{
+              background: white;
+            }
+
+            .top-side-nav{
+              background:white;
+            }
+
+            input{
+              color:black!important;
+            }
+
+          </style>
+  <script>
+
+      function Particle( x, y, radius ) {
+          this.init( x, y, radius );
+      }
+
+      Particle.prototype = {
+
+          init: function( x, y, radius ) {
+
+              this.alive = true;
+
+              this.radius = radius || 10;
+              this.wander = 0.15;
+              this.theta = random( TWO_PI );
+              this.drag = 0.92;
+              this.color = '#fff';
+
+              this.x = x || 0.0;
+              this.y = y || 0.0;
+
+              this.vx = 0.0;
+              this.vy = 0.0;
+          },
+
+          move: function() {
+
+              this.x += this.vx;
+              this.y += this.vy;
+
+              this.vx *= this.drag;
+              this.vy *= this.drag;
+
+              this.theta += random( -0.5, 0.5 ) * this.wander;
+              this.vx += sin( this.theta ) * 0.1;
+              this.vy += cos( this.theta ) * 0.1;
+
+              this.radius *= 0.96;
+              this.alive = this.radius > 0.5;
+          },
+
+          draw: function( ctx ) {
+
+              ctx.beginPath();
+              ctx.arc( this.x, this.y, this.radius, 0, TWO_PI );
+              ctx.fillStyle = this.color;
+              ctx.fill();
+          }
+      };
+
+      // ----------------------------------------
+      // Example
+      // ----------------------------------------
+
+      var MAX_PARTICLES = 280;
+      var COLOURS = [ '#69D2E7', '#A7DBD8', '#E0E4CC', '#F38630', '#FA6900', '#FF4E50', '#F9D423' ];
+
+      var particles = [];
+      var pool = [];
+
+      var demo = Sketch.create({
+          container: document.getElementById( 'container' )
+      });
+
+      demo.setup = function() {
+
+          // Set off some initial particles.
+          var i, x, y;
+
+          for ( i = 0; i < 20; i++ ) {
+              x = ( demo.width * 0.5 ) + random( -100, 100 );
+              y = ( demo.height * 0.5 ) + random( -100, 100 );
+              demo.spawn( x, y );
+          }
+      };
+
+      demo.spawn = function( x, y ) {
+
+          if ( particles.length >= MAX_PARTICLES )
+              pool.push( particles.shift() );
+
+          particle = pool.length ? pool.pop() : new Particle();
+          particle.init( x, y, random( 5, 40 ) );
+
+          particle.wander = random( 0.5, 2.0 );
+          particle.color = random( COLOURS );
+          particle.drag = random( 0.9, 0.99 );
+
+          theta = random( TWO_PI );
+          force = random( 2, 8 );
+
+          particle.vx = sin( theta ) * force;
+          particle.vy = cos( theta ) * force;
+
+          particles.push( particle );
+      }
+
+      demo.update = function() {
+
+          var i, particle;
+
+          for ( i = particles.length - 1; i >= 0; i-- ) {
+
+              particle = particles[i];
+
+              if ( particle.alive ) particle.move();
+              else pool.push( particles.splice( i, 1 )[0] );
+          }
+      };
+
+      demo.draw = function() {
+
+          demo.globalCompositeOperation  = 'lighter';
+
+          for ( var i = particles.length - 1; i >= 0; i-- ) {
+              particles[i].draw( demo );
+          }
+      };
+
+      demo.mousemove = function() {
+
+          var particle, theta, force, touch, max, i, j, n;
+
+          for ( i = 0, n = demo.touches.length; i < n; i++ ) {
+
+              touch = demo.touches[i], max = random( 1, 4 );
+              for ( j = 0; j < max; j++ ) demo.spawn( touch.x, touch.y );
+          }
+      };
+
+
+
+
+  </script>
+      <% end %>
+  <% end %>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function(event) {
+          document.querySelectorAll('img').forEach(function(img){
+              img.onerror = function(){this.style.display='none';};
+          })
+      });
+  </script>
   </body>
 </html>
 

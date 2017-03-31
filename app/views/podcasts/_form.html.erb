@@ -1,0 +1,37 @@
+<%= simple_form_for(@podcast) do |f| %>
+  <%= f.error_notification %>
+
+    <div style = "float:left;" class = "form-field">
+
+      <%= f.label :image %>
+
+      <%= f.file_field :image, class: "filestyle image", "data-input" => false %>
+
+
+    </div>
+
+
+    <div style = "float:left; margin-left: 2px;" class = "form-field">
+      <%= f.label :mp3 %>
+      <%= f.file_field :mp3, class: "filestyle mp3", "data-input" => false %>
+
+    </div>
+
+    <div style = "float:left; margin-left: 2px;" class = "form-field">
+      <%= f.label :title %>
+
+      <%= f.text_field :title, class: "filestyle mp3", "data-input" => false %>
+
+    </div>
+
+    <div style = "float:left; margin-left: 2px;" class = "form-field">
+      <%= f.label :description %>
+
+      <%= f.text_field :description, class: "filestyle mp3", "data-input" => false %>
+
+    </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

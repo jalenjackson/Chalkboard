@@ -4,11 +4,11 @@
   </script>
 <% end %>
 
-<%= render 'nav' %>
+<%= render 'navs/nav' %>
 <div class = "panel">
 
   <h1 style = "font-weight:bold;"><%= @user.firstname %>  <%= @user.lastname %></h1>
-  <span><%= @user.city %> , <%= @user.state%></span>
+  <span><%= @user.city %> , <%= @user.state%> <%= render 'components/follow_button', :user => User.find_by_username(params[:id])%></span>
 
 </div>
 
@@ -28,7 +28,6 @@
             <br>
             <%= pin.created_at %>
             <%= pin.user.city %>
-            ,
             <%= pin.user.state %>
           <p class="glyphicon glyphicon-heart go_right"></p>
           <p style = "font-size:14px; color:gray"><%= pin.get_upvotes.size %></p>

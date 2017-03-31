@@ -1,25 +1,25 @@
-<%= form_for([@pin,@pin.comments.build]) do |f| %>
+<%= form_for([@video,@video.comments.build]) do |f| %>
 
-    <div style = "float:left; margin-top:-20px;">
+    <div class = "comment-form-div-field form-field">
 
       <%= f.text_field :content, class: "form-control comment-form", placeholder: "Publish a public comment" %>
 
-    </div><br>
+    </div><br><br><br>
 
-    <div style = "float:left;" class = "form-field">
+    <div class = "comment-form-div-field form-field">
 
-      <%= f.file_field :image, class: "filestyle image", "data-input" => false %>
-
-
-    </div>
+  <%= f.file_field :image, class: "filestyle image", "data-input" => false %>
 
 
-    <div style = "float:left; margin-left: 2px;" class = "form-field">
+</div>
+
+
+    <div class = "comment-form-div-field form-field">
       <%= f.file_field :mp3, class: "filestyle mp3", "data-input" => false %>
 
     </div>
 
-    <div style = "float:left; margin-left: 3px;" class = "form-field  ">
+    <div class = "comment-form-div-field form-field">
       <%= f.submit "Publish Comment" , class: "filestyle submiting btn btn-info" %>
 
     </div>

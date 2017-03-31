@@ -1,0 +1,27 @@
+<%= simple_form_for(@video) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :mp4 %>
+  </div>
+<br><br>
+    <div class="form-inputs">
+      <%= f.label :image %>
+      <%= f.input :image %>
+    </div>
+    <div class="form-field">
+      <%= f.label :title %>
+
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :description %>
+
+      <%= f.text_field :description %>
+    </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

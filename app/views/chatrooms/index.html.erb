@@ -1,11 +1,14 @@
-<%= render 'nav' %>
+
+<%= render 'navs/nav' %>
 <%= render 'side_nav' %>
-<div class="transitions-enabled off" id="pins" >
+<div class = "transitions-enabled off chatrooms-homepage-chatrooms-container" id="pins" >
   <% @chatrooms.each do |chatroom| %>
-      <div class="box panel panel-default" style = "margin-left: 150px;">
+      <div class="box panel panel-default chatrooms-homepage-chatrooms-box-panel">
+        <%= image_tag chatroom.image.url(:medium) %>
         <div class="panel-body">
           <h2>
-            <h1><%= chatroom.name %></h1>
+            <h1 class = "chatrooms-homepage-chatroom-name"><%= chatroom.name %></h1>
+            <p>Created by: <%= chatroom.user.firstname %></p>
           </h2>
           <p class="user">
             Published By
@@ -16,12 +19,9 @@
             <%= link_to 'Join', chatroom_chatroom_users_path(chatroom), method: :post %>
             <%= link_to 'Leave chatroom', chatroom_chatroom_users_path(chatroom), method: :delete %>
           <p class="glyphicon glyphicon-heart go_right"></p>
-
         </div>
       </div>
   <% end %>
-
-
 </div>
 
 

@@ -1,0 +1,250 @@
+
+.homepage-navbar{
+  z-index:9999999999999999999999999999999999999;
+}
+
+.homepage-navbar-explore-information-object{
+  margin-top: 17px;
+}
+
+.homepage-navbar-dropdown-menu{
+  width:280px;
+  height:450px;
+}
+
+.homepage-navbar-explore-text-element{
+  font-size:16px;
+  font-weight: bold;
+}
+
+.homepage-navbar-row-content{
+  margin-left:40px;
+  margin-top:40px;
+}
+
+.nav-image{
+  width:50px;
+  height:50px;
+}
+
+.homepage-navbar-icon-text{
+  font-size:12px;
+  letter-spacing: 1.5px;
+  margin-top:8px;
+}
+.homepage-navbar-docs-text{
+  margin-left:-7px;
+}
+
+.homepage-navbar-explore-content-container{
+  margin-left:20px;
+}
+
+.homepage-navbar-explore-row-1{
+  margin-top:30px;
+}
+
+.homepage-navbar-explore-row-2-exception{
+  margin-top:30px;
+  margin-left:10px;
+}
+
+.homepage-navbar-notification-list-item{
+  margin-top: 10px;
+  font-size:27px;
+  margin-left: 13px;
+  cursor:pointer;
+}
+
+.homepage-navbar-notification-object{
+  margin-left:10px;
+  margin-top:6px;
+  color:white;
+  transform:translateY(-16px);
+
+}
+
+.homepage-navbar-notifications-count {
+  background-color: #E94C6F;
+  border-radius: 2px;
+  color: white;
+  margin-top: 12px;
+  margin-left: 15px;
+  padding: 1px 3px;
+  font-size: 10px;
+  margin-top:-20px;
+  position: absolute; /* Position the badge within the relatively positioned button */
+  top: 5px;
+  right: 0;
+}
+
+.homepage-navbar-notification-dropdown-menu{
+  width:400px;
+}
+
+.homepage-navbar-user-object{
+  margin-top:10px;
+  transform: translate(15px,-14px);
+}
+
+.homepage-navbar-name {
+  font-size:16px;
+  font-weight: bold;
+}
+.homepage-navbar-user-initials{
+  font-weight:200;
+}
+
+.homepage-navbar-user-signout-link{
+  color:grey;
+  font-size:12px;
+}
+
+.homepage-navbar-quicklinks-wrapper{
+  position: absolute;
+  left: 50%;
+  top:88px;
+}
+
+.homepage-navbar-quicklinks-container{
+  position: relative;
+  left: -50%;
+}
+
+.homepage-navbar-quicklinks{
+  display:inline;
+  font-size:14px;
+  margin-left:35px;
+  font-weight:400;
+  letter-spacing: 1px;
+  color:white;
+}
+.homepage-navbar-current-quicklink{
+  border-bottom:3px solid white;
+  padding-bottom:10px;
+}
+
+
+
+.side-navigation{
+  position: fixed;
+  top:0;
+  left:-300px;
+  width:300px;
+  background:rgb(41,41,41);
+  height:100%;
+  z-index:999999999999999999999999;
+}
+
+.activate-ani {
+  animation: ani 300ms ease-in-out forwards;
+}
+
+.de-activate-ani {
+  animation: de-ani 400ms ease-in-out forwards;
+
+}
+
+@keyframes ani {
+  0%{
+    left:-300px;
+  }
+  100%{
+    left:0px;
+  }
+}
+
+@keyframes de-ani {
+  0%{
+    left:0px;
+  }
+  100%{
+    left:-300px;
+  }
+}
+
+.homepage-navbar-side-navigation-top-section{
+  order-bottom:2px solid grey;
+  height:95px;
+  width:100%;
+}
+.homepage-navbar-side-navigation-bars{
+  position:absolute;
+  top:26px;
+  left: 20px;
+  cursor:pointer;
+}
+
+.homepage-navbar-side-navigation-logo-container{
+  position:absolute;
+  top:26px;
+  left: -18px;
+  margin-left:100px;
+}
+
+.homepage-navbar-side-navigation-logo {
+  width:35px;
+  height:30px;
+}
+
+.homepage-navbar-side-navigation-logo-text{
+  margin-left:20px;
+  font-size:20px;
+  font-family: 'VT323', monospace;
+
+}
+
+
+
+.search-box /* be more selective here if you want */ {
+  font-family: FontAwesome, helvetica;
+  color:grey;
+}
+
+.homepage-navbar-side-navigation-list-item-container{
+  margin-top:20px;
+}
+
+.homepage-navbar-side-navigation-list-item-logo{
+  margin-left:20px;
+  width:30px;
+  height:30px;
+}
+
+.homepage-navbar-side-navigation-anchor-items{
+  font-size:14px;
+  margin-left:35px;
+  font-weight:400;
+  letter-spacing: 1px;
+  color:white;
+}
+
+.homepage-navbar-logo-pic {
+  margin-top:-40px;
+  width:37px;
+  height: 30px;
+  margin-left:29px;
+}
+
+.homepage-navbar-bars{
+  transform:translate(-40px,5px);
+
+}
+
+.homepage-navbar-fa-grcode{
+  transform:translateY(-16px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

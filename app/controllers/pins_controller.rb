@@ -1,15 +1,22 @@
 class PinsController < ApplicationController
 
-  before_action :find_pin, only: [:show,:edit,:update,:destroy, :upvote]
+  before_action :find_pin, only: [:show,:edit,:update,:destroy, :vote]
   before_action :authenticate_user!, except: [:index,:show]
+  respond_to  :js, :json, :html
 
   def index
     search = params[:term].present? ? params[:term] : nil
+    @likes = Pin.all.order("likes")
     @pins = if search
               Pin.search(search)
             else
               Pin.all.paginate(page: params[:page], per_page: 10)
             end
+    @videos = Video.all.order(:cached_votes_score => :desc)
+    @podcasts = Podcast.all.order(:cached_votes_score => :desc)
+    @meets = Meet.all.order(:cached_votes_score => :desc)
+    @articles = Article.all.order(:cached_votes_score => :desc)
+    @chatrooms = Chatroom.all
   end
 
   def new
@@ -42,6 +49,8 @@ class PinsController < ApplicationController
     end
   end
 
+
+
   def all
     @user = User.all
   end
@@ -51,9 +60,12 @@ class PinsController < ApplicationController
     redirect_to pins_path
   end
 
-  def upvote
-    @pin.upvote_by current_user
-    redirect_to :back
+  def vote
+    if !current_user.liked? @pin
+      @pin.liked_by current_user
+    elsif current_user.liked? @pin
+      @pin.unliked_by current_user
+    end
   end
 
   def create
@@ -76,6 +88,15 @@ class PinsController < ApplicationController
   end
 
   def category
+    @pin = Pin.where(subject: params[:id])
+    @subject = params[:id]
+    if @pin.blank?
+      @message = "Nothing to show for this subject"
+    end
+
+  end
+
+  def all_categories
     @pin = Pin.where(subject: params[:id])
     @subject = params[:id]
     if @pin.blank?

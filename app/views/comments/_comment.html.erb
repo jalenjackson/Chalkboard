@@ -1,6 +1,6 @@
 
-<h1 style = "font-size:16px;"><strong>Comments <%= @comments.count %>
-</strong>      <i class="fa fa-commenting-o" aria-hidden="true"></i></h1>
+<h1 class = "comment-h1-tag"><strong>Comments <%= @comments.count %>
+</strong><i class="fa fa-commenting-o" aria-hidden="true"></i></h1>
 <br><br>
 <%= render 'comments/form' %>
 
@@ -8,14 +8,14 @@
 
 <br><br>
 <% @comments.each do |comment| %><br>
-        <span style="color:white; font-size:10px; margin-left: 3px;"><%= link_to "Delete comment", [comment.pin, comment], method: :delete %></span>
-        <!-- <%= link_to 'Edit comment', edit_pin_comment_path(comment.pin,comment) %> --><br>
-    <p style = "margin-left: 3px; font-weight:normal;"><span style = "float:left;"><%= avatar_for(comment.user, size:70) %></span>  <%= comment.user.firstname %>  <span style = "color:grey; font-size:10px;"><%= comment.created_at.strftime(" %b %d, %Y") %></span></p>
+        <span class = "comment-delete-item"><%= link_to "Delete comment", [comment.video, comment], method: :delete %></span>
+        <!-- <%= link_to 'Edit comment', edit_video_comment_path(comment.video,comment) %> --><br>
+    <p class = "comment-paragraph-tag"><span class = "comment-span-tag"><%= avatar_for(comment.user, size:70) %></span>  <%= comment.user.firstname %>  <span class = "comment-create-at"><%= comment.created_at.strftime(" %b %d, %Y") %></span></p>
         <p> </p>
 
-    <p style = "margin-left:83px;">  <%= comment.content %></p>
+    <p class = "comment-content">  <%= comment.content %></p>
         <% if comment.image.exists? %>
-            <p style = "margin-left:3px; color:grey; font-size:12px;"><%= comment.user.firstname %> commented with an image <span class = "glyphicon glyphicon-picture"></span></p>
+            <p class = "comment-owner-name"><%= comment.user.firstname %> commented with an image <span class = "glyphicon glyphicon-picture"></span></p>
             <%= image_tag comment.image.url(:medium) , class: 'image-class' %><br><br><br>
             <% end %>
 
@@ -26,7 +26,7 @@
 
 
       <% if comment.mp3.exists? %>
-            <p style = "color:grey; margin-left: 3px; "><%= comment.user.firstname %> commented with a mp3 file <span style = "color: purple ;  font-size:12px;">Press the play button to listen in!</span>  <span style ="color:black;" class = "glyphicon glyphicon-headphones"></span></p>
+            <p class = "comment-owner-name-with-mp3-file"><%= comment.user.firstname %> commented with a mp3 file <span class = "comment-play-button">Press the play button to listen in!</span>  <span style ="color:black;" class = "glyphicon glyphicon-headphones"></span></p>
             <div id="jquery_jplayer_1" class="jp-jplayer"></div>
             <div id="jp_container_1" class="jp-audio">
               <div class="jp-type-single">

@@ -6,12 +6,11 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.create(params[:comment].permit(:content, :image, :mp3))
     @comment.user_id = current_user.id
-    @comment.save
     if @comment.save
       (@post.users.uniq - [current_user]).each do |user|
         Notification.create(recipient: user, actor: current_user, action: "posted", notifiable: @comment)
       end
-      redirect_to pin_path(@post)
+      redirect_to video_path(@post)
     else
       render 'chatrooms/show'
     end
@@ -19,7 +18,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    redirect_to pin_path(@post)
+    redirect_to video_path(@post)
   end
 
   def edit
@@ -38,7 +37,7 @@ class CommentsController < ApplicationController
   private
 
   def find_post
-    @post = Pin.find(params[:pin_id])
+    @post = Video.find(params[:video_id])
   end
   def find_comment
     @comment = @post.comments.find(params[:id])

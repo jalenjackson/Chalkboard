@@ -1,4 +1,39 @@
-<%= render 'pins/nav' %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%= render 'navs/nav' %>
 
 <div class = ".col-md-6 col-md-offset-3">
   <div class = "row">
@@ -18,6 +53,8 @@
             <% end %>
             <%= f.file_field :avatar  %>
             <%= f.file_field :image  %>
+            <%= f.select(:themes, options_for_select([['Dracula', 'Dracula'], ['Beauty', 'Beauty'], ['Orange Cream', 'Orange Cream'], ['Light Sea Green', 'Light Sea Green'], ['Light Orange', 'Light Orange'], ['Soft Purple', 'Soft Purple'], ['Lime Green', 'Lime Green'], ['Hot Pink', 'Hot Pink'], ['Roman', 'Roman'], ['Deep Blush', 'Deep Blush']])) %>
+
             <%= f.input :firstname, required: true %>
             <%= f.input :lastname, required: true %>
             <%= f.text_area :description  %>

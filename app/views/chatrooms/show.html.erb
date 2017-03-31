@@ -1,11 +1,11 @@
-<%= render 'nav' %>
+<%= render 'navs/nav' %>
 <%= render 'side_nav' %>
 
-<div class = "container-fluid" style="margin-top: -41px;">
+<div class = "container-fluid chatrooms-showpage-chatroom-container" >
   <div class = "col-sm-10 col-sm-offset-2">
 <h1><%=  @chatroom.name %></h1>
 
-<div style = "overflow-y:scroll; height: 450px;" data-behavior="messages" data-chatroom-id='<%= @chatroom.id %>'>
+<div class = "chatrooms-showpage-chatroom-messages-container" data-behavior="messages" data-chatroom-id='<%= @chatroom.id %>'>
   <% @messages.each do |message| %>
       <%= render message  %>
   <% end %>
@@ -14,11 +14,16 @@
     <br>
     <br>
 
-    <div style = "margin-top: -50px">
+    <div class = "chatrooms-showpage-chatroom-input-field">
     <%= form_for [@chatroom, Message.new], remote: true, authenticity_token: true do |f| %>
+          <%= f.label "image" , :image %>
         <%= f.file_field :image , class: "form-controler"%>
+          <%= f.label "video",  :video %>
 
-        <%= f.text_field :body , rows: 1 , class: "form-control input-box", autofocus:true%>
+          <%= f.file_field :video_file , class: "form-controler"%>
+
+
+          <%= f.text_field :body , rows: 1 , class: "form-control input-box", autofocus:true%>
 
   <% end %>
     </div>

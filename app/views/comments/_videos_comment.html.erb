@@ -1,0 +1,93 @@
+
+<h1 class = "comment-h1-tag"><strong>Comments <%= @comments.count %>
+</strong><i class="fa fa-commenting-o" aria-hidden="true"></i></h1>
+<br><br>
+<%= render 'comments/form' %>
+
+
+
+<br><br>
+<% @comments.each do |comment| %><br>
+    <span class = "comment-delete-item"><%= link_to "Delete comment", [comment.video, comment], method: :delete %></span>
+    <!-- <%= link_to 'Edit comment', edit_video_comment_path(comment.video,comment) %> --><br>
+    <p class = "comment-paragraph-tag"><span class = "comment-span-tag"><%= avatar_for(comment.user, size:70) %></span>  <%= comment.user.firstname %>  <span class = "comment-create-at"><%= comment.created_at.strftime(" %b %d, %Y") %></span></p>
+    <p> </p>
+
+    <p class = "comment-content">  <%= comment.content %></p>
+    <% if comment.image.exists? %>
+        <p class = "comment-owner-name"><%= comment.user.firstname %> commented with an image <span class = "glyphicon glyphicon-picture"></span></p>
+        <%= image_tag comment.image.url(:medium) , class: 'image-class' %><br><br><br>
+    <% end %>
+
+
+
+
+
+
+
+    <% if comment.mp3.exists? %>
+        <p class = "comment-owner-name-with-mp3-file"><%= comment.user.firstname %> commented with a mp3 file <span class = "comment-play-button">Press the play button to listen in!</span>  <span style ="color:black;" class = "glyphicon glyphicon-headphones"></span></p>
+        <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+        <div id="jp_container_1" class="jp-audio">
+          <div class="jp-type-single">
+            <div class="jp-gui jp-interface">
+              <ul class="jp-controls">
+                <li><a href="javascript:;" class="jp-play" tabindex="1">&#61515;</a></li>
+                <li><a href="javascript:;" class="jp-pause" tabindex="1">&#61516;</a></li>
+                <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">&#61480;</a></li>
+                <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">&#61478;</a></li>
+              </ul>
+
+              <div class="jp-progress">
+                <div class="jp-seek-bar">
+                  <div class="jp-play-bar"></div>
+                </div>
+              </div>
+
+              <div class="jp-time-holder">
+                <div class="jp-current-time"></div>
+              </div>
+
+              <div class="jp-volume-bar">
+                <div class="jp-volume-bar-value"></div>
+              </div>
+
+              <div class="jp-no-solution">
+                <span>Update Required</span>
+                To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+              </div>
+            </div>
+          </div><br><br><br>
+        </div>
+
+
+
+
+        <script>
+            $(document).ready(function() {
+
+                $("#jquery_jplayer_1").jPlayer({
+                    ready: function(event) {
+                        $(this).jPlayer("setMedia", {
+                            mp3: "<%= comment.mp3.url %>",
+
+                        });
+                    },
+                    swfPath: "http://jplayer.org/latest/dist/jplayer",
+                    supplied: "mp3, oga",
+                    wmode: "window",
+                    useStateClassSkin: true,
+                    autoBlur: false,
+                    smoothPlayBar: true,
+                    keyEnabled: true,
+                    remainingDuration: true,
+                    toggleDuration: true
+                });
+            });
+        </script>
+    <%end%>
+
+<% end %>
+
+
+

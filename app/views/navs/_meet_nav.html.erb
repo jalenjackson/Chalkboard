@@ -1,0 +1,218 @@
+
+<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+<nav style = "height:120px; "class="navbar navbar-default navbar-fixed-top nav2">
+  <div class = "password">
+    <%= form_tag pins_path, :method => :get, class: "input-group2" do %>
+        <%= text_field_tag :term, params[:term], class: 'search-box ', placeholder:"&#xf002; Learn Something New ".html_safe,  autocomplete: :off%>
+    <% end %>
+  </div>
+  <div class="container">
+    <ul class="nav navbar-nav navbar-left">
+      <li>
+        <i style = "font-size:23px;" class="fa fa-bars activate3" aria-hidden="true"></i>
+      </li>
+      <div>
+        <a href = "../pins"><%= image_tag 'logo.png' , class: 'logo-pic'  %></a>
+      </div>
+    </ul>
+    <ul class="nav navbar-nav navbar-right homepage-navbar">
+      <li class = "homepage-navbar-explore-information-object">
+        <div class="dropdown">
+          <i style = "font-size:28px;" class="fa fa-qrcode dropdown-toggle" data-toggle="dropdown"></i>
+
+          <span class="caret"></span>
+          <ul class="dropdown-menu homepage-navbar-dropdown-menu">
+            <li class = "text-center"><span class = "homepage-navbar-explore-text-element">Explore</span></li>
+            <li>
+              <div class = "dropdown-left">
+                <div class = "homepage-navbar-explore-content-container">
+                  <div class="row content homepage-navbar-row-content">
+                    <div class="col-md-4 col-sm-6">
+                      <%= image_tag 'book-flat.png', class:'nav-image' %>
+                      <p class = "homepage-navbar-icon-text">Articles</p>
+                    </div>
+                    <a href = "../podcasts"><div class="col-md-4 col-sm-6">
+                      <img class = "nav-image" src = "http://icons.iconarchive.com/icons/dtafalonso/yosemite-flat/512/Music-icon.png">
+                      <p class = "homepage-navbar-icon-text">Podcast</p>
+                    </div></a>
+                    <a href = "../videos"><div  class="col-md-4 col-sm-6">
+                      <img class = "nav-image" src = "https://cdn3.iconfinder.com/data/icons/complete-set-icons/512/video512x512.png">
+                      <p class = "homepage-navbar-icon-text">Videos</p>
+                    </div></a>
+                    <div class = "col-md-4 col-sm-6 homepage-navbar-explore-row-1">
+                      <%= link_to (image_tag 'https://media.freepik.com/accounts/img/badges/favorites_gold.svg', class:'nav-image', style: 'margin-left:10px;'), '../meets'%>
+                      <p class = "homepage-navbar-icon-text">MeetUp</p>
+                    </div>
+                    <div class = "col-md-4 col-sm-6 homepage-navbar-explore-row-1">
+                      <img class = "nav-image" src = "https://cdn4.iconfinder.com/data/icons/flat-icon-set/2125/flat_icons-graficheria.it-11.png">
+                      <p class = "homepage-navbar-icon-text text-center homepage-navbar-docs-text">Docs</p>
+                    </div>
+                    <div class = "col-md-4 col-sm-6 homepage-navbar-explore-row-1">
+                      <img class = "nav-image" src = "https://cdn0.iconfinder.com/data/icons/flat-designed-circle-icon/1000/camera.png">
+                      <p class = "homepage-navbar-icon-text">Pictures</p>
+                    </div>
+                    <div class = "col-md-4 col-sm-6 homepage-navbar-explore-row-2-exception">
+                      <%= link_to (image_tag 'people.png', class:'nav-image'), '../members'%>
+                      <p class = "homepage-navbar-icon-text">People</p>
+                    </div>
+                    <div class = "col-md-4 col-sm-6 homepage-navbar-explore-row-1">
+                      <%= link_to (image_tag 'chat.png', class:'nav-image'), chatrooms_path%>
+                      <p class = "homepage-navbar-icon-text">Group Chat</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+        </div>
+      </li>
+      <li class = "homepage-navbar-notification-list-item" data-behavior="notifications">
+        <div class="dropdown">
+          <a class="dropdown-toggle" type="button" data-toggle="dropdown" data-behavior="notifications-link"><i class="fa fa-globe homepage-navbar-notification-object" style="font-size:28px;" aria-hidden="true"></i><span class="homepage-navbar-notifications-count" data-behavior="unread-count" ></span>
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu homepage-navbar-notification-dropdown-menu" data-behavior="notification-items">
+          </ul>
+        </div>
+      </li>
+      <li class = "homepage-navbar-user-object">
+        <div class="dropdown">
+          <button class="btn btn-primary btn-circle bootstrap-iso dropdown-toggle" type="button" data-toggle="dropdown"><span class = "homepage-navbar-user-initials"><%= current_user.firstname[0].upcase + current_user.lastname[0].upcase%></span>
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li class = "text-center"><span class = "homepage-navbar-name"><%= current_user.firstname.titlecase + " " + current_user.lastname.titlecase %></span></li>
+            <% if current_user.occupation == "Teacher" %>
+                <li><%= link_to "Profile", "/teachers/#{current_user.username}", :style=>'color:grey; font-size:20px; ' %> </li>
+            <% else %>
+                <li><%= link_to "Profile", "/user/#{current_user.username}", :style=>'color:grey; font-size:20px; ' %> </li>
+            <% end %>
+            <li><%= link_to "Settings", "/users/edit", :style=>'color:grey; font-size:20px; ' %></li>
+            <li class = "homepage-navbar-user-signout-link"><%= link_to "Sign Out", destroy_user_session_path, :style=>'color:grey; font-size:14px; ',  method: :delete %></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+    <% if !user_signed_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li >
+            <%= link_to "Sign Up", new_user_registration_path, :style=>'font-size:14px;'  %>
+          </li>
+          <li>
+            <%= link_to "Sign In", new_user_session_path, :style=>'font-size:14px;'%>
+          </li>
+        </ul>
+    <% end %>
+  </div>
+  <br>
+  <div class = "homepage-navbar-quicklinks-wrapper">
+    <div class = "homepage-navbar-quicklinks-container">
+      <li class = "homepage-navbar-quicklinks homepage-navbar-current-quicklink">Trending</li>
+
+      <li class = "homepage-navbar-quicklinks" >Most Popular</li>
+      <li class = "homepage-navbar-quicklinks" >Most Hearts</li>
+      <li class = "homepage-navbar-quicklinks" >Teachers</li>
+
+    </div>
+  </div>
+</nav>
+
+<div class = "overlay">
+
+</div>
+<div class = "side-navigation">
+
+  <div class = "homepage-navbar-side-navigation-top-section"><i style = "font-size:28px;" class="fa fa-bars homepage-navbar-side-navigation-bars de-activate" aria-hidden="true"></i> <span class = "homepage-navbar-side-navigation-logo-container"><%= image_tag 'logo.png', class: 'homepage-navbar-side-navigation-logo' %><span class = "homepage-navbar-side-navigation-logo-text" >CHALKBOARD</span></div>
+
+  <div class = "homepage-navbar-side-navigation-list-item-container">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://rho-design.com/wp-content/uploads/2015/08/VIDEO-LOGO1.png">
+    <a href = "../videos/new" class = "homepage-navbar-side-navigation-anchor-items">Publish A Video</a>
+  </div>
+
+  <div class = "homepage-navbar-side-navigation-list-item-container">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://kickpoint.ca/wp-content/themes/kickpoint/img/kick_point_blog_icon.svg">
+    <a href = "../pins/new" class = "homepage-navbar-side-navigation-anchor-items">Write An Article</a>
+  </div>
+
+  <div class = "homepage-navbar-side-navigation-list-item-container">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "https://2.bp.blogspot.com/-8V_HOCc2W6s/WJutLHdxvOI/AAAAAAAADh8/M15GPlX29_0zolX8Ib2uSjlmnSPBop5IQCLcB/s1600/mic-icon.png">
+    <a href = "../podcasts/new" class = "homepage-navbar-side-navigation-anchor-items">Publish A Podcast</a>
+  </div>
+
+  <div class = "homepage-navbar-side-navigation-list-item-container">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://www.clipartbest.com/cliparts/7ia/xg6/7iaxg675T.png">
+    <a href = "../chatrooms/new" class = "homepage-navbar-side-navigation-anchor-items">Start A Group Chat</a>
+  </div>
+
+  <div class = "homepage-navbar-side-navigation-list-item-container">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://images.akamai.steamusercontent.com/ugc/795187547102288750/9795FDC94454BBEB97377F6E4AB9804F036CAB9B/">
+    <a href = "../chatrooms/new" class = "homepage-navbar-side-navigation-anchor-items">Start A Live Video Stream</a>
+  </div>
+
+  <div class = "homepage-navbar-side-navigation-list-item-container">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "https://cdn.pixabay.com/photo/2017/03/11/16/32/waves-2135344_1280.png">
+    <a href = "../chatrooms/new" class = "homepage-navbar-side-navigation-anchor-items">Start A Live Audio Stream</a>
+  </div>
+
+  <div class = "homepage-navbar-side-navigation-list-item-container">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://www.clker.com/cliparts/I/J/t/0/g/M/camera-logo-test-md.png">
+    <a href = "../pins/new" class = "homepage-navbar-side-navigation-anchor-items">Share An Interesting Photo</a>
+  </div>
+
+  <div class = "homepage-navbar-side-navigation-list-item-container">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://www.shzongyue.com/data/out/64/39229480-icons.png">
+
+    <a href = "../all-categories" class = "homepage-navbar-side-navigation-anchor-items">All Categories</a>
+  </div>
+
+  <div class = "homepage-navbar-side-navigation-list-item-container">
+
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "/assets/calendar-flat.png">
+
+    <a href = "teachers/<%= current_user.username %>/calendar" class = "homepage-navbar-side-navigation-anchor-items">My Calendar</a>
+  </div>
+
+  <div class = "homepage-navbar-side-navigation-list-item-container">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://www.freeiconspng.com/uploads/colors-icon-4.png">
+    <a href = "teachers/<%= current_user.username %>/calendar" class = "homepage-navbar-side-navigation-anchor-items">Themes</a>
+  </div>
+
+
+
+  <div class = "homepage-navbar-side-navigation-list-item-container">
+    <% if current_user.occupation == "Teacher" %>
+
+        <img class = "homepage-navbar-side-navigation-list-item-logo" src = "https://maxcdn.icons8.com/office/PNG/512/Business/cla-512.png">
+        <a href = "../teachers/new" class = "homepage-navbar-side-navigation-anchor-items">Add New Class</a>
+    <% end %>
+  </div>
+
+  <div class = "homepage-navbar-side-navigation-list-item-container">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "https://lh3.googleusercontent.com/0V3dOybyx2POcGdRsGtBORBi-qqR7xAjhnZ3ItYJC7NkEKRFK1HD3ornFEsmTm-os1w">
+    <a href = "../pins/new" class = "homepage-navbar-side-navigation-anchor-items">Start A Meet Up</a>
+  </div>
+</div>
+
+<script>
+
+    $(".overlay").hide();
+    $('.search-box').focus( function() {
+
+        $(".overlay").fadeIn(200);
+    });
+
+    $('.search-box').blur( function() {
+        $(".overlay").fadeOut("slow");
+    });
+
+    $(".activate3").click(function() {
+        $(".side-navigation").addClass("activate-ani");
+        setTimeout(function(){
+            $(".side-navigation").removeClass("de-activate-ani");
+        },100);
+    });
+    $(".de-activate").click(function() {
+        $(".side-navigation").addClass("de-activate-ani");
+        setTimeout(function(){
+            $(".side-navigation").removeClass("activate-ani");
+        },200);
+    });
+
+</script>

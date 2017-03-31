@@ -17,14 +17,28 @@
 //= require jquery_ujs
 //= requre refile
 //= require masonry/jquery.masonry
-
+//= require jquery.slick
+//= require moment
+//= require fullcalendar
+//= require bootstrap-modal
+//= require bootstrap-timepicker
 //= require bootstrap-sprockets
 //= require Chart.bundle
 //= require chartkick
+//= require rails.validations
+//= require rails.validations.simple_form
+//= require video
+//= require medium-editor
+
+
+
 //= require bootstrap-filestyle
 //= require components
-//= require pins.js
+//= require pins
+
 //= require_tree .
+
+
 
 
 

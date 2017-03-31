@@ -25,16 +25,12 @@ class ChatroomsController < ApplicationController
   # POST /chatrooms
   # POST /chatrooms.json
   def create
-    @chatroom = Chatroom.new(chatroom_params)
+    @chatroom = current_user.chatrooms.build (chatroom_params)
 
-    respond_to do |format|
-      if @chatroom.save
-        format.html { redirect_to @chatroom, notice: 'Chatroom was successfully created.' }
-        format.json { render :show, status: :created, location: @chatroom }
-      else
-        format.html { render :new }
-        format.json { render json: @chatroom.errors, status: :unprocessable_entity }
-      end
+    if @chatroom.save
+      redirect_to @chatroom
+    else
+      render 'new'
     end
   end
 
@@ -70,6 +66,6 @@ class ChatroomsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def chatroom_params
-    params.require(:chatroom).permit(:name)
+    params.require(:chatroom).permit(:name,:image, :body)
   end
 end

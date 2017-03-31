@@ -1,0 +1,101 @@
+<%= render 'navs/nav' %>
+
+<% if user_signed_in? %>
+
+
+
+    <div style = "margin-top:160px;" class = "container">
+    <div class="">
+
+
+      <div class="slick-codepen">
+
+        <% @videos.each.with_index do |video,index| %>
+            <div  class = "hes" data-id="<%= video.id %>">
+              <div class = "ccc">
+                <a href = "../videos/<%= video.id %>"><%= image_tag video.image.url(:medium), class: "videos-video-chosen-thumbnail-image videos-video-chosen-thumbnail-image#{index}" %></a>
+                <div style = "margin-top:170px;">
+                  <p class = "videos-video-title"><%= video.title %></p>
+                  <p class = "videos-owner-name">by <%= video.user.firstname %></p>
+                  <p class = "videos-created-at"><%= video.created_at.strftime(" %b %d, %Y") %></p>
+
+                </div>
+              </div>
+
+              <% if video.image? %>
+                <a href = "../videos/<%= video.id %>"><%= image_tag video.image.url(:medium), class: "videos-video-chosen-thumbnail-image videos-video-chosen-thumbnail-image#{index}" %></a>
+              <% else %>
+                  <a href = "../videos/<%= video.id %>"><%= image_tag video.mp4.url(:thumb), class: "videos-video-chosen-thumbnail-image videos-video-chosen-thumbnail-image#{index}" %></a>
+              <% end %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+
+
+
+
+
+    <script>
+
+    $('.slick-codepen').slick({
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 5
+    });
+
+    $(".slick-slide").css("height","238px");
+    $(".slick-prev").css("height","170px");
+    $(".slick-prev").css("opacity","0");
+    $(".slick-next").css("opacity","0");
+    $(".slick-next").css("height","170px");
+
+
+
+    var $slickElement = $('.slick-codepen');
+
+    $slickElement.on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
+        //currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
+        var i = (currentSlide ? currentSlide : 0) + 1;
+        console.log(i);
+    });
+
+    $('.slick-codepen2').slick({
+        draggable: false,
+        accessibility: true,
+        variableWidth: true,
+        slidesToShow: 3,
+        speed: 800,
+        arrows: true,
+        swipeToSlide: true,
+        centerMode:true,
+        infinite:false,
+        onAfterChange: function(e) {
+            if( e.currentSlide == 1 ) {
+            }
+            if( e.currentSlide == 2 ) {
+
+            }
+
+            if( e.currentSlide == 3 ) {
+
+            }
+            if( e.currentSlide == 4 ) {
+
+            }
+            if( e.currentSlide == 5 ) {
+            }
+            if( e.currentSlide == 6 ) {
+            }
+        }
+    });
+
+</script>
+<% else %>
+
+
+
+
+<% end %>
+
