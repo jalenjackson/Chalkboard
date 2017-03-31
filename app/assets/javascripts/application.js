@@ -11,10 +11,10 @@
 // about supported directives.
 //
 
-//= require bootstrap
 //= require jquery
-//= require jquery-ui
 //= require jquery_ujs
+//= require bootstrap
+//= require jquery-ui
 //= requre refile
 //= require masonry/jquery.masonry
 //= require jquery.slick
@@ -29,13 +29,9 @@
 //= require rails.validations.simple_form
 //= require video
 //= require medium-editor
-
-
-
 //= require bootstrap-filestyle
 //= require components
 //= require pins
-
 //= require_tree .
 
 

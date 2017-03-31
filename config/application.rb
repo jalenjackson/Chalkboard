@@ -11,6 +11,6 @@ Bundler.require(*Rails.groups)
 
 module Chalkboard2
   class Application < Rails::Application
-
+    config.serve_static_assets = true
   end
 end
