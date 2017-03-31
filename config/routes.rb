@@ -1,4 +1,3 @@
-require 'sidekiq/web'
 Rails.application.routes.draw do
 
 
@@ -127,6 +126,5 @@ end
 
 
 
-  mount Sidekiq::Web => '/sidekiq'
 
 end

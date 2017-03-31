@@ -37,7 +37,7 @@ gem 'impressionist'
 gem 'omniauth-twitter'
 
 
-
+gem 'aws-sdk'
 
 gem 'kaminari'
 
