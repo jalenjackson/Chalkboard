@@ -74,8 +74,6 @@ gem 'pubnub',  github: 'pubnub/ruby', branch: 'celluloid'
 gem 'sinatra', github: 'sinatra/sinatra'
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 
@@ -135,8 +133,15 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'remotipart', '~> 1.2'
+end
 
+group :development do
+  gem 'sqlite3'
+end
 
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
