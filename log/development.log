@@ -140,3 +140,11 @@ puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
 puma (3.8.2) lib/puma/server.rb:435:in `process_client'
 puma (3.8.2) lib/puma/server.rb:299:in `block in run'
 puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+DEPRECATION WARNING: before_filter is deprecated and will be removed in Rails 5.1. Use before_action instead. (called from <top (required)> at /Users/jalenjackson/Desktop/Chalkboard/config/environment.rb:5)
+DEPRECATION WARNING: before_filter is deprecated and will be removed in Rails 5.1. Use before_action instead. (called from <top (required)> at /Users/jalenjackson/Desktop/Chalkboard/config/environment.rb:5)
+DEPRECATION WARNING: before_filter is deprecated and will be removed in Rails 5.1. Use before_action instead. (called from <top (required)> at /Users/jalenjackson/Desktop/Chalkboard/config/environment.rb:5)
+DEPRECATION WARNING: before_filter is deprecated and will be removed in Rails 5.1. Use before_action instead. (called from <top (required)> at /Users/jalenjackson/Desktop/Chalkboard/config/environment.rb:5)
+DEPRECATION WARNING: before_filter is deprecated and will be removed in Rails 5.1. Use before_action instead. (called from <top (required)> at /Users/jalenjackson/Desktop/Chalkboard/config/environment.rb:5)
+DEPRECATION WARNING: before_filter is deprecated and will be removed in Rails 5.1. Use before_action instead. (called from <top (required)> at /Users/jalenjackson/Desktop/Chalkboard/config/environment.rb:5)
+DEPRECATION WARNING: before_filter is deprecated and will be removed in Rails 5.1. Use before_action instead. (called from <top (required)> at /Users/jalenjackson/Desktop/Chalkboard/config/environment.rb:5)
+DEPRECATION WARNING: before_filter is deprecated and will be removed in Rails 5.1. Use before_action instead. (called from <top (required)> at /Users/jalenjackson/Desktop/Chalkboard/config/environment.rb:5)
