@@ -29,7 +29,6 @@
 //= require rails.validations.simple_form
 //= require video
 //= require medium-editor
-//= require bootstrap-filestyle
 //= require components
 //= require pins
 //= require_tree .
