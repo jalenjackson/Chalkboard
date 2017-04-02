@@ -1,10 +1,11 @@
 class VideosController < ApplicationController
+  before_action :authenticate_user!, only:[:upvote,:downvote]
   before_action :set_video, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
-
+  respond_to :js,:json,:html
   # GET /videos
   # GET /videos.json
   def index
-    @videos = Video.all
+    @videos = Video.all.order(:cached_votes_score => :desc)
   end
 
   # GET /videos/1
@@ -23,17 +24,23 @@ class VideosController < ApplicationController
 
   # GET /videos/1/edit
   def edit
+
   end
 
   def upvote
-    @video.upvote_from current_user
-    redirect_to @video
-
+      @video.upvote_by current_user
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js { render 'vote' }
+      end
   end
 
   def downvote
     @video.downvote_from current_user
-    redirect_to @video
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { render 'vote' }
+    end
   end
 
   # POST /videos
@@ -41,10 +48,20 @@ class VideosController < ApplicationController
   def create
     @video = current_user.videos.build (video_params)
 
-    if @video.save
-      redirect_to @video
-    else
-      render 'new'
+    respond_to do |format|
+      if @video.save
+        format.html { redirect_to @video, notice: 'Item was successfully created.' }
+        format.json { render json: @video }
+      else
+        format.html { render :new }
+        format.json { render json: @video.errors, status: :unprocessable_entity }
+      end
+      end
+  end
+
+  def category
+    if params[:tag]
+      @videos = Video.tagged_with(params[:tag])
     end
   end
 
@@ -80,6 +97,6 @@ class VideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params.require(:video).permit(:mp4, :title, :description, :image)
+      params.require(:video).permit(:mp4, :title, :description, :image,:tag_list,:all_tags)
     end
 end

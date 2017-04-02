@@ -22,4 +22,4 @@ test:
 
 production:
   <<: *default
-  database: postgresql
+  database: db/production.sqlite3

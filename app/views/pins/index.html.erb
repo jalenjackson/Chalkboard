@@ -147,9 +147,9 @@
 </style>
 
 <%= render 'navs/nav' %>
-<div style = "margin-top:120px;" class="homepage-index-slider">
+<div style = "margin-top:120px;" class="homepage-index-slider ">
 
-  <div class="slick-codepen">
+  <div class="slick-codepen ">
 
     <div class = "frontpage-video-spotlight" style="background:linear-gradient(to bottom, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0.85) 100%),url(
         <% if @videos.first.image? %>
@@ -157,14 +157,14 @@
         <% else %>
         <%= @videos.first.mp4.url(:thumb)  %>
         <% end %>
-        ) center center no-repeat; background-size:cover; "><p class = "box-text2">Video Of The Day <span style = "font-size:12px; color:white;">watch it!  <i class="fa fa-video-camera" aria-hidden="true"></i><img style = "width:40px; height:40px; position:absolute; top:10px;left:10px;" src = "http://rho-design.com/wp-content/uploads/2015/08/VIDEO-LOGO1.png"></p>
+        ) center center no-repeat; background-size:cover; "><p style = "animation-delay: 50ms;" class = "box-text2   ">Video Of The Day <span style = "font-size:12px; color:white;">watch it!  <i class="fa fa-video-camera" aria-hidden="true"></i><img class = "animated bounce" style = "width:40px; height:40px; position:absolute; top:10px;left:10px;" src = "http://rho-design.com/wp-content/uploads/2015/08/VIDEO-LOGO1.png"></p>
 
 
-      <p style = "font-size:15px; color:rgb(220,220,220) !important; margin-top:4px; letter-spacing: 1px;" class = "text-center"><%= @videos.first.title %></p>
+      <p style = "animation-delay: 100ms; font-size:15px; color:rgb(220,220,220) !important; margin-top:4px; letter-spacing: 1px;" class = "text-center"><%= @videos.first.title %></p>
       <% if @videos.first.user.occupation == "Teacher" %>
-          <p class = "text-center"><span style = "color:white;">Created By:</span> <%= link_to @videos.first.user.firstname, "teachers/#{@videos.first.user.username}", class:'spotlight-link'  %></p>
+          <p style = "animation-delay: 150ms;" class = "text-center animated pulse "><span style = "color:white;">Created By:</span> <%= link_to @videos.first.user.firstname, "teachers/#{@videos.first.user.username}", class:'spotlight-link'  %></p>
       <% else %>
-          <p class = "text-center"><%= link_to @videos.first.user.firstname, "users#{@videos.first.user.username}"  %></p>
+          <p style = "animation-delay: 200ms;" class = "text-center animated pulse"><%= link_to @videos.first.user.firstname, "users#{@videos.first.user.username}"  %></p>
       <% end %>
       <p class = "text-center"><i style = "color:#FF4C65" class="fa fa-heart" aria-hidden="true"></i><i style = "color:white;"><%= @videos.first.get_upvotes.size %></i>
         <i style = "margin-left:4px;color:#FF4C65" class="fa fa-eye" aria-hidden="true"></i><i style = "color:white;"><%= @videos.first.impressionist_count(:filter=>:ip_address) %>
@@ -176,7 +176,7 @@
       </p>
     </div>
 
-    <div class = "frontpage-podcast-spotlight" style="background:linear-gradient(to bottom, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0.85) 100%),url(<%= @podcasts.first.image.url(:medium) %>) center center no-repeat; background-size:cover; "><p class = "box-text2">Podcast Of The Day <span style = "font-size:12px; color:white;">Listen in! <i class="fa fa-microphone" aria-hidden="true"></i></span> <img style = "width:40px; height:40px; position:absolute; top:10px;left:10px;" src = "http://www.myiconfinder.com/uploads/iconsets/acc8b94ae5e7383b0e7898928121321c-microphone.png"></p>
+    <div class = "frontpage-podcast-spotlight  " style="background:linear-gradient(to bottom, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0.85) 100%),url(<%= @podcasts.first.image.url(:medium) %>) center center no-repeat; background-size:cover; "><p class = "box-text2">Podcast Of The Day <span style = "font-size:12px; color:white;">Listen in! <i class="fa fa-microphone" aria-hidden="true"></i></span> <img style = "width:40px; height:40px; position:absolute; top:10px;left:10px;" src = "http://www.myiconfinder.com/uploads/iconsets/acc8b94ae5e7383b0e7898928121321c-microphone.png"></p>
       <p style = "font-size:19px; color:rgb(220,220,220) !important; margin-top:4px; letter-spacing: 1px;" class = "text-center"><%= @podcasts.first.title %></p>
       <% if @podcasts.first.user.occupation == "Teacher" %>
           <p class = "text-center"><span style = "color:white;">Created By:</span> <%= link_to @podcasts.first.user.firstname, "teachers/#{@podcasts.first.user.username}", class:'spotlight-link'  %></p>
@@ -194,7 +194,7 @@
 
     </div>
 
-    <div class = "frontpage-article-spotlight" style="background:linear-gradient(to bottom, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0.85) 100%),url(<%= @articles.first.image.url(:medium) %>) center center no-repeat; background-size:cover; "><p class = "box-text2">Article Of The Day <span style = "font-size:12px; color:white;">Read it! <i class="fa fa-pencil" aria-hidden="true"></i></span> <img style = "width:40px; height:40px; position:absolute; top:10px;left:10px;" src = "http://icons.iconarchive.com/icons/flat-icons.com/flat/512/Pencil-icon.png"></p>
+    <div class = "frontpage-article-spotlight  " style="background:linear-gradient(to bottom, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0.85) 100%),url(<%= @articles.first.image.url(:medium) %>) center center no-repeat; background-size:cover; "><p class = "box-text2">Article Of The Day <span style = "font-size:12px; color:white;">Read it! <i class="fa fa-pencil" aria-hidden="true"></i></span> <img style = "width:40px; height:40px; position:absolute; top:10px;left:10px;" src = "http://icons.iconarchive.com/icons/flat-icons.com/flat/512/Pencil-icon.png"></p>
       <p style = "font-size:19px; color:rgb(220,220,220) !important; margin-top:4px; letter-spacing: 1px;" class = "text-center"><%= @articles.first.title %></p>
       <% if @articles.first.user.occupation == "Teacher" %>
           <p class = "text-center"><span style = "color:white;">Created By:</span> <%= link_to @articles.first.user.firstname, "teachers/#{@articles.first.user.username}", class:'spotlight-link'  %></p>
@@ -212,7 +212,7 @@
 
     </div>
 
-    <div class = "frontpage-chatroom-spotlight" style="background:linear-gradient(to bottom, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0.85) 100%),url(<%= @chatrooms.first.image.url(:medium) %>) center center no-repeat; background-size:cover; "><p class = "box-text2">Discussion Of The Day <span style = "font-size:12px; color:white;">Join in! <i class="fa fa-commenting-o" aria-hidden="true"></i></span> <img style = "width:40px; height:40px; position:absolute; top:10px;left:10px;" src = "http://www.clipartbest.com/cliparts/7ia/xg6/7iaxg675T.png"></p>
+    <div class = "frontpage-chatroom-spotlight  " style="background:linear-gradient(to bottom, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0.85) 100%),url(<%= @chatrooms.first.image.url(:medium) %>) center center no-repeat; background-size:cover; "><p class = "box-text2">Discussion Of The Day <span style = "font-size:12px; color:white;">Join in! <i class="fa fa-commenting-o" aria-hidden="true"></i></span> <img style = "width:40px; height:40px; position:absolute; top:10px;left:10px;" src = "http://www.clipartbest.com/cliparts/7ia/xg6/7iaxg675T.png"></p>
       <p style = "font-size:19px; color:rgb(220,220,220) !important; margin-top:4px; letter-spacing: 1px;" class = "text-center"><%= @chatrooms.first.name %></p>
       <% if @chatrooms.first.user.occupation == "Teacher" %>
           <p class = "text-center"><span style = "color:white;">Created By:</span> <%= link_to @chatrooms.first.user.firstname, "teachers/#{@chatrooms.first.user.username}", class:'spotlight-link'  %></p>
@@ -229,7 +229,7 @@
 </div>
 
 
-<div class = "container">
+<div class = "container ">
   <div id="main-content">
 
   <!-- ******* Top Videos ******8 -->
@@ -240,7 +240,7 @@
 
 
       <% @videos.each.with_index do |video,index| %>
-          <div class = "hes" data-id="<%= video.id %>">
+          <div style = "animation-delay: <%= index * 0.05 %>s" class = "hes" data-id="<%= video.id %>">
             <div class = "ccc">
               <a href = "../videos/<%= video.id %>"><%= image_tag video.image.url(:medium), class: "videos-video-chosen-thumbnail-image videos-video-chosen-thumbnail-image#{index}" %></a>-->
               <div style = "margin-top:150px;">
@@ -361,62 +361,66 @@
 
 <script>
 
-    $('.slick-codepen2').slick({
-        infinite: true,
-        slidesToShow: 5,
-        slidesToScroll: 5,
-        draggable: false,
-        accessibility: true
+  $(function(){
+      $('.slick-codepen2').slick({
+          infinite: true,
+          slidesToShow: 5,
+          slidesToScroll: 5,
+          draggable: false,
+          accessibility: true
 
 
-    });
+      });
 
 
-    $(".slick-slide").css("height","238px");
+      $(".slick-slide").css("height","238px");
 
 
 
-    $(".slick-prev").css("height","170px");
-    $(".slick-prev").css("width","30px");
-    $(".slick-next").css("width","30px");
-    $(".slick-next").css("left","98%");
-    $(".slick-prev").css("opacity","1");
-    $(".slick-next").css("opacity","1");
-    $(".slick-next").css("height","170px");
+      $(".slick-prev").css("height","170px");
+      $(".slick-prev").css("width","30px");
+      $(".slick-next").css("width","30px");
+      $(".slick-next").css("left","98%");
+      $(".slick-prev").css("opacity","1");
+      $(".slick-next").css("opacity","1");
+      $(".slick-next").css("height","170px");
 
 
-    $('.slick-codepen').slick({
-        draggable: false,
-        accessibility: true,
-        centerMode: true,
-        variableWidth: true,
-        slidesToShow: 3,
-        speed: 800,
-        arrows: true,
-        dots: true,
-        infinite: true,
-        autoplay: true,
-        autoplaySpeed: 3200
-    });
+      $('.slick-codepen').slick({
+          draggable: false,
+          accessibility: true,
+          centerMode: true,
+          variableWidth: true,
+          slidesToShow: 3,
+          speed: 800,
+          arrows: true,
+          dots: true,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 3200
+      });
 
-    $(".frontpage-video-spotlight").click(function(){
-        window.location.href = "../videos/<%= @videos.first.id %>"
-    });
+      $(".frontpage-video-spotlight").click(function(){
+          window.location.href = "../videos/<%= @videos.first.id %>"
+      });
 
-    $(".frontpage-podcast-spotlight").click(function(){
-        window.location.href = "../podcasts/<%= @podcasts.first.id %>"
-    });
+      $(".frontpage-podcast-spotlight").click(function(){
+          window.location.href = "../podcasts/<%= @podcasts.first.id %>"
+      });
 
-    $(".frontpage-article-spotlight").click(function(){
-        window.location.href = "../articles/<%= @articles.first.id %>"
-    });
-    $(".frontpage-chatroom-spotlight").click(function(){
-        window.location.href = "../chatrooms/<%= @chatrooms.first.id %>"
-    });
-    $('.material-button-toggle').on("click", function () {
-        $(this).toggleClass('open');
-        $('.option').toggleClass('scale-on');
-    });
+      $(".frontpage-article-spotlight").click(function(){
+          window.location.href = "../articles/<%= @articles.first.id %>"
+      });
+      $(".frontpage-chatroom-spotlight").click(function(){
+          window.location.href = "../chatrooms/<%= @chatrooms.first.id %>"
+      });
+      $('.material-button-toggle').on("click", function () {
+          $(this).toggleClass('open');
+          $('.option').toggleClass('scale-on');
+      });
+  });
+
+
 
 </script>
 

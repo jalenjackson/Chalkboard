@@ -10,21 +10,24 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require bootstrap
 
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
 //= require jquery-ui
 //= requre refile
 //= require masonry/jquery.masonry
 //= require jquery.slick
 //= require moment
+//= require turbolinks
 //= require fullcalendar
 //= require bootstrap-modal
 //= require bootstrap-timepicker
 //= require bootstrap-sprockets
 //= require Chart.bundle
 //= require chartkick
+//= require dropzone
+//= require bootstrap-modal
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require video

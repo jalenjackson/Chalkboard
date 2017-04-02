@@ -1,101 +1,113 @@
-<%= render 'navs/nav' %>
+<style>
+  .move-left{
+    animation:ani 500ms ease-out 1 forwards;
+    transform:translate(50px,50px) !important;
 
-<% if user_signed_in? %>
+  }
+  @keyframes ani {
+    0%{
+      transform:translate(50px,50px);
+      opacity:0;
+    }
+    100%{
+      transform:translate(0px,50px);
+      opacity:1;
 
-
-
-    <div style = "margin-top:160px;" class = "container">
-    <div class="">
-
-
-      <div class="slick-codepen">
-
-        <% @videos.each.with_index do |video,index| %>
-            <div  class = "hes" data-id="<%= video.id %>">
-              <div class = "ccc">
-                <a href = "../videos/<%= video.id %>"><%= image_tag video.image.url(:medium), class: "videos-video-chosen-thumbnail-image videos-video-chosen-thumbnail-image#{index}" %></a>
-                <div style = "margin-top:170px;">
-                  <p class = "videos-video-title"><%= video.title %></p>
-                  <p class = "videos-owner-name">by <%= video.user.firstname %></p>
-                  <p class = "videos-created-at"><%= video.created_at.strftime(" %b %d, %Y") %></p>
-
-                </div>
-              </div>
-
-              <% if video.image? %>
-                <a href = "../videos/<%= video.id %>"><%= image_tag video.image.url(:medium), class: "videos-video-chosen-thumbnail-image videos-video-chosen-thumbnail-image#{index}" %></a>
-              <% else %>
-                  <a href = "../videos/<%= video.id %>"><%= image_tag video.mp4.url(:thumb), class: "videos-video-chosen-thumbnail-image videos-video-chosen-thumbnail-image#{index}" %></a>
-              <% end %>
-            </div>
-        <% end %>
-      </div>
+    }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+<nav  class="navbar navbar-default video-navbar navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><i class="fa fa-bars video-bars" aria-hidden="true"></i>
+      </a>
     </div>
 
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a class = "videos-brand" href="#">Chalkboard <img class = "videos-brand-img" src = "http://rho-design.com/wp-content/uploads/2015/08/VIDEO-LOGO1.png"></a></li>
+
+      </ul>
+
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <i class="fa fa-search videos-search-icon" aria-hidden="true"></i>
+          <input class = "videos-search" type="text" class="form-control" placeholder="Search">
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <button class="dropdown-toggle btn btn-circle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.firstname[0] + current_user.lastname[0] %><span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <button class="dropdown-toggle btn btn-circle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.firstname[0] + current_user.lastname[0] %><span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<%= render 'navs/video_side_bar' %>
+
+  <div class = "videos-content">
+  <div class = "videos-content-top">
+    <h1 class = "videos-title move-left ">Most Popular Videos</h1>
+    <p class = "move-left" >Chalkboards most viewed and liked videos</p>
+  </div>
+  <div class = "videos-content-middle"></div>
+  <div class = "videos-content-dropdowns">
+    <div id="tag_cloud">
+      <% tag_cloud Video.tag_counts, %w[xxs xs s m l xl xxl] do |tag, css_class| %>
+          <%= link_to tag.name, tag_path(tag.name), class: 'videos-tags' %>
+      <% end %>
+    </div>
+
+  </div>
 
 
+  <div class = "container-fluid">
+  <div class="border row videos-border-row">
+
+    <% @videos.each_with_index do |video,i| %>
+
+    <div style = "animation-delay: <%= i * 0.05 %>s" class="border col-md-3 animated fadeInUp">
+      <% if video.image? %>
+          <%= link_to (image_tag video.image.url(:medium), class:"videos-images img-responsive"), video_path(video) %>
+      <% else %>
+        <%= link_to (image_tag video.mp4.url(:thumb), class:"videos-images img-responsive"), video_path(video) %>
+      <% end %>
+      <p class = "videos-owner"><%= video.user.firstname + " " + video.user.lastname %></p>
+      <h1 class = "videos-content-title" ><%= video.title %></h1>
+
+    </div>
+    <% end %>
+  </div>
+  </div>
+</div>
 
 
-
-    <script>
-
-    $('.slick-codepen').slick({
-        infinite: true,
-        slidesToShow: 5,
-        slidesToScroll: 5
-    });
-
-    $(".slick-slide").css("height","238px");
-    $(".slick-prev").css("height","170px");
-    $(".slick-prev").css("opacity","0");
-    $(".slick-next").css("opacity","0");
-    $(".slick-next").css("height","170px");
-
-
-
-    var $slickElement = $('.slick-codepen');
-
-    $slickElement.on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
-        //currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
-        var i = (currentSlide ? currentSlide : 0) + 1;
-        console.log(i);
-    });
-
-    $('.slick-codepen2').slick({
-        draggable: false,
-        accessibility: true,
-        variableWidth: true,
-        slidesToShow: 3,
-        speed: 800,
-        arrows: true,
-        swipeToSlide: true,
-        centerMode:true,
-        infinite:false,
-        onAfterChange: function(e) {
-            if( e.currentSlide == 1 ) {
-            }
-            if( e.currentSlide == 2 ) {
-
-            }
-
-            if( e.currentSlide == 3 ) {
-
-            }
-            if( e.currentSlide == 4 ) {
-
-            }
-            if( e.currentSlide == 5 ) {
-            }
-            if( e.currentSlide == 6 ) {
-            }
-        }
-    });
+<script>
 
 </script>
-<% else %>
-
-
-
-
-<% end %>
-

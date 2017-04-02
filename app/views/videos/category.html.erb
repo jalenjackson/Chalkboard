@@ -1,0 +1,16 @@
+<div id="tag_cloud">
+  <% tag_cloud Video.tag_counts, %w[xxs xs s m l xl xxl] do |tag, css_class| %>
+      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div>
+
+
+
+<% @videos.each do |m| %>
+    <%= m.title %>
+    <%= m.description %>
+
+
+
+
+<% end %>

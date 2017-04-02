@@ -1,0 +1,137 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+
+.video-side-bar{
+  position: fixed;
+  top:8%;
+  left:0;
+  width:250px;
+  height:92%;
+  background: rgb(25,25,25);
+}
+
+.videos-content{
+  position: relative;
+  width:calc(100% - 250px);
+  height:100%;
+  background:white;
+  margin-left:250px;
+  margin-top:60px;
+
+}
+
+.video-navbar{
+  z-index:999999;
+  background: rgb(25,25,25) !important;
+  border:none !important;
+  -webkit-border-radius:none !important;
+  -moz-border-radius:none !important;
+  border-radius:none !important;
+
+}
+
+.navbar-left{
+
+}
+
+.video-bars{
+  color:white !important;
+}
+.videos-brand{
+  font-family: 'VT323', monospace;
+  font-size:23px !important;
+  color:white !important;
+
+}
+
+.videos-brand-img{
+  width:20px;
+  height:20px;
+}
+
+.videos-search{
+  width:500px;
+  background:rgb(25,25,25) !important;
+  border:none;
+  color:white !important;
+
+}
+.videos-search-icon{
+  margin-left:37px;
+border-left: 0.5px solid white;
+  padding-left:10px;
+}
+
+.videos-submit {
+
+}
+
+.videos-content-top{
+  position: relative;
+  width:100%;
+  height:140px;
+  background:rgb(41,41,41);
+}
+
+.videos-title{
+  color:white !important;
+  font-size:30px;
+  margin-left:50px;
+  transform:translateY(50px);
+  font-family: "Montserrat", sans-serif;
+  font-weight:bold;
+
+
+
+}
+
+.videos-content-top > p {
+  color:rgb(200,200,200) !important;
+  transform:translateY(50px);
+  margin-left:55px;
+  font-family: "Montserrat", sans-serif;
+
+
+}
+
+.videos-content-middle{
+  width:100%;
+  height:120px;
+  background:rgb(62,62,62);
+}
+
+.videos-content-dropdowns{
+  width:100%;
+  height:50px;
+  background:rgb(238,238,238);
+}
+
+.videos-images{
+
+  width:100%;
+  height:124px !important;
+}
+
+.videos-owner {
+  color:grey !important;
+
+}
+.videos-content-title{
+  font-weight:bold;
+  font-family: "Montserrat", sans-serif;
+  margin-top:-10px;
+  font-size:22px;
+}
+
+.videos-border-row{
+  margin-left:10px;
+}
+
+.videos-tags {
+  color:white !important;
+  font-weight:bold;
+  font-family: "Montserrat", sans-serif;
+  background:rgb(255,64,172);
+}
+
+

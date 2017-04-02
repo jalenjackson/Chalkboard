@@ -1,4 +1,3 @@
-<%= render 'navs/nav' %>
 
 <style>
   p,h1,h2,a{
@@ -6,165 +5,128 @@
   }
 </style>
 
-<div style = "margin-top:130px;" class = "container-fluid">
-
-<div style = "margin-top:10px;" class="row" id="pin_show">
-
-  <div  class="theater-mode col-md-8 col-md-offset">
-
-    <div  class="panel panel-default">
-      <div  class="panel-heading pin_image">
-
-
-
-        <% if @video.mp4? %>
-
-            <video  id="my_video_1" class="video-js vjs-default-skin" width="100%" height="500px"
-                     preload="auto" autoplay poster='http://video-js.zencoder.com/oceans-clip.jpg'
-                    data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2, 2.5, 3.0], "controls":"true" }'
-                    poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
-              <source src="<%= @video.mp4.url %>" type='video/mp4'>
-              <source src="<%= @video.mp4.url %>" type='video/webm'>
-              <source src="<%= @video.mp4.url %>" type='video/ogg'>
-              <p class="vjs-no-js">
-                To view this video please enable JavaScript, and consider upgrading to a web browser that
-                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-              </p>
-            </video>
-            <button class="custom">Theater Mode</button>
-            <button class="standard-mode">Standard Mode</button>
-
-
-      <% end %>
-      </div>
-
-
-      <div class = "related-div" style = "box-shadow:5px 5px 10px rgb(220,220,220); border:1px solid grey;  position:absolute; left: 100%; width: 375.5px; height: auto;  top: 0px; background:white; border:1px solid white;">
-        <% @videos.each do |video| %>
-            <% if video.image? %>
-                <%= link_to (image_tag video.image.url(:medium), class:'video-showpage-related-videos'), "../videos/#{video.id}" %>
-            <% else %>
-                <%= link_to (image_tag video.mp4.url(:thumb), class:'video-showpage-related-videos'), "../videos/#{video.id}" %>
-            <% end %>
-              <p style = "margin-left:180px; font-size:14px; transform:translateX(6.5px);  font-weight:bold;"><%= video.title %></p>
-              <p style = "margin-left:180px; font-size:14px; transform:translate(6px,-15px); ">By <%= video.user.firstname %></p>
-              <p style = "margin-left:180px; font-size:14px; transform:translate(6px,-28px);"><%= video.created_at.strftime(" %b %d, %Y") %></p>
-        <% end %>
-      </div>
-
-
-
-
-      <div style = "background:white" class="panel-body">
-        <span style = "float:left; margin-left:-20px;"><%= avatar_for(@video.user, size:60) %></span>
-
-        <h1 style = "margin-left:50px; margin-top:5px;"><strong><%= @video.title %></strong></h1>
-
-        <p class="user"></p>
-        <p>Published on <%= @video.created_at.strftime(" %b %d, %Y") %> by  <%= @video.user.firstname %> <%= @video.user.lastname %></p></p><strong>
-        <br>
-        <% if user_signed_in? %>
-            <% if current_user == @video.user %>
-
-                <span><strong><%= link_to 'edit', edit_video_path, class: "btn  bold" %></strong></span>
-                <span><strong><%= link_to 'delete', video_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn  bold" %></strong></span>
-            <% end %>
-        <% end %>
-        <div style = "float:right; " class="col-md-8">
-          <div style = "float:right;" class="btn-group">
-
-
-                <%= link_to  like_video_path(@video),class: "like", method: :put do %>
-                <p>Like</p>
-                <span><%= @video.get_upvotes.size  %></span>
-
-                 <% end %>
-
-                <%= link_to unlike_video_path(@video),class: "like", method: :put do %>
-
-                <p>DisLike</p>
-                <span><%= @video.get_downvotes.size  %></span>
-            <% end %>
-
-
-            <h1>Views</h1>
-            <%= @video.impressionist_count(:filter=>:ip_address) %>
-
-      </div>
-        </div>
-
-
-      <div style = "background:white;"class="panel-footer">
-        <div class="row">
-          <div class="col-md-6">
-            <p class="description" style = "color: rgb(40,40,40); font-weight: normal; font-size:13px;" >
-            <p><%= @video.description %></p>
-            </p><br><br>
-            <p>
-            </p>
-          </div>
-        </div>
-      </div>
-
-
-      <div style = "background:white;" class="panel-footer">
-        <div class="row">
-          <div class="col-md-6">
-
-
-
-          </div>
-
-
-
-
-        </div>
-        <%= render 'comments/comment' %>
-
-      </div>
-
+<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+<nav  class="navbar navbar-default video-navbar navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><i class="fa fa-bars video-bars" aria-hidden="true"></i>
+      </a>
     </div>
 
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a class = "videos-brand" href="#">Chalkboard <img class = "videos-brand-img" src = "http://rho-design.com/wp-content/uploads/2015/08/VIDEO-LOGO1.png"></a></li>
+
+      </ul>
+
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <i class="fa fa-search videos-search-icon" aria-hidden="true"></i>
+          <input class = "videos-search" type="text" class="form-control" placeholder="Search">
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <button class="dropdown-toggle btn btn-circle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.firstname[0] + current_user.lastname[0] %><span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <button class="dropdown-toggle btn btn-circle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.firstname[0] + current_user.lastname[0] %><span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<%= render 'navs/video_side_bar' %>
+
+<div class = "videos-content">
+  <% if @video.mp4? %>
+
+      <video  id="my_video_1" class="video-js vjs-default-skin" width="100%" height="500px"
+              preload="auto" autoplay  poster='http://video-js.zencoder.com/oceans-clip.jpg'
+              data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2, 2.5, 3.0], "controls":"true" }'
+              poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+        <source src="<%= @video.mp4.url %>" type='video/mp4'>
+        <source src="<%= @video.mp4.url %>" type='video/webm'>
+        <source src="<%= @video.mp4.url %>" type='video/ogg'>
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to a web browser that
+          <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+      </video>
+      <button class="custom">Theater Mode</button>
+      <button class="standard-mode">Standard Mode</button>
+
+
+  <% end %>
+
+  <div class = "videoDiv">
+    <h1 class = "videoTitle"><%= @video.title %></h1>
+    <p><%= @video.description %></p>
+    <h1>Views</h1>
+    <%= @video.impressionist_count(:filter=>:ip_address) %>
+    <div style = "float:right; " class="col-md-8">
+      <div style = "float:right;" class="btn-group">
+        <td><%= link_to 'Edit', edit_video_path(@video) %></td>
+
+
+        <%= link_to  like_video_path(@video),class: "like like-btn", method: :put, remote: :true do %>
+            <p>Like</p>
+
+            <span class = "likes-count"><%= @video.get_upvotes.size  %></span>
+
+        <% end %>
+
+
+
+        <%= link_to unlike_video_path(@video),class: "like", method: :put, remote: :true do %>
+
+            <p>DisLike</p>
+            <span class = "dislikes-count"><%= @video.get_downvotes.size  %></span>
+        <% end %>
+
+        <p class ="meets-showpage-label">Were about</p>
+        <%= raw @video.tag_list.map { |t| link_to t, tag_path(t) , class:'tags'  }.join(' <i class="fa fa-eercast" aria-hidden="true"></i> ') %>
+      </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h1>Related</h1>
+  </div>
+
+  <div>
+    <h1>Comments</h1>
   </div>
 </div>
-</div>
-<script>
-
-    $(".standard-mode").hide();
-
-    $(".custom").click(function(){
-     $(".video-js").css("width","100%","position","absolute","top","0","left","0");
-
-      $(".panel-heading").css("width","100%");
-      $(".theater-mode").css({
-           position:"absolute",
-          top:"127px",
-          left:"0",
-          width:"100%",
-          height:"100%"
-      });
-      $(".custom").hide();
-      $(".standard-mode").show();
-  });
-
-    $(".standard-mode").click(function(){
-        $(".video-js").css("width","","position","","top","","left","");
-        $(".related-div").css("top","0");
-        $(".panel-heading").css("width","");
-        $(".theater-mode").css({
-            position:"",
-            top:"",
-            left:"",
-            width:"",
-            height:""
-        });
-        $(".standard-mode").hide();
-        $(".custom").show();
-    });
 
 
 
-</script>
+
+
 
 
 

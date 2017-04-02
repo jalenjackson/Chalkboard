@@ -1,0 +1,39 @@
+<%= simple_form_for(@video,html:{multipart:true, class:'dropzone', id:'my-dropzone'}) do |f| %>
+    <%= f.error_notification %>
+
+    <div class = "dz-message needsclick">
+      <h3>Drop files here</h3>
+      <strong>Click</strong> to upload
+    </div>
+
+
+    <div class="fallback">
+      <%= f.input :mp4 %>
+      <%= f.submit "Upload Video" %>
+    </div>
+
+
+    <div class = "video-details">
+      <div class = "form-field">
+        <%= f.input :title %>
+      </div>
+
+      <div class = "form-field">
+        <%= f.input :description %>
+      </div>
+
+      <div class = "form-field">
+        <%= f.label :tag_list, "Tags (seperated by commas" %>
+        <%= f.text_field :tag_list %><br>
+      </div>
+
+      <div class = "form-field">
+        <%= f.label "Give an custom thubnail" %>
+        <%= f.input :image %>
+      </div>
+      <div class = "form-field">
+        <%= f.submit "submit", class:'submit' %>
+      </div>
+    </div>
+
+<% end %>

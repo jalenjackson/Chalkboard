@@ -20,6 +20,8 @@ gem 'fullcalendar-rails'
 
 gem 'momentjs-rails'
 
+gem 'dropzonejs-rails'
+
 gem 'bootstrap-modal-rails'
 gem 'bootstrap-daterangepicker-rails'
 
@@ -67,6 +69,11 @@ gem 'groupify'
 
 
 gem 'jquery-ui-rails'
+
+gem 'font-awesome-rails'
+
+gem "animate-rails"
+
 
 gem 'sidekiq'
 gem 'sidetiq', github: 'sfroehler/sidetiq', branch: 'celluloid-0-17-compatibility'

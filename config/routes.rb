@@ -42,9 +42,11 @@ Rails.application.routes.draw do
 
 
 
-  get 'tags/:tag', to: 'meets#category', as: :tag
+  get 'meets/tags/:tag', to: 'meets#category', as: :tags
+  get 'videos/tags/:tag', to: 'videos#category', as: :tag
 
-  
+
+
 
   resources :meets do
     member do

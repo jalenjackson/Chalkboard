@@ -4,6 +4,11 @@ class Video < ApplicationRecord
   belongs_to :user
   has_many :comments
   has_many :users, through: :comments
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
+  acts_as_taggable
+
 
   # Paperclip attachments declaration
   has_attached_file :mp4,
