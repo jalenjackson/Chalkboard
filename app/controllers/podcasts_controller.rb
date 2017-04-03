@@ -1,5 +1,6 @@
 class PodcastsController < ApplicationController
   before_action :set_podcast, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
+  respond_to :js,:json,:html
 
   # GET /podcasts
   # GET /podcasts.json
@@ -25,10 +26,14 @@ class PodcastsController < ApplicationController
   def create
     @podcast = current_user.podcasts.build (podcast_params)
 
-    if @podcast.save
-      redirect_to @podcast
-    else
-      render 'new'
+    respond_to do |format|
+      if @podcast.save
+        format.html { redirect_to @podcast, notice: 'Item was successfully created.' }
+        format.json { render json: @podcast }
+      else
+        format.html { render :new }
+        format.json { render json: @podcast.errors, status: :unprocessable_entity }
+      end
     end
   end
 

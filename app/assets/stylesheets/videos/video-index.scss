@@ -16,7 +16,7 @@
   height:100%;
   background:white;
   margin-left:250px;
-  margin-top:60px;
+  margin-top:54px;
 
 }
 
@@ -127,11 +127,18 @@ border-left: 0.5px solid white;
   margin-left:10px;
 }
 
+#tag_cloud {
+  margin-left:20px;
+}
+
 .videos-tags {
-  color:white !important;
+  color:black !important;
   font-weight:bold;
   font-family: "Montserrat", sans-serif;
-  background:rgb(255,64,172);
+  background:#01b2fe;
+  border-radius:.2em;
+
 }
+
 
 

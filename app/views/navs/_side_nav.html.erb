@@ -1,0 +1,74 @@
+<div class = "side-navigation">
+
+  <div class = "homepage-navbar-side-navigation-top-section animated">
+    <i style = "font-size:28px;" class="fa fa-bars homepage-navbar-side-navigation-bars de-activate" aria-hidden="true"></i>
+    <span class = "homepage-navbar-side-navigation-logo-container"><%= image_tag 'logo.png', class: 'homepage-navbar-side-navigation-logo' %><span style ="color:black!important;" class = "homepage-navbar-side-navigation-logo-text" >CHALKBOARD</span></div>
+
+  <div style = "animation-delay: 50ms;" class = "homepage-navbar-side-navigation-list-item-container first-item animated">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://rho-design.com/wp-content/uploads/2015/08/VIDEO-LOGO1.png">
+    <a href = "../videos/new" class = "homepage-navbar-side-navigation-anchor-items">Publish A Video</a>
+  </div>
+
+  <div style = "animation-delay: 100ms;" class = "homepage-navbar-side-navigation-list-item-container animated">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://kickpoint.ca/wp-content/themes/kickpoint/img/kick_point_blog_icon.svg">
+    <a href = "../pins/new" class = "homepage-navbar-side-navigation-anchor-items">Write An Article</a>
+  </div>
+
+  <div style = "animation-delay: 150ms;" class = "homepage-navbar-side-navigation-list-item-container animated">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "https://2.bp.blogspot.com/-8V_HOCc2W6s/WJutLHdxvOI/AAAAAAAADh8/M15GPlX29_0zolX8Ib2uSjlmnSPBop5IQCLcB/s1600/mic-icon.png">
+    <a href = "../podcasts/new" class = "homepage-navbar-side-navigation-anchor-items">Publish A Podcast</a>
+  </div>
+
+  <div style = "animation-delay: 200ms;" class = "homepage-navbar-side-navigation-list-item-container">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://www.clipartbest.com/cliparts/7ia/xg6/7iaxg675T.png">
+    <a href = "../chatrooms/new" class = "homepage-navbar-side-navigation-anchor-items">Start A Group Chat</a>
+  </div>
+
+  <div style = "animation-delay: 250ms;" class = "homepage-navbar-side-navigation-list-item-container animated">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://images.akamai.steamusercontent.com/ugc/795187547102288750/9795FDC94454BBEB97377F6E4AB9804F036CAB9B/">
+    <a href = "../chatrooms/new" class = "homepage-navbar-side-navigation-anchor-items">Start A Live Video Stream</a>
+  </div>
+
+  <div style = "animation-delay: 300ms;" class = "homepage-navbar-side-navigation-list-item-container animated">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "https://cdn.pixabay.com/photo/2017/03/11/16/32/waves-2135344_1280.png">
+    <a href = "../chatrooms/new" class = "homepage-navbar-side-navigation-anchor-items">Start A Live Audio Stream</a>
+  </div>
+
+  <div style = "animation-delay: 350ms;" class = "homepage-navbar-side-navigation-list-item-container animated">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://www.clker.com/cliparts/I/J/t/0/g/M/camera-logo-test-md.png">
+    <a href = "../pins/new" class = "homepage-navbar-side-navigation-anchor-items">Share An Interesting Photo</a>
+  </div>
+
+  <div style = "animation-delay: 400ms;" class = "homepage-navbar-side-navigation-list-item-container animated">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://www.shzongyue.com/data/out/64/39229480-icons.png">
+
+    <a href = "../all-categories" class = "homepage-navbar-side-navigation-anchor-items">All Categories</a>
+  </div>
+
+  <div style = "animation-delay: 450ms;" class = "homepage-navbar-side-navigation-list-item-container animated">
+
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "/assets/calendar-flat.png">
+
+    <a href = "teachers/<%= current_user.username %>/calendar" class = "homepage-navbar-side-navigation-anchor-items">My Calendar</a>
+  </div>
+
+  <div  style = "animation-delay: 500ms;"class = "homepage-navbar-side-navigation-list-item-container animated">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://www.freeiconspng.com/uploads/colors-icon-4.png">
+    <a href = "teachers/<%= current_user.username %>/calendar" class = "homepage-navbar-side-navigation-anchor-items">Themes</a>
+  </div>
+
+
+
+  <div style = "animation-delay: 550ms;" class = "homepage-navbar-side-navigation-list-item-container animated">
+    <% if current_user.occupation == "Teacher" %>
+
+        <img class = "homepage-navbar-side-navigation-list-item-logo" src = "https://maxcdn.icons8.com/office/PNG/512/Business/cla-512.png">
+        <a href = "../teachers/new" class = "homepage-navbar-side-navigation-anchor-items">Add New Class</a>
+    <% end %>
+  </div>
+
+  <div style = "animation-delay: 600ms;" class = "homepage-navbar-side-navigation-list-item-container animated">
+    <img class = "homepage-navbar-side-navigation-list-item-logo" src = "https://lh3.googleusercontent.com/0V3dOybyx2POcGdRsGtBORBi-qqR7xAjhnZ3ItYJC7NkEKRFK1HD3ornFEsmTm-os1w">
+    <a href = "../pins/new" class = "homepage-navbar-side-navigation-anchor-items">Start A Meet Up</a>
+  </div>
+</div>

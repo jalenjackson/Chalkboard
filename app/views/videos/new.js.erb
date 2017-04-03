@@ -13,7 +13,29 @@ if ($('#new_video').modal('show')){
                     myDropzone.processQueue();
                 });
                 this.on("addedfile", function() {
-                    $(".video-details").fadeIn("slow");
+                    // show title after dropping file
+                    alertify.defaults.transition = "slide";
+                    alertify.defaults.theme.ok = "btn btn-primary";
+                    alertify.defaults.theme.cancel = "btn btn-danger";
+                    alertify.defaults.theme.input = "form-control";
+                    $(".ajs-button").html("Sounds Great!");
+
+                    alertify.alert(" ","A great title and description will increase your videos success!", function(){
+                        $(".title").fadeIn("slow").addClass("bounceIn");
+                        $(".description").fadeIn("slow").addClass("bounceIn");
+                        $(".tag-list").fadeIn("slow").addClass("bounceIn");
+                        $(".submit").fadeIn("slow").addClass("bounceIn");
+                        $(".submit").click(function(){
+                           $(".submit").html("Uploading...")
+                        });
+
+
+                    }).set({transition:'slide'}).show();
+
+
+
+
+
                     if (this.files[1]!=null){
                         this.removeFile(this.files[0]);
                     }

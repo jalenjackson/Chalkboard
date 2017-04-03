@@ -1,123 +1,239 @@
 <style>
-  body{
-    background: #E9E9E9;
-  }
-
-  .form-signin
-  {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-
-  }
-  .form-signin .form-signin-heading, .form-signin .checkbox
-  {
-    margin-bottom: 10px;
-  }
-  .form-signin .checkbox
-  {
-    font-weight: normal;
-  }
-  .form-signin .form-control
-  {
-    position: relative;
-    font-size: 16px;
-    height: auto;
-    padding: 10px;
+  @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  .form-signin .form-control:focus
-  {
-    z-index: 2;
+
+  #contact{
+    height:100%;
   }
-  .form-signin input[type="text"]
-  {
-    margin-bottom: -1px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+
+  body {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 12px;
+    line-height: 30px;
+    color: #777;
+    background: rgb(33,178,254);
+    min-width:100%;
+    min-height:100%;
+    height:100%;
+    width:100%;
+    margin:0;
+    overflow: hidden;
   }
-  .form-signin input[type="password"]
-  {
+
+  .containerr {
+
+    width: 40%;
+    position: absolute;
+    top:0 !important;
+    left:0;
+    height:100%;
+  }
+
+
+  #contact input[type="text"],
+  #contact input[type="email"],
+  #contact input[type="tel"],
+  #contact input[type="url"],
+  #contact textarea,
+  #contact button[type="submit"] {
+    font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+  }
+
+  #contact {
+    background: #F9F9F9;
+    padding: 25px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+
+  #contact h3 {
+    display: block;
+    font-size: 30px;
+    font-weight: 300;
     margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
   }
-  .account-wall
-  {
-   border: 1px solid lightblue;
 
-    margin-top: 20px;
-    padding: 40px 0px 20px 0px;
-    background-color: #f7f7f7;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  }
-  .login-title
-  {
-    color: rgb(80,80,80) !important;
-    font-size: 18px;
+  #contact h4 {
+    margin: 5px 0 15px;
+    display: block;
+    font-size: 13px;
     font-weight: 400;
-    letter-spacing:1px;
-    display: block;
-  }
-  .profile-img
-  {
-    width: 107px;
-    height: 96px;
-    margin: 0 auto 10px;
-    display: block;
-  }
-  .need-help
-  {
-    margin-top: 10px;
-  }
-  .new-account
-  {
-    display: block;
-    margin-top: 10px;
   }
 
-    .shared-links{
-      color:black;
-    }
+  fieldset {
+    border: medium none !important;
+    margin: 0 0 10px;
+    min-width: 100%;
+    padding: 0;
+    width: 100%;
+  }
+
+  #contact input[type="text"],
+  #contact input[type="email"],
+  #contact input[type="tel"],
+  #contact input[type="url"],
+  #contact textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    background: #FFF;
+    margin: 0 0 5px;
+    padding: 10px;
+  }
+
+  #contact input[type="text"]:hover,
+  #contact input[type="email"]:hover,
+  #contact input[type="tel"]:hover,
+  #contact input[type="url"]:hover,
+  #contact textarea:hover {
+    -webkit-transition: border-color 0.3s ease-in-out;
+    -moz-transition: border-color 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out;
+    border: 1px solid #aaa;
+  }
+
+  #contact textarea {
+    height: 100px;
+    max-width: 100%;
+    resize: none;
+  }
+
+  #contact-submit {
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    background: rgb(33,178,254);
+    color: #FFF;
+    margin: 0 0 5px;
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  #contact button[type="submit"]:hover {
+    background: rgb(33,158,254);
+    -webkit-transition: background 0.3s ease-in-out;
+    -moz-transition: background 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  #contact button[type="submit"]:active {
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  .copyright {
+    text-align: center;
+  }
+
+  #contact input:focus,
+  #contact textarea:focus {
+    outline: 0;
+    border: 1px solid #aaa;
+  }
+
+  ::-webkit-input-placeholder {
+    color: #888;
+  }
+
+  :-moz-placeholder {
+    color: #888;
+  }
+
+  ::-moz-placeholder {
+    color: #888;
+  }
+
+  :-ms-input-placeholder {
+    color: #888;
+  }
+  .signup-logo{
+    width:70px;
+    height:60px;
+    margin-left:50px;
+
+  }
+
+  .sign-up-img{
+    position: absolute;
+    top:25%;
+    left:55%;
+    width:350px;
+    height:300px;
+  }
+
+  .img-overlay{
+    position: absolute;
+    top:0;
+    left:40%;
+    width:60%;
+    height:100%;
+    z-index:10;
+  }
+
+  #remember{
+    margin-left:-50px;
+  }
+
+
 </style>
+<%= image_tag 'logo.png', class:'sign-up-img' %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 col-md-4 col-md-offset-4">
-      <h1 class="text-center login-title">Sign up for Chalkboard</h1>
-      <div class="account-wall">
-        <img class = "profile-img" src = "http://images.iimg.in/c/569f4771c45d324bda8b4660-4-501-0-1453279096/google/user-icon-png-pnglogocom.img?crop=1">
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name),html:{class:'form-signin'}, validate:true ) do |f| %>
-            <%= f.error_notification %>
+<div class = "img-overlay"></div>
+<div style = "overflow-y:scroll;"class="containerr">
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name),html:{id:'contact'}, validate:true ) do |f| %>
 
-            <%= f.input :email, required: true, autofocus: true, input_html: { class: 'form-control'} , placeholder: "Enter You Email Address", label:false %>
-            <%= f.input :username, required: true, input_html: { class: 'form-control' } , placeholder: "Enter A Username", label:false%>
-            <%= f.input :firstname, required: true , input_html: { class: 'form-control'}, placeholder: "What's Your Firstname?", label:false %>
-            <%= f.input :lastname, required: true, input_html: { class: 'form-control'}, placeholder: "What's Your Lastname?", label:false %>
-            <%= f.input :city, required: true, input_html: { class: 'form-control'}, placeholder: "Enter Your City", label:false %>
-            <%= f.input :state, required: true, input_html: { class: 'form-control'}, placeholder: "Enter Your State", label:false %>
-            <%= f.select(:themes, options_for_select([['Dracula', 'Dracula'], ['Beauty', 'Beauty'], ['Orange Cream', 'Orange Cream'], ['Light Sea Green', 'Light Sea Green'], ['Light Orange', 'Light Orange'], ['Soft Purple', 'Soft Purple'], ['Lime Green', 'Lime Green'], ['Hot Pink', 'Hot Pink'], ['Roman', 'Roman'], ['Deep Blush', 'Deep Blush']]), {:prompt => "Select A Theme For Chalkboard"}, {class: "form-control selectpicker","data-live-search":"true"} ) %><br>
+      <h3>Chalkboard</h3>
+      <h4>Log In</h4>
+      <fieldset>
+        <%= f.input :email, required: true, autofocus: true, tabindex: '2', input_html: { class: 'form-control'} , placeholder: "Enter your email address", label:false %>
+      </fieldset>
+      <fieldset>
+        <%= f.input :username, required: true, autofocus: true, tabindex: '2', input_html: { class: 'form-control'} , placeholder: "Enter a username", label:false %>
+      </fieldset>
+      <fieldset>
+        <%= f.input :firstname, required: true, autofocus: true, tabindex: '2', input_html: { class: 'form-control'} , placeholder: "What is your firstname?", label:false %>
+      </fieldset>
+      <fieldset>
+        <%= f.input :lastname, required: true, autofocus: true, tabindex: '2', input_html: { class: 'form-control'} , placeholder: "What is your lastname?", label:false %>
+      </fieldset>
+      <fieldset>
+        <%= f.input :city, required: true, autofocus: true, tabindex: '2', input_html: { class: 'form-control'} , placeholder: "What city are you in?", label:false %>
+      </fieldset>
+      <fieldset>
+        <%= f.input :state, required: true, autofocus: true, tabindex: '2', input_html: { class: 'form-control'} , placeholder: "What state are you in?", label:false %>
+      </fieldset>
+      <fieldset>
+        <%= f.select(:themes, options_for_select([['Dracula', 'Dracula'], ['Beauty', 'Beauty'], ['Orange Cream', 'Orange Cream'], ['Light Sea Green', 'Light Sea Green'], ['Light Orange', 'Light Orange'], ['Soft Purple', 'Soft Purple'], ['Lime Green', 'Lime Green'], ['Hot Pink', 'Hot Pink'], ['Roman', 'Roman'], ['Deep Blush', 'Deep Blush']]), {:prompt => "Select A Theme For Chalkboard"}, {class: "form-control selectpicker","data-live-search":"true"} ) %><br>
+      </fieldset>
+      <fieldset>
+        <%= f.select(:occupation, options_for_select([['Teacher', 'Teacher'], ['Student', 'Student']]), {:prompt => "Are you a teacher or student?"}, {class: "form-control selectpicker","data-live-search":"true"}  ) %><br>
+      </fieldset>
+      <fieldset>
+        <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']]) , {:prompt => "What is your gender?"}, class: "form-control selectpicker " ) %><br>
+      </fieldset>
+      <fieldset>
+        <%= f.input :password,input_html: { class: 'form-control'} , label:false,   required: true, placeholder: "Enter a password more than 6 characters" %>
+      </fieldset>
+      <fieldset>
+        <%= f.input :password_confirmation, input_html: { class: 'form-control'}, label:false,  required: true, placeholder: "Re-enter password" %>
+      </fieldset>
+      <fieldset>
+        <%= f.button :submit, "Sign up", class: 'btn btn-info ' %>
+      </fieldset>
+      <%= link_to "Sign in with twitter", user_twitter_omniauth_authorize_path %>
 
-            <%= f.select(:occupation, options_for_select([['Teacher', 'Teacher'], ['Student', 'Student']]), {:prompt => "Are you a teacher or student?"}, {class: "form-control selectpicker","data-live-search":"true"}  ) %><br>
+  <% end %>
 
-            <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']]) , {:prompt => "What is your gender?"}, class: "form-control selectpicker " ) %><br>
-
-            <%= f.input :password,input_html: { class: 'form-control'} , label:false,   required: true, placeholder: "Enter a password more than 6 characters" %>
-            <%= f.input :password_confirmation, input_html: { class: 'form-control'}, label:false,  required: true, placeholder: "Re-enter password" %>
-
-
-            <%= f.button :submit, "Sign up", class: 'btn btn-info ' %>
-
-        <% end %>
-  </div>
 </div>
-
-
-
 
 
 

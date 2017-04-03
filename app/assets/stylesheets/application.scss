@@ -357,7 +357,8 @@ textarea:focus, input:focus{
 }
 
 .comment-form {
-background:  #E9E0D6 ;
+background:  white ;
+  margin-top:-10px;
 }
 
 .comment-form[type=text] {
@@ -370,6 +371,7 @@ background:  #E9E0D6 ;
 .comment-form[type=text]:focus {
   width: 300%;
 }
+
 
 .bold {
   font-weight: bold !important;
@@ -953,6 +955,10 @@ h5{
   color:black !important;
 }
 
+a:hover{
+  background:none !important;
+
+}
 
 @import 'normalize';
 

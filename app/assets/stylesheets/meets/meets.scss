@@ -106,11 +106,12 @@ span:nth-child(2){color:$color;background:#fff;transform: rotateX(90deg) transla
 
 .avatar-image{
   border-radius:100%;
-  width:50px;
-  height:50px;
-  border:3px solid #02b875;
+  width:40px;
+  height:40px;
   float:left;
-}.about{
+}
+
+.about{
   color:white !important;
   border-radius:1em;
   background:#02b875;

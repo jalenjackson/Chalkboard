@@ -1,119 +1,41 @@
-<%= render 'navs/nav' %>
+<%= render 'navs/pods_top_nav' %>
+<%= render 'navs/pods_side_bar' %>
+<div style = "margin-left:250px; margin-top:50px;" class="container">
+  <header id="header" class="row">
+    <div class="col-md-12">
+      <div class="well">
+        <h1>Feed Template</h1>
+      </div>
+    </div>
+  </header>
+  <main class="row">
+    <nav class="col-md-3">
+      <div class="well">
+        <a href="#">
+          <img src="https://placeholdit.imgix.net/~text?w=300&amp;h=240&amp;txtsize=45&amp;txt=%5Bimg%5D" class="img-responsive" alt="">
+        </a>
+        <nav class="nav-pills nav-stacked">
+          <h4><a href="#"> Your name </a></h4>
+          <h4><a href="#"> Section 1 </a></h4>
+          <h4><a href="#"> Section 2 </a></h4>
+          <h4><a href="#"> Section 3 </a></h4>
+          <h4><a href="#"> Section 4 </a></h4>
+          <h4><a href="#"> Section 5 </a></h4>
+          <h4><a href="#"> Section 6 </a></h4>
+        </nav>
+      </div>
+    </nav>
+    <section class="col-md-6">
+      <div class="media">
+        <div class="media-left">
 
-<p id="notice"><%= notice %></p>
-
-<div class = "wrapper podcasts-wrapper">
-  <aside>
-    <section class="address">
-      <img src="//i1284.photobucket.com/albums/a574/meecrobe/location_zps1795527f.jpg" alt="Location">
-      <h3>De Weterkerk</h3>
-      <p>Prinsengracht 281</p>
-      <button>view on maps</button>
-    </section>
-    <section class="calendar">
-      <header>
-        <h3>Saturday</h3>
-        <a href="#" class="l-arr"></a><p>January</p><a href="#" class="r-arr"></a>
-      </header>
-      <div class="date">
-        <table>
-          <tr>
-            <td class="alt">30</td>
-            <td class="alt">31</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-            <td>10</td>
-            <td>11</td>
-            <td>12</td>
-          </tr>
-          <tr>
-            <td>13</td>
-            <td>14</td>
-            <td>15</td>
-            <td class="today">16</td>
-            <td>17</td>
-            <td>18</td>
-            <td>19</td>
-          </tr>
-          <tr>
-            <td>20</td>
-            <td>21</td>
-            <td>22</td>
-            <td>23</td>
-            <td>24</td>
-            <td>25</td>
-            <td>26</td>
-          </tr>
-          <tr>
-            <td>27</td>
-            <td>28</td>
-            <td>29</td>
-            <td>30</td>
-            <td>31</td>
-            <td class="alt">1</td>
-            <td class="alt">2</td>
-          </tr>
-        </table>
-      </div>
-    </section>
-  </aside>
-  <main>
-
-    <section class="video-player">
-      <button>
-      </button>
-    </section>
-    <section class="info-box">
-      <div class="hero">
-        <img src="//i1284.photobucket.com/albums/a574/meecrobe/hero-img_zpsa123edf2.jpg" alt="Amsterdam">
-      </div>
-      <h3>Amsterdam</h3>
-      <p>Amsterdam is the capital city of and the most populous within the Kingdom of the Netherlands. Amsterdam's name derives from Amstelredamme. Amsterdam is located in the western... Netherlands</p>
-    </section>
-    <section class="weather">
-      <div class="temp">
-        <p>12°<span></span></p>
-      </div>
-      <h3>Saturday 13 January</h3>
-    </section>
-    <section class="audio-player">
-      <div class="cover">
-      </div>
-      <h3>Geef mij maar Amsterdam</h3>
-      <p>Johnny Jordaan</p>
-      <div class="controls">
-        <span class="popup">1:45</span>
-        <div class="progress">
         </div>
-
-        <button class="prev"></button>
-        <button class="play"></button>
-        <button class="next"></button>
+          <% 10.times do |i| %>
+          <div style = "margin-top:20px;" class = "panel">
+            <h1>Hello world</h1>
+          </div>
+              <% end %>
       </div>
-    </section>
-    <section class="search">
-      <form action="#" method="post">
-        <input type="search" name="search" placeholder="Find your city place">
-        <input type="checkbox" id="fav"><label for="fav"><span class="checked"></span>Add to favourites</label>
-        <button>search</button>
-      </form>
-    </section>
-  </main>
-</div>
 
-<script>
-    $(document).ready(function(){
-        $(".search label").on("click", function(){
-            $(this).children("span").toggleClass("checked");
-        });
-    });
-</script>
+    </section>
+

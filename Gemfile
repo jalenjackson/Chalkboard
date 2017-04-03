@@ -38,6 +38,8 @@ gem 'impressionist'
 
 gem 'omniauth-twitter'
 
+gem 'alertify-rails'
+
 
 gem 'aws-sdk'
 

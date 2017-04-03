@@ -6,58 +6,7 @@
 </style>
 
 <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-<nav  class="navbar navbar-default video-navbar navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#"><i class="fa fa-bars video-bars" aria-hidden="true"></i>
-      </a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a class = "videos-brand" href="#">Chalkboard <img class = "videos-brand-img" src = "http://rho-design.com/wp-content/uploads/2015/08/VIDEO-LOGO1.png"></a></li>
-
-      </ul>
-
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <i class="fa fa-search videos-search-icon" aria-hidden="true"></i>
-          <input class = "videos-search" type="text" class="form-control" placeholder="Search">
-        </div>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <button class="dropdown-toggle btn btn-circle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.firstname[0] + current_user.lastname[0] %><span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <button class="dropdown-toggle btn btn-circle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.firstname[0] + current_user.lastname[0] %><span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+<%= render 'navs/videos_top_nav' %>
 <%= render 'navs/video_side_bar' %>
 
 <div class = "videos-content">
@@ -75,53 +24,127 @@
           <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
         </p>
       </video>
-      <button class="custom">Theater Mode</button>
-      <button class="standard-mode">Standard Mode</button>
 
 
-  <% end %>
+
+      <span style = "font-size:25px; "><img style = "width:50px;height:50px;"src = "https://images.vexels.com/media/users/3/135899/isolated/preview/9d55a1dc7fbba0b7e8873e21b7135626-eye-icon-by-vexels.png"><span style = "font-weight:bold;font-style:italic; color:black !important;"><%= @video.impressionist_count(:filter=>:ip_address) %></span></span>
+
+
+      <span style = "margin-left:0px; font-size:25px; margin-top:15px;"><%= link_to  like_video_path(@video),class: "like like-btn", method: :put, remote: :true do %>
+           <img class = "video-show-heart animated" style = "width:50px;height:50px; margin-top:6px;" src = "https://images.vexels.com/media/users/3/136169/isolated/preview/e42ae42d51ca9b5b6783e408ba8054da-heart-circle-icon-by-vexels.png">
+            <span style = "color:black; margin-left:-15px; font-weight:bold; font-style:italic" class = "likes-count"><%= @video.get_upvotes.size  %></span>
+      <% end %>
+      </span>
+
+      <span style = "font-size:25px;"><%= link_to unlike_video_path(@video),class: "like", method: :put, remote: :true do %>
+            <img class = "video-show-broken-heart animated" style = "width:40px;height:40px;" src = "http://cdn.mysitemyway.com/icons-watermarks/flat-circle-white-on-black/classica/classica_broken-heart/classica_broken-heart_flat-circle-white-on-black_512x512.png">
+            <span style = "color:black; margin-right:5px !important;padding-right:20px; font-weight:bold; font-style:italic" class = "dislikes-count"><%= @video.get_downvotes.size  %></span>
+      <% end %>
+      </span>
+
+
+
+<% end %>
 
   <div class = "videoDiv">
-    <h1 class = "videoTitle"><%= @video.title %></h1>
-    <p><%= @video.description %></p>
-    <h1>Views</h1>
-    <%= @video.impressionist_count(:filter=>:ip_address) %>
-    <div style = "float:right; " class="col-md-8">
-      <div style = "float:right;" class="btn-group">
-        <td><%= link_to 'Edit', edit_video_path(@video) %></td>
+    <h1 style = "margin-left:20px;" class = "videoTitle"><%= @video.title %></h1>
+    <p style = "margin-left:20px;">Published on <span style = "font-weight:bold; color:black;"><%= @video.created_at.strftime("%-d/%-m/%y") %>  </span></p>
+  </div>
+    <div><br>
+      <div class = "panel">
+        <p style = "margin-left:20px; color:grey;font-weight:bold;">Description</p>
+    <p style = "margin-left:20px;"><%= @video.description %></p>
+        <span style = "margin-left:20px;"><%= raw @video.tag_list.map { |t| link_to t, tag_path(t) , class:'tags'  }.join(' <i class="fa fa-eercast" aria-hidden="true"></i> ') %></span>
+    </div>
+    </div>
 
 
-        <%= link_to  like_video_path(@video),class: "like like-btn", method: :put, remote: :true do %>
-            <p>Like</p>
 
-            <span class = "likes-count"><%= @video.get_upvotes.size  %></span>
 
+
+
+  <div>
+    <div class = "container">
+
+    <h1>You may like these videos </h1>
+
+    <div class="homepage-index-slider">
+
+      <div class="slick-codepen2">
+
+
+        <% @videos.each.with_index do |video,index| %>
+            <div class = "hes" data-id="<%= video.id %>">
+              <div class = "ccc">
+                <a href = "../videos/<%= video.id %>"><%= image_tag video.image.url(:medium), class: "videos-video-chosen-thumbnail-image videos-video-chosen-thumbnail-image#{index}" %></a>
+                <div style = "margin-top:185px;">
+                  <p class = "videos-video-title"><%= video.title %></p>
+                  <p class = "videos-owner-name">by <%= link_to video.user.firstname, "teachers/#{video.user.username}"%></p>
+                  <p class = "videos-created-at"><%= video.created_at.strftime(" %b %d, %Y") %>  <i class="fa fa-dot-circle-o" aria-hidden="true"></i> <b><%= video.impressionist_count(:filter=>:ip_address) %></b>
+                    <% if video.impressionist_count(:filter=>:ip_address) == 1 %>
+                        view
+                    <% else %>
+                        views
+                    <% end %>
+                  </p>
+
+
+                </div>
+              </div>
+              <% if video.image? %>
+                  <a href = "../videos/<%= video.id %>"><%= image_tag video.image.url(:medium), class: "videos-video-chosen-thumbnail-image videos-video-chosen-thumbnail-image#{index}" %></a>
+              <% else  %>
+                  <a href = "../videos/<%= video.id %>"><%= image_tag video.mp4.url(:thumb), class: "videos-video-chosen-thumbnail-image videos-video-chosen-thumbnail-image#{index}" %></a>
+              <% end %>
+            </div>
         <% end %>
 
-
-
-        <%= link_to unlike_video_path(@video),class: "like", method: :put, remote: :true do %>
-
-            <p>DisLike</p>
-            <span class = "dislikes-count"><%= @video.get_downvotes.size  %></span>
-        <% end %>
-
-        <p class ="meets-showpage-label">Were about</p>
-        <%= raw @video.tag_list.map { |t| link_to t, tag_path(t) , class:'tags'  }.join(' <i class="fa fa-eercast" aria-hidden="true"></i> ') %>
       </div>
 
-      </div>
+    </div>
     </div>
   </div>
-
-  <div>
-    <h1>Related</h1>
-  </div>
-
-  <div>
-    <h1>Comments</h1>
+<br>
+  <div style = "margin-left:20px;margin-top:-120px; ">
+    <%= render 'comments/comment' %>
   </div>
 </div>
+
+
+<script>
+
+
+    $('.slick-codepen2').slick({
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        draggable: false,
+        accessibility: true
+    });
+    $(".slick-slide").css("height","238px");
+    $(".slick-prev").css("height","170px");
+    $(".slick-prev").css("width","30px");
+    $(".slick-next").css("width","30px");
+    $(".slick-next").css("left","98%");
+    $(".slick-prev").css("opacity","1");
+    $(".slick-next").css("opacity","1");
+    $(".slick-next").css("height","170px");
+
+
+    $(".video-show-heart").one("click",function(){
+      $(".video-show-broken-heart").removeClass("bounceIn");
+      $(".video-show-heart").addClass("bounceIn");
+      alertify.success('<span style = "color:white!important;font-weight:bold;font-size:17px;">You liked this video</span><i style = "margin-left:10px;color:red !important; font-size:17px;" class="fa fa-heart" aria-hidden="true"></i>');
+  });
+
+  $(".video-show-broken-heart").one("click",function(){
+      $(".video-show-heart").removeClass("bounceIn");
+      $(".video-show-broken-heart").addClass("bounceIn");
+      alertify.success('<span style = "color:white!important;font-weight:bold;font-size:17px;">You don\'t like this video</span><i style = "margin-left:10px;color:white !important; font-size:17px;" class="fa fa-frown-o" aria-hidden="true"></i>');
+
+  });
+
+</script>
 
 
 

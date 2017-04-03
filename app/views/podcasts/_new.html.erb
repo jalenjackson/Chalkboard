@@ -1,0 +1,21 @@
+<style>
+  .dropzone-logo{
+
+    width:45px;
+    height:40px;
+  }
+</style>
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="new_podcasts">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Publish a podcast people will never forget </h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'form', podcast: @podcast %>
+      </div>
+    </div>
+  </div>
+</div>
+

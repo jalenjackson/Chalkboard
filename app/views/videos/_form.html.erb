@@ -1,10 +1,11 @@
 <%= simple_form_for(@video,html:{multipart:true, class:'dropzone', id:'my-dropzone'}) do |f| %>
   <%= f.error_notification %>
-
-    <div class = "dz-message needsclick">
-      <h3>Drop files here</h3>
-      <strong>Click</strong> to upload
-    </div>
+<br>
+    <div id = "dropzonePreview" class = "dz-message dz-default needsclick">
+      <img style = "width:100px; height:100px;" src = "http://www.freeiconspng.com/uploads/upload-icon-31.png">
+      <h3>Drop a video file here </h3>
+      <strong>or Click to upload</strong>
+    </div><br>
 
 
     <div class="fallback">
@@ -13,31 +14,35 @@
     </div>
 
 
-    <div class = "video-details">
-    <div class = "form-field">
-      <%= f.input :title %>
+    <div class = "form-field title animated ">
+      <%= f.input :title, label:false, placeholder:'Add a dashing title!' %>
     </div>
 
-    <div class = "form-field">
-      <%= f.input :description %>
+    <div style = "animation-delay: 0.5s" class = "form-field description animated ">
+      <%= f.text_area :description , label:false, placeholder:'Add a amazing description!'%>
     </div>
 
-    <div class = "form-field">
-      <%= f.label :tag_list, "Tags (seperated by commas" %>
-      <%= f.text_field :tag_list %><br>
+    <div style = "animation-delay: 1s" class = "form-field tag-list animated ">
+      <%= f.input :tag_list, label:false, placeholder:'Add tags to your video. Seperate with commas' %><br>
     </div>
 
-    <div class = "form-field">
+    <div class = "form-field custom-image animated ">
       <%= f.label "Give an custom thubnail" %>
       <%= f.input :image %>
     </div>
-      <div class = "form-field">
-        <%= f.submit "submit", class:'submit' %>
+      <div style = "margin-top:-30px; animation-delay: 1.5s" class = "form-field submit animated ">
+        <span style = "color:white !important; text-align: center !important; margin-left:20px !important;" class = "text-center">Publish Your Amazing Video!</span>
+        <%= f.button :submit, class:'submit-btn btn ' %>
       </div>
-    </div>
 
 <% end %>
 
 <script>
-$(".video-details").hide();
+$(".title").hide();
+$(".titleNext").hide();
+$(".description").hide();
+$(".tag-list").hide();
+$(".custom-image").hide();
+$(".submit").hide();
+
 </script>

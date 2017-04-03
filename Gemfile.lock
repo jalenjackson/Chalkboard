@@ -81,6 +81,7 @@ GEM
     acts-as-taggable-on (4.0.0)
       activerecord (>= 4.0)
     acts_as_votable (0.10.0)
+    alertify-rails (0.2.0)
     animate-rails (1.0.10)
       rails
     arel (7.1.4)
@@ -376,6 +377,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 4.0)
   acts_as_votable (~> 0.10.0)
+  alertify-rails
   animate-rails
   aws-sdk
   bootstrap-daterangepicker-rails
