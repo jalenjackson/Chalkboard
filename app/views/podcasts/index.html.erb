@@ -1,41 +1,29 @@
 <%= render 'navs/pods_top_nav' %>
-<%= render 'navs/pods_side_bar' %>
-<div style = "margin-left:250px; margin-top:50px;" class="container">
-  <header id="header" class="row">
-    <div class="col-md-12">
-      <div class="well">
-        <h1>Feed Template</h1>
-      </div>
+
+
+
+<!-- Page Content -->
+<div style = "margin-top:200px;" class="container">
+
+  <!-- Page Header -->
+
+  <!-- /.row -->
+
+  <div class="row">
+    <% @podcasts.each_with_index  do |podcast,i| %>
+    <div style = "animation-delay: <%= i * 0.15 %>s" class="col-md-6 portfolio-item animated fadeInUp">
+      <a href="#">
+        <img style = "width:500px;height:281px;" class="img-responsive" src="<%= podcast.image.url(:medium)%>" alt="">
+      </a>
+      <h3 style = "margin-top:10px;">
+        <a  href="#"><%= podcast.title %></a>
+      </h3>
+      <p><%= podcast.description %></p>
+
     </div>
-  </header>
-  <main class="row">
-    <nav class="col-md-3">
-      <div class="well">
-        <a href="#">
-          <img src="https://placeholdit.imgix.net/~text?w=300&amp;h=240&amp;txtsize=45&amp;txt=%5Bimg%5D" class="img-responsive" alt="">
-        </a>
-        <nav class="nav-pills nav-stacked">
-          <h4><a href="#"> Your name </a></h4>
-          <h4><a href="#"> Section 1 </a></h4>
-          <h4><a href="#"> Section 2 </a></h4>
-          <h4><a href="#"> Section 3 </a></h4>
-          <h4><a href="#"> Section 4 </a></h4>
-          <h4><a href="#"> Section 5 </a></h4>
-          <h4><a href="#"> Section 6 </a></h4>
-        </nav>
-      </div>
-    </nav>
-    <section class="col-md-6">
-      <div class="media">
-        <div class="media-left">
+    <% end %>
 
-        </div>
-          <% 10.times do |i| %>
-          <div style = "margin-top:20px;" class = "panel">
-            <h1>Hello world</h1>
-          </div>
-              <% end %>
-      </div>
+  </div>
 
-    </section>
 
+</div>

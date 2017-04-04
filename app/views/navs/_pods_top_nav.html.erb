@@ -1,4 +1,10 @@
-<nav  class="navbar navbar-default video-navbar navbar-fixed-top">
+<style>
+  .dropdown-menu > li > a {
+    color:black;
+  }
+</style>
+
+<nav style = "height:80px; background:rgb(77,84,93) !important;" class="navbar  navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -14,33 +20,32 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a style = "margin-top:-6px;" class = "videos-brand" href="../videos">Chalkboard Podcasts </a></li>
+        <li><a style = "color:white!important;margin-top:0px;font-weight:bold;" class = " pods-video-brand " href="../videos">Chalkboard <img class = "pods-nav-img animated rubberBand" style = "width:40px;height:40px;" src = "http://and-y.com/wp-content/uploads/2016/10/mastering-icon.png"> Podcasts </a></li>
 
       </ul>
 
       <form class="navbar-form navbar-left">
         <div class="form-group">
-          <i class="fa fa-search videos-search-icon" aria-hidden="true"></i>
-          <input class = "videos-search" type="text" class="form-control" placeholder="Search">
+          <input style = "" class = "pods-search" type="text" class="form-control" placeholder="Search Podcasts">
         </div>
       </form>
       <ul  class="nav navbar-nav navbar-right">
         <li style = "transform:translate(-30px,25px);" class="dropdown">
           <i style = "cursor:pointer;font-size:28px;" class="fa fa-caret-square-o-down dropdown-toggle homepage-navbar-fa-grcode" data-toggle="dropdown"></i>
           <ul style = "width:400px;" class="dropdown-menu">
-            <li><a href = "">Write An Article</a></li>
-            <li><a href="#">Publish A Podcast</a></li>
-            <li><a href="#">Start A Group Chat</a></li>
-            <li><a href="#">Start A Live Video Stream</a></li>
-            <li><a href="#">Start A Live Audio Stream</a></li>
-            <li><a href="#">Share An Interesting Photo</a></li>
-            <li><a href="#">All Categories</a></li>
-            <li><a href="#">My Calendar</a></li>
-            <li><a href="#">Themes</a></li>
-            <li><a href="#">Add New Class</a></li>
-            <li><a href="#">Start A Meetup</a></li>
+            <li><a class = "pods-list-item" href = "">Write An Article</a></li>
+            <li><a class = "pods-list-item"  href="#">Publish A Podcast</a></li>
+            <li><a class = "pods-list-item"  href="#">Start A Group Chat</a></li>
+            <li><a class = "pods-list-item"  href="#">Start A Live Video Stream</a></li>
+            <li><a class = "pods-list-item"  href="#">Start A Live Audio Stream</a></li>
+            <li><a class = "pods-list-item"  href="#">Share An Interesting Photo</a></li>
+            <li><a class = "pods-list-item" href="#">All Categories</a></li>
+            <li><a class = "pods-list-item"  href="#">My Calendar</a></li>
+            <li><a class = "pods-list-item"  href="#">Themes</a></li>
+            <li><a class = "pods-list-item"  href="#">Add New Class</a></li>
+            <li><a class = "pods-list-item"  href="#">Start A Meetup</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Question?</a></li>
+            <li><a class = "pods-list-item"  href="#">Question?</a></li>
           </ul>
         </li>
         <li style = "transform:translateX(-20px); class="dropdown">
@@ -64,4 +69,28 @@
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
+</nav>
+
+<nav style = "margin-top:80px;height:60px; background:white" class="navbar  navbar-fixed-top">
+  <div class="row-fluid">
+    <div class="span12">
+
+      <!-- Changed from `hidden` to `auto`. -->
+      <div style="width:100%;">
+
+        <!-- This is the div that does the trick: -->
+        <div>
+
+          <div class = "pods-divs" style="display:inline-block;"><%= link_to 'Publish a Podcast', new_podcast_path, remote:true, class:'video-click homepage-navbar-side-navigation-anchor-items' %></div>
+          <div class = "pods-divs" style="display:inline-block;">Browse Podcasts</div>
+          <div class = "pods-divs" style="display:inline-block;">Popular Podcasts</div>
+          <div class = "pods-divs" style="display:inline-block;">Trending Podcasts</div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </nav>

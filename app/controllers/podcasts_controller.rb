@@ -19,6 +19,7 @@ class PodcastsController < ApplicationController
 
   # GET /podcasts/1/edit
   def edit
+
   end
 
   # POST /podcasts

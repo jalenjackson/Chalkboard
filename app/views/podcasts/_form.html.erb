@@ -1,9 +1,9 @@
-<%= simple_form_for(@podcast,html:{multipart:true, class:'dropzone', id:'my-dropzone'}) do |f| %>
+<%= simple_form_for(@podcast,html:{multipart:true, class:'dropzone', id:'my-amazing-dropzone'}) do |f| %>
   <%= f.error_notification %>
 
     <div id = "dropzonePreview" class = "dz-message dz-default needsclick">
       <img style = "width:100px; height:100px;" src = "http://www.freeiconspng.com/uploads/upload-icon-31.png">
-      <h3>Drop a video file here </h3>
+      <h3>Drop a mp3 file here </h3>
       <strong>or Click to upload</strong>
     </div><br>
 
@@ -12,7 +12,7 @@
       <%= f.submit "Upload Video" %>
     </div>
 
-    <div style = "float:left;" class = "form-field">
+    <div style = "float:left;" class = "form-field pod-img">
 
       <%= f.label :image %>
 
@@ -22,21 +22,31 @@
     </div>
 
 
-    <div style = "float:left; margin-left: 2px;" class = "form-field">
-      <%= f.label :title %>
+    <div style = "animation-delay:.5s; float:left; margin-left: 2px;" class = " pod-title animated ">
 
-      <%= f.text_field :title, class: "filestyle mp3", "data-input" => false %>
-
-    </div>
-
-    <div style = "float:left; margin-left: 2px;" class = "form-field">
-      <%= f.label :description %>
-
-      <%= f.text_field :description, class: "filestyle mp3", "data-input" => false %>
+      <%= f.text_field :title, class: "filestyle mp3", "data-input" => false, placeholder:"Add a wonderful title!" %>
 
     </div>
 
-  <div class="form-actions podcasts-submit">
-    <%= f.button :submit %>
-  </div>
+    <div style = "animation-delay:1s;float:left; margin-left: 2px;" class = " pod-description animated">
+
+      <%= f.text_area :description, class: "filestyle mp3", "data-input" => false, placeholder:"Add your amazing description" %>
+
+    </div>
+
+      <h1 class = "pods-next animated">Next</h1>
+
+    <div class = "podcasts-submit  animated ">
+      <span style = "color:white !important; float:left; margin-left:5px;" class = "text-center">Next Step <i style = "color:white !important;" class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+      <%= f.button :submit, class:'pods-submit-btn' %>
+    </div>
 <% end %>
+
+
+<script>
+  $(".pod-img").hide();
+  $(".pod-title").hide();
+  $(".pod-description").hide();
+  $(".podcasts-submit").hide();
+  $(".pods-next").hide();
+</script>

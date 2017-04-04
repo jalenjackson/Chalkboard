@@ -92,9 +92,10 @@
           <ul style = "width:400px;margin-top:60px;" class="dropdown-menu">
               <div style = "margin-top:-25px !important; width:100%;height:200px;background:url(<%= current_user.image.url(:large) %>) center center;background-size: cover;"></div>
               <h1 style = "color:black !important;" class = "text-center"><%= current_user.firstname + " "  + current_user.lastname%></h1>
-              <li><a href="#">Profile</a></li>
-              <li><a href="#">Edit Profile</a></li>
-              <li role="separator" class="divider"></li>
+              <li><a href="../teachers/<%= current_user.username %>">Profile</a></li>
+              <li><%= link_to 'Edit your profile', edit_user_registration_path, remote:true, class:'video-click homepage-navbar-side-navigation-anchor-items pods-link' %></li>
+
+            <li role="separator" class="divider"></li>
               <li><a href="#">Sign Out</a></li>
             </ul>
         </div>
@@ -193,6 +194,10 @@
     <a href = "../pins/new" class = "homepage-navbar-side-navigation-anchor-items">Start A Meet Up</a>
   </div>
 </div>
+
+    <nav>
+
+    </nav>
 
 <script>
 

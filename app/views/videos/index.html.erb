@@ -71,7 +71,9 @@
       <% else %>
         <%= link_to (image_tag video.mp4.url(:thumb), class:"videos-images img-responsive"), video_path(video) %>
       <% end %>
-      <p class = "videos-owner"><%= video.user.firstname + " " + video.user.lastname %></p>
+      <p class = "videos-owner">
+        <%= video.user.firstname + " " + video.user.lastname %>
+      </p>
       <h1 class = "videos-content-title" ><%= video.title %></h1>
 
     </div>
@@ -79,6 +81,7 @@
   </div>
   </div>
 </div>
+
 
 
 <script>

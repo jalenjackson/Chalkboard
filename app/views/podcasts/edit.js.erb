@@ -1,0 +1,56 @@
+$('#remote_container').html('<%= j render "podcasts/edit" %>');
+if ($('#edit_podcasts').modal('show')){
+    Dropzone.autoDiscover = false;
+    Dropzone.options.myAmazingDropzone = {
+        init: function() {
+            setTimeout(function(){
+                alertify.defaults.transition = "fade";
+                alertify.alert(" ","Now lets publish this amazing podcast, add a mp3 file");
+            },300);
+            var myDropzone = this;
+            $(".podcasts-submit").click(function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                myDropzone.processQueue();
+            });
+            this.on("addedfile", function(file) {
+                // show title after dropping file
+                alertify.defaults.transition = "slide";
+                alertify.defaults.theme.ok = "btn btn-primary";
+                alertify.defaults.theme.cancel = "btn btn-danger";
+                alertify.defaults.theme.input = "form-control";
+                $(".ajs-button").html("Sounds Great!");
+                console.log(file.name);
+                $(".dz-remove").css("float","left");
+                $(".dz-filename span").css({
+                    "background":"#01b2fe",
+                    "color":"black",
+                    "display":"none"
+                });
+
+                alertify.alert(" ","If you'd like to change your title and description you can do so here. Hit publish when your satisfied ", function() {
+                    $(".pod-title").fadeIn("slow").addClass("fadeInUp");
+                    $(".pod-description").fadeIn("slow").addClass("fadeInUp");
+                    $(".podcasts-submit").fadeIn("slow").addClass("fadeInUp");
+                });
+
+                $(".dz-preview").append("<br><p><strong>" + file.name + "</strong></p>");
+
+            });
+            this.on("success", function (file, responseText) {
+                window.location.href = ("/podcasts/"+responseText.id);
+                $(".modal-backdrop").fadeOut("slow");
+                $('#edit_podcasts').addClass('bounceOutDown');
+            });
+        },
+        autoProcessQueue: false,
+        maxFilesize:500,
+        acceptedFiles: ".mp3",
+        maxFiles:2
+    };
+    $("#my-amazing-dropzone").dropzone({
+        addRemoveLinks: true,
+        paramName: "podcast[mp3]"
+
+    });
+}

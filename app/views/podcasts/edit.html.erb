@@ -1,6 +1,7 @@
-<h1>Editing Podcast</h1>
 
-<%= render 'form', podcast: @podcast %>
 
-<%= link_to 'Show', @podcast %> |
-<%= link_to 'Back', podcasts_path %>
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <%= render 'edit_form', podcast: @podcast %>
+
+</div>

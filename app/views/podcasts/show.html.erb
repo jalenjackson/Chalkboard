@@ -20,12 +20,21 @@
       <h1 class = "podcasts-showpage-side-info-h1"><%= @podcast.title %></h1>
       <h2 class = "podcasts-showpage-side-info-h2">By <%= @podcast.user.firstname %></h2>
       <p class = "podcasts-showpage-side-info-p" ><%= @podcast.description[0..350] %></p>
-        <audio style = "" controls>
-          <source src="<%= @podcast.mp3 %>" type="audio/ogg">
-          <source src="<%= @podcast.mp3 %>" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
+
+        <%= link_to edit_podcast_path, remote:true, class:'video-click homepage-navbar-side-navigation-anchor-items ' do %>
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+        <% end %>
       </div>
+      <% if @podcast.mp3? %>
+      <audio style = "-webkit-animation-delay: 1s;-moz-animation-delay: 1s;-o-animation-delay: 1s;animation-delay: 1s;" class = "podcasts-audio animated rubberBand " controls>
+        <source src="<%= @podcast.mp3 %>" type="audio/mpeg">
+      </audio>
+      <% else %>
+        <script>
+            alertify.alert(" ","Now its time to add your mp3 file for your podcast <i class='fa fa-headphones' aria-hidden='true'></i>! click the pencil to add");
+        </script>
+      <% end %>
+
     </div>
 
   </div>
@@ -96,5 +105,7 @@
         $(".search label").on("click", function(){
             $(this).children("span").toggleClass("checked");
         });
+
     });
+
 </script>

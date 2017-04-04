@@ -1,0 +1,45 @@
+
+
+
+
+<%= simple_form_for(@podcast,html:{multipart:true, class:'dropzone', id:'my-amazing-dropzone'}) do |f| %>
+    <%= f.error_notification %>
+
+    <div id = "dropzonePreview" class = "dz-message dz-default needsclick">
+      <img style = "width:100px; height:100px;" src = "http://www.freeiconspng.com/uploads/upload-icon-31.png">
+      <h3>Drop a mp3 file here </h3>
+      <strong>or Click to upload</strong>
+    </div><br>
+
+    <div class="fallback">
+      <%= f.input :mp3 %>
+      <%= f.submit "Upload Video" %>
+    </div>
+    <div style = "animation-delay:0s; float:left; margin-left: 2px;" class = " pod-title animated ">
+
+      <%= f.text_field :title, class: "filestyle mp3", "data-input" => false, placeholder:"Add a wonderful title!" %>
+      <script>
+          $("#podcast_title").val("<%= @podcast.title %>");
+      </script>
+    </div>
+
+    <div style = "animation-delay:.5s;float:left; margin-left: 2px;" class = " pod-description animated">
+
+      <%= f.text_area :description, class: "filestyle mp3", "data-input" => false, placeholder:"Add your amazing description" %>
+      <script>
+          $("#podcast_description").val("<%= @podcast.description %>");
+      </script>
+    </div>
+
+    <div style = "animation-delay:1s;" class = "podcasts-submit edit-pods-submit  animated ">
+      <span style = "color:white !important; float:left; margin-left:5px;" class = "text-center">Publish Podcast! <i style = "color:white !important;" class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+      <%= f.button :submit, class:'pods-submit-btn' %>
+    </div>
+<% end %>
+
+
+<script>
+  $(".pod-title").hide();
+  $(".pod-description").hide();
+  $(".podcasts-submit").hide();
+</script>

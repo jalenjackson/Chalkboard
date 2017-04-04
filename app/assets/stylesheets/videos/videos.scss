@@ -33,9 +33,23 @@
   opacity: 0 !important;
 }
 
+.ajs-modal > div{
+  background:black !important;
+  color:white !important;
+}
+.ajs-footer{
+  background:black !important;
+  color:white !important;
+}
+.ajs-header{
+  background:black !important;
+  color:white !important;
+
+}
+
 
 .ajs-button{
-  background-color: #01b2fe !important;
+  background-color: rgb(70,70,70) !important;
   text-transform: uppercase;
   letter-spacing: 2px;
   float:left;

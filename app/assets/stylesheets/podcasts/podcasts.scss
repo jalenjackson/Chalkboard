@@ -1039,8 +1039,135 @@ h4{
   background:black;
 }
 
+.pods-divs{
+  border:1px solid rgb(200,200,200);
+  height:100%;
+
+}
+
 .podcasts-showpage-top-section-p{
   margin-top: 70px;
   font-size:16px;
   letter-spacing:1px;
+}
+
+.pods-next{
+  background:#01b2fe;
+  width:100%;
+  height:50px;
+  float:left;
+  color:white !important;
+  text-align: center;
+  font-weight:bold;
+  padding-top:8px;
+  font-family: "Montserrat", sans-serif;
+
+
+}
+
+
+#podcast_title {
+  width:100%;
+  height:40px;
+}
+.pod-title{
+  width:100%;
+  height:100%;
+}
+.pod-description{
+  margin-top:10px;
+  width:100%;
+  height:100%;
+
+}
+.podcasts-submit{
+  width:100%;
+}
+#podcast_submit{
+  width:100%;
+  background:#01b2fe;
+  height:50px;
+  opacity:0;
+}
+#podcast_description {
+  width:100%;
+  height:30px !important;
+  border:1px solid rgb(200,200,200);
+
+}
+.pods-video-brand{
+  font-size:35px !important;
+  color:white !important;
+  font-family: "Montserrat", sans-serif;
+
+}
+.pods-search{
+  width:500px;
+  border-radius:.3em;
+  height:50px;
+  border:1px solid rgb(200,200,200);
+  border:none!important;
+  background:white !important;
+  color:black;
+  font-weight:bold;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  letter-spacing:1px;
+  font-size:20px;
+  color:rgb(200,200,200);
+  padding-left:30px;
+}
+
+.pods-nav-img{
+  -webkit-filter: invert(100%); filter: invert(100%);
+
+}
+
+.podcasts-submit{
+  width:100%;
+  height:50px !important;
+  float:left;
+  background:#01b2fe;
+  margin-top:-75px;
+  text-align: center;
+  letter-spacing:.5px;
+  font-size:20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight:bold;
+  padding-top:10px;
+
+}
+
+.pods-submit-btn{
+  opacity: 0;
+}
+
+.edit-podcast{
+  background:#01b2fe;
+  color:white !important;
+  font-weight:bold;
+  text-align: center;
+}
+
+.edit-podcast-description{
+  width:100%;
+  height:50px;
+}
+
+
+
+.edit-pods-submit{
+  margin-top:10px;
+  background: #02b875 !important;
+  color:black !important;
+}
+
+.pods-nav-img{
+  animation-iteration-count: infinite;
+  animation-duration: 800ms;
+}
+
+.edit-modal{
+  animation-duration:500ms;
 }

@@ -159,8 +159,8 @@
         <%= avatar_for(current_user,size:20) %>
         </div>
 
-        <p style = 'margin-left:-90px !important; color:#02b875 !important;' class = "frontpage-article-user "><%= @videos.fourth.user.firstname.titlecase + " " + @videos.fourth.user.lastname.titlecase %></p>
-        <p style = 'margin-left: -90px; color:white !important;' class = "frontpage-article-time "><%= @videos.fourth.created_at.strftime(" %b %d, %Y")  %></p>
+        <p style = 'margin-left:-90px !important; color:#02b875 !important;' class = "frontpage-article-user "><%= @articles.fourth.user.firstname.titlecase + " " + @videos.fourth.user.lastname.titlecase %></p>
+        <p style = 'margin-left: -90px; color:white !important;' class = "frontpage-article-time "><%= @articles.fourth.created_at.strftime(" %b %d, %Y")  %></p>
       </div>
     </div>
 
@@ -172,13 +172,13 @@
     <section id="pinBoot">
 
       <% 10.times do |i| %>
-      <article class="white-panel panel-shadow"><img src="<%= @videos.first.image.url(:medium)%>" alt="">
-        <h4><a href="#"><%= @videos.first.title %> </a></h4>
-        <p><%= @videos.first.description %> </p>
+      <article class="white-panel panel-shadow"><img src="<%= @articles.first.image.url(:medium)%>" alt="">
+        <h4><a href="#"><%= @articles.first.title %> </a></h4>
+        <p><%= @articles.first.description %> </p>
         <%= avatar_for(current_user,size:20) %>
-        <p class = "frontpage-article-user"><%= @videos.first.user.firstname.titlecase + " " + @videos.first.user.lastname.titlecase %></p>
-        <p class = "frontpage-article-time"><%= @videos.first.created_at.strftime(" %b %d, %Y")  %></p>
-        <p style = "font-style:normal; font-weight:bold;"class = "frontpage-article-time">views <%= @videos.first.impressionist_count(:filter=>:ip_address) %></p>
+        <p class = "frontpage-article-user"><%= @articles.first.user.firstname.titlecase + " " + @articles.first.user.lastname.titlecase %></p>
+        <p class = "frontpage-article-time"><%= @articles.first.created_at.strftime(" %b %d, %Y")  %></p>
+        <p style = "font-style:normal; font-weight:bold;"class = "frontpage-article-time">views <%= @articles.first.impressionist_count(:filter=>:ip_address) %></p>
       </article>
 
       <% end %>
