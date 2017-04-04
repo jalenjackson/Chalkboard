@@ -11,6 +11,7 @@
 
   <div class="row">
     <% @podcasts.each_with_index  do |podcast,i| %>
+        <% if podcast.image? && podcast.mp3? %>
     <div style = "animation-delay: <%= i * 0.15 %>s" class="col-md-6 portfolio-item animated fadeInUp">
       <a href="#">
         <img style = "width:500px;height:281px;" class="img-responsive" src="<%= podcast.image.url(:medium)%>" alt="">
@@ -21,6 +22,7 @@
       <p><%= podcast.description %></p>
 
     </div>
+            <% end %>
     <% end %>
 
   </div>

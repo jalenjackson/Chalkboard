@@ -86,7 +86,13 @@
           <%= image_tag podcast.image.url(:medium), class: 'profile-video-size' %>
           <a href = "../podcasts/<%= podcast.id %>" ><div style ="position:absolute;top:0;left:0;width:100%;height:100%;">
             <h1 style = "font-size:17px;font-weight:bold; margin-top:100px;"><%= podcast.title %></h1>
-            <p style = "margin-top:-10px;"><%= podcast.description[0..30] %></p>
+            <% if !podcast.mp3?%>
+             <span>You didnt Publish your podcast yet <i class="fa fa-frown-o" aria-hidden="true"></i></span><br>
+                <script>
+                    alertify.success("<b style = 'color:white!important;'>The podcast <span style = 'color:red;'><%= podcast.title %></span> was not yet published " + '<i style = "font-weight:bold;color:white !important;" class="fa fa-frown-o" aria-hidden="true"></i></b>' );
+                </script>
+            <% end %>
+            <p style = "margin-top:-5px;"><%= podcast.description[0..30] %></p>
             <p style = "margin-top:-12px; font-size:13px; font-style: italic;"><%= podcast.created_at.strftime(" %b %d, %Y") %></p>
           </div></a>
         </div>
