@@ -1,11 +1,35 @@
-<p id="notice"><%= notice %></p>
+<style>
+
+  pre code {
+    display: block;
+    font-family: Menlo, Monaco, Consolas, monospace;
+    line-height: 1.5;
+    border:none !important;
+    padding: 10px;
+  }
+
+  pre{
+    background: rgb(60,60,60);
+    color:rgb(250,190,250) !important;
+  }
 
 
-<%= @article.title %><br>
+</style>
 
-<%= @article.description %><br>
 
-<%= @article.user.firstname %>
+<div style = "padding: 0 50px;" class = "container">
+
+
+<%= raw @article.title %>
+
+<%= raw @article.description %><br>
+
+</div>
+
+
+<h1>Views</h1>
+<%= @article.impressionist_count(:filter=>:ip_address) %>
+
 
 <div style = "float:right; " class="col-md-8">
   <div style = "float:right;" class="btn-group">
@@ -25,18 +49,5 @@
 
   </div>
 </div>
-
-<h1>Views</h1>
-<%= @article.impressionist_count(:filter=>:ip_address) %>
-
-<% if @article.document? %>
-  <iframe src="<%= @article.document.url %>"  frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="  border:1px solid #CCC; border-width:1px; height:auto; width: 100%; height:800px " allowfullscreen> </iframe>
-<% end %>
-
-<% if @article.image? %>
-<%= image_tag @article.image.url(:medium) %>
-<% end %>
-
-
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>

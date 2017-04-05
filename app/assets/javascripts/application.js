@@ -30,6 +30,7 @@
 //= require bootstrap-modal
 //= require rails.validations
 //= require rails.validations.simple_form
+//= require jquery-fileupload/basic
 //= require video
 //= require medium-editor
 //= require components

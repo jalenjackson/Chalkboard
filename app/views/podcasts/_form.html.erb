@@ -1,4 +1,4 @@
-<%= simple_form_for(@podcast,html:{multipart:true, class:'dropzone', id:'my-amazing-dropzone',}) do |f| %>
+<%= simple_form_for(@podcast,html:{multipart:true, class:'dropzone', id:'my-amazing-dropzone',autocomplete:"off"}) do |f| %>
   <%= f.error_notification %>
 
     <div id = "dropzonePreview" class = "dz-message dz-default needsclick">

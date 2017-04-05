@@ -74,6 +74,8 @@ gem 'jquery-ui-rails'
 
 gem 'font-awesome-rails'
 
+gem 'jquery-fileupload-rails'
+
 gem "animate-rails"
 
 

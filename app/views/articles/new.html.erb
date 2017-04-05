@@ -51,28 +51,58 @@
 
     }
 
+  footer {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:60px;
+    width:100%;
+    background:#999;
+  }
+
+  .editable-title{
+    pointer-events: none;
+  }
+  .editable-description{
+    pointer-events: none;
+  }
+
+
 </style>
 <%= render 'navs/nav' %>
+
+
+<br><br><br><br><br><br><br>
+
+
+
+
 <div style = "padding: 0 50px;" class = "container">
-  <div style = "margin-top:150px;">
-    <%= avatar_for(current_user,size:100) %>
-    <p style = "color:black!important; font-size:16px;transform:translateX(20px);"><%= current_user.firstname + " "  + current_user.lastname %></p>
-    <p style = "color:grey !important;transform:translate(20px,-5px);">Draft</p>
-  </div>
+  <%= avatar_for(current_user,size:100) %>
+  <p style = "color:black!important; font-size:16px;transform:translateX(20px);"><%= current_user.firstname + " "  + current_user.lastname %></p>
+  <p style = "color:grey !important;transform:translate(20px,-5px);">Draft</p>
 
+  <%= simple_form_for @article , html:{multipart:true,autocomplete:"off"} do |f| %>
+    <%= f.error_notification %>
 
-  <div style = "margin-top:50px;" class="editable">
-    <h1 class = "editable-title animated" style = "color:rgb(190,190,190)!important;font-size:43px;">Title</h1>
-  </div>
+        <%= f.hidden_field :title, html: { id: "title" } %>
+      <div class="editable" data-field-id="title">
+        <h1 class = "editable-title animated" style = "color:rgb(190,190,190)!important;font-size:43px;">Title</h1>
 
-  <div style = "transform:translateY(20px);" class="editable2">
-    <p class = "editable-description" style = "color:rgb(210,210,210)!important; font-size:19px;">Write your article</h1>
+        <%= @article.title %>
+      </div>
 
-  </div>
+      <%= f.hidden_field :description, html: { id: "description" } %>
+      <div class="editable2" data-field-id="description">
+      <p class = "editable-description" style = "color:rgb(210,210,210)!important; font-size:19px;">Write your article</h1>
+        <%= @article.description %>
+    </div>
+
+      <footer>
+        <%= f.submit  %>
+      </footer>
+<% end %>
 </div>
-
-
-
 
 
 
@@ -82,9 +112,12 @@
   $(".editable").click(function(){
      $(".editable-title").hide();
   });
+
   $(".editable2").click(function(){
       $(".editable-description").hide();
   });
+
+
     var editor = new MediumEditor('.editable', {
         placeholder: {
 
@@ -99,7 +132,12 @@
             targetCheckbox: true
         }
     });
-
+  $('.editable').bind('input propertychange', function() {
+      $("#article_" + $(this).attr("data-field-id")).val($(this).html());
+  });
+  $('.editable2').bind('input propertychange', function() {
+      $("#article_" + $(this).attr("data-field-id")).val($(this).html());
+  });
     var editor2 = new MediumEditor('.editable2', {
         placeholder: {
 
@@ -120,9 +158,5 @@
     hljs.initHighlightingOnLoad();
 
 
-
-</script>
-
-<script>
 
 </script>
