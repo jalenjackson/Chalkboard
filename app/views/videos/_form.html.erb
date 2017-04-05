@@ -1,4 +1,4 @@
-<%= simple_form_for(@video,html:{multipart:true, class:'dropzone', id:'my-dropzone'}) do |f| %>
+<%= simple_form_for(@video,html:{multipart:true, class:'dropzone', id:'my-dropzone',autocomplete:"off"}) do |f| %>
   <%= f.error_notification %>
 <br>
     <div id = "dropzonePreview" class = "dz-message dz-default needsclick">
@@ -15,25 +15,28 @@
 
 
     <div class = "form-field title animated ">
-      <%= f.input :title, label:false, placeholder:'Add a dashing title!' %>
+      <%= f.input :title, label:false, placeholder:'Add a dashing title!',:autocomplete => :off%>
     </div>
 
-    <div style = "animation-delay: 0.5s" class = "form-field description animated ">
-      <%= f.text_area :description , label:false, placeholder:'Add a amazing description!'%>
+    <div style = "" class = "form-field description animated ">
+      <%= f.text_area :description , label:false, placeholder:'Add a amazing description!',:autocomplete => :off%>
     </div>
 
 
 
-    <div style = "animation-delay: 1s" class = "form-field tag-list animated ">
-      <%= f.input :tag_list, label:false, placeholder:'Add tags to your video. Seperate with commas' %><br>
+    <div style = "" class = "form-field tag-list animated ">
+      <%= f.input :tag_list, label:false, placeholder:'Add tags to your video. Seperate with commas',:autocomplete => :off %><br>
     </div>
+
+    <h1 class = "pods-next videos-next animated">Next</h1>
+
 
     <div class = "form-field custom-image animated ">
       <%= f.label "Give an custom thubnail" %>
       <%= f.input :image %>
     </div>
-      <div style = "margin-top:-30px; animation-delay: 1.5s" class = "form-field submit animated ">
-        <span style = "color:white !important; text-align: center !important; margin-left:20px !important;" class = "text-center">Publish Your Amazing Video!</span>
+      <div style = "" class = "form-field submit animated ">
+        <span style = "color:white !important; text-align: center !important; margin-left:20px !important;font-size:16px; margin-top:-25px;" class = "text-center">Publish Your Amazing Video!</span>
         <%= f.button :submit, class:'submit-btn btn ' %>
       </div>
 
@@ -47,4 +50,5 @@ $(".tag-list").hide();
 $(".custom-image").hide();
 $(".submit").hide();
 $(".pods-next").hide();
+$(".videos-next").hide();
 </script>

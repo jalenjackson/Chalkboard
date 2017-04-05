@@ -1,9 +1,27 @@
 <%= render 'navs/pods_top_nav' %>
+<%= render 'navs/side_nav' %>
+
+<style>
+  .avatar-image{
+    width:60px !important;
+    height:60px;
+    margin:0 auto;
+    -webkit-border-radius:100%;
+    -moz-border-radius:100%;
+    border-radius:100%;
+    float:none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+<div class = "header-pods">
+  <h1 class = "header-pods-h1 animated fadeInUp">Share your voice <img style = "width:40px;height:40px;"src = "http://icons.iconarchive.com/icons/martz90/circle/512/mic-icon.png"></h1>
+</div>
 
 
-
-<!-- Page Content -->
-<div style = "margin-top:200px;" class="container">
+<h1 class = "text-center" style = "transform:translateY(460px)">Popular podcasts</h1>
+<div style = "margin-top:480px;" class="container">
 
   <!-- Page Header -->
 
@@ -13,7 +31,7 @@
     <% @podcasts.each_with_index  do |podcast,i| %>
         <% if podcast.image? && podcast.mp3? %>
     <div style = "animation-delay: <%= i * 0.15 %>s" class="col-md-6 portfolio-item animated fadeInUp">
-      <a href="#">
+      <a href="../podcasts/<%= podcast.id %>">
         <img style = "width:500px;height:281px;" class="img-responsive" src="<%= podcast.image.url(:medium)%>" alt="">
       </a>
       <h3 style = "margin-top:10px;">

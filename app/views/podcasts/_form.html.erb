@@ -1,4 +1,4 @@
-<%= simple_form_for(@podcast,html:{multipart:true, class:'dropzone', id:'my-amazing-dropzone'}) do |f| %>
+<%= simple_form_for(@podcast,html:{multipart:true, class:'dropzone', id:'my-amazing-dropzone',}) do |f| %>
   <%= f.error_notification %>
 
     <div id = "dropzonePreview" class = "dz-message dz-default needsclick">
@@ -8,27 +8,16 @@
     </div><br>
 
     <div class="fallback">
-      <%= f.input :mp3 %>
-      <%= f.submit "Upload Video" %>
+      <%= f.file_field :image, class: "filestyle image"%>
     </div>
 
-    <div style = "float:left;" class = "form-field pod-img">
-
-      <%= f.label :image %>
-
-      <%= f.file_field :image, class: "filestyle image", "data-input" => false %>
-
-
-    </div>
-
-
-    <div style = "animation-delay:.5s; float:left; margin-left: 2px;" class = " pod-title animated ">
+    <div style = "float:left; margin-left: 2px;" class = " pod-title animated ">
 
       <%= f.text_field :title, class: "filestyle mp3", "data-input" => false, placeholder:"Add a wonderful title!" %>
 
     </div>
 
-    <div style = "animation-delay:1s;float:left; margin-left: 2px;" class = " pod-description animated">
+    <div style = "float:left; margin-left: 2px;" class = " pod-description animated">
 
       <%= f.text_area :description, class: "filestyle mp3", "data-input" => false, placeholder:"Add your amazing description" %>
 

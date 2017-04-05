@@ -10,28 +10,32 @@
 <div class = "video-side-bar">
   <div style = "animation-delay: 50ms;" class = "homepage-navbar-side-navigation-list-item-container first-item animated pulse">
     <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://www.freeiconspng.com/uploads/upload-icon-31.png">
-    <%= link_to 'Publish a video', new_video_path, remote:true, class:'video-click homepage-navbar-side-navigation-anchor-items pods-link' %>
-  </div>
+    <% if user_signed_in? %>
+      <%= link_to 'Publish a video', new_video_path, remote:true, class:'video-click homepage-navbar-side-navigation-anchor-items ' %>
+    <% else %>
+        <%= link_to 'Publish a video', 'users/sign_in',  class:'video-click homepage-navbar-side-navigation-anchor-items ' %>
+    <% end %>
+    </div>
   <div style = "animation-delay: 50ms;" class = "homepage-navbar-side-navigation-list-item-container first-item animated pulse">
     <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://prihatin.kpkt.gov.my/assets/img/flat03.png">
-    <a href = "../videos/new" class = "homepage-navbar-side-navigation-anchor-items pods-link">Set up a series</a>
+    <a href = "../videos/new" class = "homepage-navbar-side-navigation-anchor-items ">Set up a series</a>
   </div>
   <hr style = "border-color:grey;">
   <div style = "animation-delay: 50ms;" class = "homepage-navbar-side-navigation-list-item-container first-item animated pulse">
     <img class = "homepage-navbar-side-navigation-list-item-logo" src = "https://cdn.iconscout.com/public/images/icon/free/png-512/fireworks-sparkler-sparkles-star-celebration-diwali-atashbaji-emoj-symbol-34758a03e24fda02-512x512.png">
-    <a href = "../videos/new" class = "homepage-navbar-side-navigation-anchor-items pods-link">All video series</a>
+    <a href = "../videos/new" class = "homepage-navbar-side-navigation-anchor-items">All video series</a>
   </div>
   <div style = "animation-delay: 50ms;" class = "homepage-navbar-side-navigation-list-item-container first-item animated pulse">
     <img class = "homepage-navbar-side-navigation-list-item-logo" src = "http://icons.iconarchive.com/icons/graphicloads/100-flat-2/256/favorite-star-icon.png">
-    <a href = "../videos/new" class = "homepage-navbar-side-navigation-anchor-items pods-link">Popular videos</a>
+    <a href = "../videos/new" class = "homepage-navbar-side-navigation-anchor-items ">Popular videos</a>
   </div>
   <div style = "animation-delay: 50ms;" class = "homepage-navbar-side-navigation-list-item-container first-item animated pulse">
     <%= image_tag 'love_icon.png', class:'homepage-navbar-side-navigation-list-item-logo' %>
-    <a href = "../videos/new" class = "homepage-navbar-side-navigation-anchor-items pods-link">Hearted videos</a>
+    <a href = "../videos/new" class = "homepage-navbar-side-navigation-anchor-items">Hearted videos</a>
   </div>
   <div style = "animation-delay: 50ms;" class = "homepage-navbar-side-navigation-list-item-container first-item animated pulse">
     <%= image_tag 'badge-flat.png', class:'homepage-navbar-side-navigation-list-item-logo' %>
-    <a href = "../videos/new" class = "homepage-navbar-side-navigation-anchor-items pods-link">Featured videos</a>
+    <a href = "../videos/new" class = "homepage-navbar-side-navigation-anchor-items">Featured videos</a>
   </div>
 </div>
 

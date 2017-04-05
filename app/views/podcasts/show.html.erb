@@ -1,4 +1,5 @@
-<%= render 'navs/nav' %>
+<%= render 'navs/pods_top_nav' %>
+<%= render 'navs/side_nav' %>
 <style>
   .avatar-image{
     width:60px !important;
@@ -8,7 +9,88 @@
     -moz-border-radius:100%;
     border-radius:100%;
     float:none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
+
+  body{
+    overflow-x:hidden;
+  }
+  .c {
+    padding: 1em;
+  }
+  @media screen and (min-width: 48em) {
+    .main {
+      width: 66.666666%;
+      padding-right: 1em;
+      float: left;
+    }
+    .sb {
+      float: right;
+      width: 33.333333%;
+    }
+  }
+
+  .bt{
+    background:webkit-linear-gradient(90deg, #d64759 10%, #da7352 90%); /* Chrome 10+, Saf5.1+ */ background: -o-linear-gradient(90deg, #d64759 10%, #da7352 90%); /* Opera 11.10+ */ background: linear-gradient(90deg, #d64759 10%, #da7352 90%);
+    width: 80px;
+    height: 80px;
+    position: relative;
+    margin: 2% 0 0 10%;
+    border-radius: 45px;
+    cursor: pointer;
+  }
+  .bt:before{
+    content: "";
+    position: absolute;
+    border: 25px solid black;
+    top: 18%;
+    left: 42%;
+    height: 0;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-right: 0;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -ms-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+  }
+  .bt:after{
+    content: "";
+    position: absolute;
+    border: 25px solid black;
+    top: 18%;
+    left: 42%;
+    height: 0;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-right: 0;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -ms-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+  }
+  .bt.active:before{
+    border: 7px solid black;
+    top: 25px;
+    left: 23px;
+    height: 30px;
+  }
+
+  .bt.active:after{
+    content: "";
+    position: absolute;
+    border: 7px solid black;
+    top: 25px;
+    left: 45px;
+    height: 30px;
+  }
+
 </style>
 <div class = "container">
   <div class = "music-heading">
@@ -17,88 +99,81 @@
 
     <div class = "side-info">
       <div class = "podcasts-showpage-side-info">
-      <h1 class = "podcasts-showpage-side-info-h1"><%= @podcast.title %></h1>
-      <h2 class = "podcasts-showpage-side-info-h2">By <%= @podcast.user.firstname %></h2>
-      <p class = "podcasts-showpage-side-info-p" ><%= @podcast.description[0..350] %></p>
+        <div style = "float:right;transform:translateX(-100px);" onclick="wavesurfer.playPause()" class="bt pods-music-bt"></div>
 
+        <h1 class = "podcasts-showpage-side-info-h1 animated fadeInUp"><span style = "background:black;"><%= @podcast.title %></span></h1>
+        <h2 class = "podcasts-showpage-side-info-h2 animated fadeInUp"><span style = "background:black;"><%= @podcast.user.firstname %>  <h2 class = "podcasts-showpage-side-info-h2 animated fadeInUp"><span style = "background:black;"><%= @podcast.created_at.strftime("%-d/%-m/%y") %></span></h2></span></h2>
+
+        <div style = "transform:translateY(20px);">
         <%= link_to edit_podcast_path, remote:true, class:'video-click homepage-navbar-side-navigation-anchor-items ' do %>
-        <i class="fa fa-pencil" aria-hidden="true"></i>
+              <i style = "font-size:25px;" class="fa fa-pencil animated" aria-hidden="true"><span style = "background:black;font-family:Montserrat,Sans-Serif">
+                <% if !@podcast.mp3? %>
+                add mp3 <i class="fa fa-plus-circle" aria-hidden="true">
+                    <script>$(".pods-music-bt").hide()</script>
+                <% end %>
+
+              </i></span></i>
         <% end %>
+        </div>
       </div>
       <% if @podcast.mp3? %>
-      <audio style = "-webkit-animation-delay: 1s;-moz-animation-delay: 1s;-o-animation-delay: 1s;animation-delay: 1s;" class = "podcasts-audio animated rubberBand " controls>
-        <source src="<%= @podcast.mp3 %>" type="audio/mpeg">
-      </audio>
-      <% else %>
+
+
+          <div class = "animated rubberBand" style = "animation-delay:1s; margin-left:-100px;" id="waveform"></div>
+
+
+    <% else %>
         <script>
             alertify.alert(" ","Now its time to add your mp3 file for your podcast <i class='fa fa-headphones' aria-hidden='true'></i>! click the pencil to add");
+            $(".fa-pencil").css({
+                "animation-iteration-count":"infinite",
+                "color":"rgb(255,69,0)"
+            });
+            $(".fa-pencil").addClass("jello");
+
         </script>
       <% end %>
 
     </div>
 
-  </div>
-<div style = "margin-top:370px; margin-left:100px;" class="wrapper ">
-  <aside>
-    <section class="address">
-      <span style = ""><%= avatar_for(@podcast.user, size:100) %></span>
 
-      <h3><%= @podcast.user.firstname + " " + @podcast.user.lastname %></h3>
-      <h3 style = "font-size:17px; color:white;"><strong><span style = "background:black;"><%= @podcast.user.occupation %></span></strong></h3>
-      <p>Prinsengracht 281</p>
-      <% if @podcast.user.occupation == "Teacher" %>
-          <a href = "../teachers/<%= @podcast.user.username %>"><button>view profile</button></a>
-      <% else %>
-          <a href = "../teachers/<%= @podcast.user.username %>">view profile<button></button></a>
+
+    <div style = "margin-left:30px;width:80%;" id="pattern" class="pattern">
+      <div class="c">
+        <div style = "background:white;"class="main">
+          <div style = "width:100%;height:100px;">
+
+            <span style = "margin-left:5px;font-size:25px; "><img style = "width:50px;height:50px;"src = "https://images.vexels.com/media/users/3/135899/isolated/preview/9d55a1dc7fbba0b7e8873e21b7135626-eye-icon-by-vexels.png"><span style = "font-weight:bold;font-style:italic; color:black !important;"><%= @podcast.impressionist_count(:filter=>:ip_address) %></span></span>
+
+
+            <span style = "margin-left:0px; font-size:25px; margin-top:15px;"><%= link_to  like_podcast_path(@podcast),class: "like like-btn", method: :put, remote: :true do %>
+           <img class = "video-show-heart animated" style = "width:50px;height:50px; margin-top:6px;" src = "https://images.vexels.com/media/users/3/136169/isolated/preview/e42ae42d51ca9b5b6783e408ba8054da-heart-circle-icon-by-vexels.png">
+            <span style = "color:black; margin-left:-15px; font-weight:bold; font-style:italic" class = "likes-count"><%= @podcast.get_upvotes.size  %></span>
       <% end %>
-    </section>
-
-  </aside>
-  <main>
-
-    <section style = "background:linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.4) 100%), orangered url('<%= @podcasts.image.url(:medium) %>') no-repeat center;" class="video-player">
-      <p class = "text-center" style = "margin-top: 70px; font-size:16px; letter-spacing:1px;">Newest Podcast From <%= @podcast.user.firstname %></p>
-
-    </section>
-    <section class="info-box">
-      <div class="hero">
-        <h5 class = "text-center">More Podcasts Related To This Topic</h5>
-        <h1>Views</h1>
-        <%= @podcast.impressionist_count(:filter=>:ip_address) %>
-        <div style = "float:right; " class="col-md-8">
-          <div style = "float:right;" class="btn-group">
-
-
-            <%= link_to  like_podcast_path(@podcast),class: "like", method: :put do %>
-                <p>Like</p>
-                <span><%= @podcast.get_upvotes.size  %></span>
-
-            <% end %>
-
-            <%= link_to unlike_podcast_path(@podcast),class: "like", method: :put do %>
-
-                <p>DisLike</p>
-                <span><%= @podcast.get_downvotes.size  %></span>
-            <% end %>
-
+      </span>
+            <span style = "font-size:25px;"><%= link_to unlike_podcast_path(@podcast),class: "like", method: :put, remote: :true do %>
+            <img class = "video-show-broken-heart animated" style = "width:40px;height:40px;" src = "http://cdn.mysitemyway.com/icons-watermarks/flat-circle-white-on-black/classica/classica_broken-heart/classica_broken-heart_flat-circle-white-on-black_512x512.png">
+            <span style = "color:black; margin-right:5px !important;padding-right:20px; font-weight:bold; font-style:italic" class = "dislikes-count"><%= @podcast.get_downvotes.size  %></span>
+      <% end %>
+      </span>
           </div>
+          <div style = "transform:translateY(10px);float:left; height:200px;width:200px;background:white;">
+            <%= avatar_for(@podcast.user,size:100) %>
+            <p style = "transform:translateY(5px);" class = "text-center"><%= @podcast.user.firstname + " " + @podcast.user.lastname %></p>
+            <p style = "color:rgb(140,140,140)!important;" class = "text-center"><span><i class="fa fa-user-circle-o" aria-hidden="true"></i></span><%= @podcast.user.followers.count %></p>
+          </div>
+          <p style = "transform:translateY(15px); font-size:16px;"><%= @podcast.description %></p>
+
+          <div style = "margin-top:50px;">
+          <p style = "color:rgb(140,140,140) !important;margin-top:20px;font-size: 13px;"><i class="fa fa-commenting-o" aria-hidden="true"></i> Comments</p>
+          </div>
+          </div>
+        <div style = "transform:translateX(20px);background:white;"  class="sb">
+          <h3>Related</h3>
+          <p>related</p>
         </div>
       </div>
-    </section>
-
-    <% @pods.each do |pod| %>
-     <a href = "<%= pod.id %>"><section class="weather">
-      <div style = "  background:linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.4) 100%), orangered url('<%= pod.image.url(:medium) %>') no-repeat center;" class="temp">
-        <p class = "text-center" style = "font-size:16px; letter-spacing:1px;"><%= pod.title %></p>
-
-      </div>
-      <h3><%= pod.description[0..30] %><% if pod.description.size > 30 %>...<% end %></h3>
-     </section></a>
-        <% end %>
-
-  </main>
-</div>
-</div>
+    </div>
 
 <script>
     $(document).ready(function(){
@@ -107,5 +182,21 @@
         });
 
     });
+
+    var wavesurfer = WaveSurfer.create({
+        container: '#waveform',
+        waveColor: 'rgb(255,69,0)',
+        progressColor: 'grey'
+    });
+
+    wavesurfer.load('<%= @podcast.mp3 %>');
+    $(".bt").click(function() {
+        $(this).toggleClass("active");
+    });
+
+
+
+
+
 
 </script>

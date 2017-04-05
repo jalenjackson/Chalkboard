@@ -5,7 +5,7 @@ module UsersHelper
     image_tag user.avatar.url(:thumb), size: size, class: 'avatar-image'
     else
       image_tag "blank-profile-picture-973460_1280.png", width: size, class: 'avatar-image '
-      end
+    end
   end
 
   def background_for(user)

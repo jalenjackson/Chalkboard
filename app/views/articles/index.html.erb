@@ -119,17 +119,18 @@
 
 </style>
 <%= render 'navs/nav' %>
-<div style = "margin-top:150px;"class="container">
+<%= render 'navs/side_nav' %>
+<div style = "margin-top:150px;"class="container animated fadeIn">
   <h1 style = "font-weight:bold; color:black;margin-left:10px;">Popular Articles</h1>
   <div style = "width:70%;" class="box panel panel-default panel-shadow">
     <%= image_tag @articles.first.image.url(:large) , class: 'first-img' %>
   </div>
 
   <div class="container">
-    <div style = "width:25%; height:100%; background:rgba(0,0,0,0);" class="box ">
+    <div style = "width:20%; height:100%; background:rgba(0,0,0,0);" class="box ">
       <h1 class = "frontpage-article-title"><%= @articles.first.title %></h1>
       <p class = "frontpage-article-description"><%= @articles.first.description %></p><br>
-      <%= avatar_for(current_user,size:20) %>
+      <%= avatar_for(@articles.first.user,size:20) %>
       <p class = "frontpage-article-user"><%= @articles.first.user.firstname.titlecase + " " + @articles.first.user.lastname.titlecase %></p>
       <p class = "frontpage-article-time"><%= @articles.first.created_at.strftime(" %b %d, %Y")  %></p>
       <p  style = "margin-top:25px;"class = "frontpage-article-time">Article Of The Day</p>
@@ -143,7 +144,7 @@
         <h1 style = 'margin-top:70px; color:white !important;' class = "frontpage-article-title text-center"><%= @articles.second.title %></h1>
         <p style = 'color:white !important;' class = "frontpage-article-description text-center"><%= @articles.second.description %></p><br>
         <div style = "float:none; margin-left:200px; ">
-          <%= avatar_for(current_user,size:20) %>
+          <%= avatar_for(@articles.second.user,size:20) %>
         </div>
 
         <p style = 'margin-left:-90px !important; color:#02b875 !important;' class = "frontpage-article-user "><%= @articles.fourth.user.firstname.titlecase + " " + @articles.fourth.user.lastname.titlecase %></p>
@@ -156,10 +157,10 @@
         <h1 style = 'margin-top:70px; color:white !important;' class = "frontpage-article-title text-center"><%= @articles.third.title %></h1>
         <p style = 'color:white !important;' class = "frontpage-article-description text-center"><%= @articles.third.description %></p><br>
         <div style = "float:none; margin-left:200px; ">
-        <%= avatar_for(current_user,size:20) %>
+        <%= avatar_for(@articles.third.user,size:20) %>
         </div>
 
-        <p style = 'margin-left:-90px !important; color:#02b875 !important;' class = "frontpage-article-user "><%= @articles.fourth.user.firstname.titlecase + " " + @videos.fourth.user.lastname.titlecase %></p>
+        <p style = 'margin-left:-90px !important; color:#02b875 !important;' class = "frontpage-article-user "><%= @articles.fourth.user.firstname.titlecase + " " + @articles.fourth.user.lastname.titlecase %></p>
         <p style = 'margin-left: -90px; color:white !important;' class = "frontpage-article-time "><%= @articles.fourth.created_at.strftime(" %b %d, %Y")  %></p>
       </div>
     </div>
@@ -175,7 +176,7 @@
       <article class="white-panel panel-shadow"><img src="<%= @articles.first.image.url(:medium)%>" alt="">
         <h4><a href="#"><%= @articles.first.title %> </a></h4>
         <p><%= @articles.first.description %> </p>
-        <%= avatar_for(current_user,size:20) %>
+        <%= avatar_for(@articles.first.user,size:20) %>
         <p class = "frontpage-article-user"><%= @articles.first.user.firstname.titlecase + " " + @articles.first.user.lastname.titlecase %></p>
         <p class = "frontpage-article-time"><%= @articles.first.created_at.strftime(" %b %d, %Y")  %></p>
         <p style = "font-style:normal; font-weight:bold;"class = "frontpage-article-time">views <%= @articles.first.impressionist_count(:filter=>:ip_address) %></p>

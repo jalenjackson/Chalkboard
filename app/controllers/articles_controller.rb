@@ -29,10 +29,14 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.build (article_params)
 
-    if @article.save
-      redirect_to @article
-    else
-      render 'new'
+    respond_to do |format|
+      if @article.save
+        format.html { redirect_to @article, notice: 'Item was successfully created.' }
+        format.json { render json: @article }
+      else
+        format.html { render :new }
+        format.json { render json: @article.errors, status: :unprocessable_entity }
+      end
     end
   end
 

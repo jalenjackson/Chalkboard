@@ -4,9 +4,14 @@ if ($('#new_video').modal('show')){
         Dropzone.autoDiscover = false;
         Dropzone.options.myDropzone = {
             autoProcessQueue: false,
+            acceptedFiles: ".mp4,.mov,.wmv,.flv,.avi",
             maxFilesize:500,
             init: function() {
-                var myDropzone = this;
+                setTimeout(function(){
+                    alertify.alert(" ","lets start by adding a video file").set({transition:'zoom'}).show();
+                },500);
+
+                    var myDropzone = this;
                 $(".submit").click(function(e){
                     e.preventDefault();
                     e.stopPropagation();
@@ -20,13 +25,28 @@ if ($('#new_video').modal('show')){
                     alertify.defaults.theme.input = "form-control";
                     $(".ajs-button").html("Sounds Great!");
 
-                    alertify.alert(" ","A great title and description will increase your videos success!", function(){
-                        $(".title").fadeIn("slow").addClass("bounceIn");
-                        $(".description").fadeIn("slow").addClass("bounceIn");
-                        $(".tag-list").fadeIn("slow").addClass("bounceIn");
-                        $(".submit").fadeIn("slow").addClass("bounceIn");
-                        $(".submit").click(function(){
-                           $(".submit").html("Uploading...")
+                    alertify.alert(" ","Next up lets add a title", function(){
+                        $(".title").fadeIn("slow").addClass("fadeInUp");
+
+                        $("#video_title").on("keyup",function(){
+                            if($("#video_title").val() == "") {
+                                $(".videos-next").hide();
+                            } else {
+                                $(".videos-next").fadeIn("slow").addClass("fadeInUp");
+                            }
+                        });
+
+                        $(".videos-next").click(function(){
+                            $(".videos-next").removeClass("fadeInUp").addClass("fadeOutDown");
+                            $(".description").fadeIn("slow").addClass("fadeInUp");
+                        });
+
+                        $("#video_description").on("keyup",function(){
+                            if($("#video_description").val() == "") {
+                                $(".submit").hide();
+                            } else {
+                                $(".submit").fadeIn("slow").addClass("fadeInUp");
+                            }
                         });
 
 

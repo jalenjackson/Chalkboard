@@ -112,12 +112,9 @@ end
     resources :messages
   end
 
-  resources :pins do
-    resources :comments
-    member do
-      put "like", to: "pins#vote"
-    end
-  end
+
+
+  get '/explore', to: 'pins#index'
 
 
 

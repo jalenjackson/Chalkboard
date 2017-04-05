@@ -11,6 +11,8 @@
 
     <%= javascript_include_tag 'alertify.min' %>
 
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.3/howler.core.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.3.2/wavesurfer.min.js"></script>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -43,7 +45,67 @@
   <%end %>
 
       <%end %>
-    <% if user_signed_in? %>
+
+
+      <% if !user_signed_in? %>
+        <style>
+          body{
+            background: #E9E9E9;
+          }
+          .nav2, .nav1 {
+            background:white;
+          }
+
+          .videos-video-title{
+            color:#E9E9E9;
+          }
+
+          .search-box{
+            background:white;
+          }
+
+          .dropdown-menu{
+            background:white;
+          }
+
+          p,h1,h2,a, li{
+            color:rgb(80,80,80) !important;
+          }
+
+          .box-text2{
+            color:white !important;
+          }
+
+          .fa{
+            color:#888 !important;
+          }
+
+          .box.panel.panel-default{
+            background:white !important;
+          }
+
+          .btn-circle{
+            background:#02b875;
+          }
+
+          .search-box{
+            background: linear-gradient(to left,rgba(220, 220, 220, 1),rgba(245,245, 245, 1)) !important;
+          }
+
+          .side-navigation{
+            background: white;
+          }
+
+          .top-side-nav{
+            background:white;
+          }
+
+          input{
+            color:black!important;
+          }
+        </style>
+      <% end %>
+      <% if user_signed_in? %>
     <% if current_user.themes == "Beauty" %>
       <style>
         body{

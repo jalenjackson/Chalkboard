@@ -1,5 +1,5 @@
 <br><br><br><br>
-<%= simple_form_for @article , remote:true , authenticity_token: true do |f| %>
+<%= simple_form_for @article , html:{multipart:true, class:'dropzone', id:'my-amazing-dropzone',autocomplete:"off"} do |f| %>
   <%= f.error_notification %>
 
     <div class="form-inputs">
@@ -15,7 +15,7 @@
       <%= f.input :description %>
     </div><br><br>
 
-  <div class="form-actions">
+  <div class="form-actions articles-submit">
     <%= f.submit  %>
   </div>
 <% end %>

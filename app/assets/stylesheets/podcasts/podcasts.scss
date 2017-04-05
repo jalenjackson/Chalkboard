@@ -980,10 +980,10 @@ body main .search label span.checked {
 
 .music-heading {
   position: absolute;
-  top:100px;
-  left:0;
-  width:100%;
-  height:45%;
+  top:70px;
+  left:-20px;
+  width:120%;
+  height:75%;
 
 }
 
@@ -993,18 +993,19 @@ body main .search label span.checked {
   height:100%;
 }
 .podcast-image2{
-  margin-left:30%;
+  margin-left:3%;
   position: absolute;
-  left:-10%;
+  left:3%;
   top:40px;
-  width:250px;
-  height:150px;
-  margin-top:13px;
+  width:410px;
+  height:auto;
+
+  margin-top:19px;
 }
 
 .side-info{
   position: absolute;
-  left:54%;
+  left:44%;
   top:0;
   width:45%;
   height:100%;
@@ -1096,10 +1097,16 @@ h4{
 
 }
 .pods-video-brand{
-  font-size:35px !important;
+  font-size:25px !important;
   color:white !important;
   font-family: "Montserrat", sans-serif;
+  float:left;
+  margin-left:-15px;
 
+}
+
+.pods-video-brand:hover{
+  background:rgb(50,50,50) !important;
 }
 .pods-search{
   width:500px;
@@ -1112,11 +1119,9 @@ h4{
   font-weight:bold;
 }
 
-::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-  letter-spacing:1px;
-  font-size:20px;
-  color:rgb(200,200,200);
-  padding-left:30px;
+.pods-search{
+  height:40px;
+  background:rgb(230,230,230) !important;
 }
 
 .pods-nav-img{
@@ -1171,3 +1176,40 @@ h4{
 .edit-modal{
   animation-duration:500ms;
 }
+
+.header-pods{
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:450px;
+  background:linear-gradient(180deg, rgba(195,31,138,0.8) 0%, rgba(255,65,0,0.8) 100%), orangered url(http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/headphone-icon.png) ;
+
+  background-size:100% 100%;
+}
+
+.header-pods-h1{
+  color:white !important;
+  font-size:60px;
+  margin-top:170px;
+  text-align: center;
+  font-weight:300;
+
+}
+
+.pods-upload{
+  width:150px;
+  height:40px;
+  border-radius:.3em;
+  background:none;
+  border: 1px solid rgb(210,210,210);
+  margin-top:9px;
+}
+
+.pods-upload-text{
+  letter-spacing:1px;
+  color:black !important;
+  width:100%;
+  height:100%;
+}
+

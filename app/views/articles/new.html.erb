@@ -1,5 +1,128 @@
-<h1>New Article</h1>
 
-<%= render 'form', article: @article %>
+<style>
+  /* Tomorrow Night Theme */
+  /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+  /* Original theme - https://github.com/chriskempson/tomorrow-theme */
+  /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 
-<%= link_to 'Back', articles_path %>
+
+  .hljs-attribute {
+    background:none !important;
+    color:rgb(250,190,250) !important;
+  }
+  .hljs-selector-tag{
+    background:none !important;
+    color:rgb(250,190,250) !important;
+  }
+
+  .editable > span {
+    background:none !important;
+  }
+  .editable2 > span {
+    background:none !important;
+  }
+
+
+
+  pre code {
+    display: block;
+    font-family: Menlo, Monaco, Consolas, monospace;
+    line-height: 1.5;
+    border:none !important;
+    padding: 10px;
+  }
+
+    pre{
+      background: rgb(60,60,60);
+      color:rgb(250,190,250) !important;
+    }
+
+    body{
+      background:white !important;
+    }
+
+    .editable2{
+
+    }
+
+    .editable{
+      font-weight:bold;
+      font-size: 40px;
+
+    }
+
+</style>
+<%= render 'navs/nav' %>
+<div style = "padding: 0 50px;" class = "container">
+  <div style = "margin-top:150px;">
+    <%= avatar_for(current_user,size:100) %>
+    <p style = "color:black!important; font-size:16px;transform:translateX(20px);"><%= current_user.firstname + " "  + current_user.lastname %></p>
+    <p style = "color:grey !important;transform:translate(20px,-5px);">Draft</p>
+  </div>
+
+
+  <div style = "margin-top:50px;" class="editable">
+    <h1 class = "editable-title animated" style = "color:rgb(190,190,190)!important;font-size:43px;">Title</h1>
+  </div>
+
+  <div style = "transform:translateY(20px);" class="editable2">
+    <p class = "editable-description" style = "color:rgb(210,210,210)!important; font-size:19px;">Write your article</h1>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+<script>
+
+  $(".editable").click(function(){
+     $(".editable-title").hide();
+  });
+  $(".editable2").click(function(){
+      $(".editable-description").hide();
+  });
+    var editor = new MediumEditor('.editable', {
+        placeholder: {
+
+            text: 'Give an amazing title'
+        },
+
+        toolbar: {
+            buttons: ['bold', 'italic', 'underline', 'strikethrough', 'quote', 'anchor', 'image', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'superscript', 'subscript', 'orderedlist', 'unorderedlist', 'pre', 'removeFormat', 'outdent', 'indent', 'h2','h3','h4','h5','h6'],
+        },
+        buttonLabels: 'fontawesome',
+        anchor: {
+            targetCheckbox: true
+        }
+    });
+
+    var editor2 = new MediumEditor('.editable2', {
+        placeholder: {
+
+            text: 'Give an amazing description'
+        },
+
+        toolbar: {
+            buttons: ['bold', 'italic', 'underline', 'strikethrough', 'quote', 'anchor', 'image', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'superscript', 'subscript', 'orderedlist', 'unorderedlist', 'pre', 'removeFormat', 'outdent', 'indent', 'h2','h3','h4','h5','h6'],
+        },
+        buttonLabels: 'fontawesome',
+        anchor: {
+            targetCheckbox: true
+        }
+    });
+    setInterval(function(){
+        $(".editable").find( "pre" ).addClass("javascript");
+    },300);
+    hljs.initHighlightingOnLoad();
+
+
+
+</script>
+
+<script>
+
+</script>
