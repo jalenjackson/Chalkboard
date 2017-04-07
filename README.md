@@ -12,4 +12,4 @@ Chalkboard is a social network for students and teachers. Maybe your a student, 
 ## Authors
 
 * **Jalen Jackson**  [jalenjackson](https://github.com/jalenjackson)
-if anyone would like to join, im open for discussion
+
