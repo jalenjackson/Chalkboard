@@ -128,11 +128,11 @@
 
   <div class="container">
     <div style = "width:20%; height:100%; background:rgba(0,0,0,0);" class="box ">
-      <h1 class = "frontpage-article-title"><%= @articles.first.title %></h1>
-      <p class = "frontpage-article-description"><%= @articles.first.description %></p><br>
+      <h1 class = "frontpage-article-title"><%= raw @articles.first.title %></h1>
+      <p class = "frontpage-article-description"><%= raw @articles.first.description %></p><br>
       <%= avatar_for(@articles.first.user,size:20) %>
-      <p class = "frontpage-article-user"><%= @articles.first.user.firstname.titlecase + " " + @articles.first.user.lastname.titlecase %></p>
-      <p class = "frontpage-article-time"><%= @articles.first.created_at.strftime(" %b %d, %Y")  %></p>
+      <p class = "frontpage-article-user"><%= raw @articles.first.user.firstname.titlecase + " " + @articles.first.user.lastname.titlecase %></p>
+      <p class = "frontpage-article-time"><%= raw @articles.first.created_at.strftime(" %b %d, %Y")  %></p>
       <p  style = "margin-top:25px;"class = "frontpage-article-time">Article Of The Day</p>
       <%= image_tag 'medal.png', class: 'medal' %>
 
@@ -141,27 +141,27 @@
     <div style = "position:relative; width:48%;" class="box panel panel-default panel-shadow">
       <%= image_tag @articles.second.image.url(:medium) , class: 'second-img' %>
       <div  class = "overlay">
-        <h1 style = 'margin-top:70px; color:white !important;' class = "frontpage-article-title text-center"><%= @articles.second.title %></h1>
-        <p style = 'color:white !important;' class = "frontpage-article-description text-center"><%= @articles.second.description %></p><br>
+        <h1 style = 'margin-top:70px; color:white !important;' class = "frontpage-article-title text-center"><%= raw @articles.second.title %></h1>
+        <p style = 'color:white !important;' class = "frontpage-article-description text-center"><%= raw @articles.second.description %></p><br>
         <div style = "float:none; margin-left:200px; ">
           <%= avatar_for(@articles.second.user,size:20) %>
         </div>
 
-        <p style = 'margin-left:-90px !important; color:#02b875 !important;' class = "frontpage-article-user "><%= @articles.fourth.user.firstname.titlecase + " " + @articles.fourth.user.lastname.titlecase %></p>
-        <p style = 'margin-left: -90px; color:white !important;' class = "frontpage-article-time "><%= @articles.fourth.created_at.strftime(" %b %d, %Y")  %></p>
+        <p style = 'margin-left:-90px !important; color:#02b875 !important;' class = "frontpage-article-user "><%= raw @articles.fourth.user.firstname.titlecase + " " + @articles.fourth.user.lastname.titlecase %></p>
+        <p style = 'margin-left: -90px; color:white !important;' class = "frontpage-article-time "><%= raw @articles.fourth.created_at.strftime(" %b %d, %Y")  %></p>
       </div>
     </div>
     <div style = "position:relative;width:48%;" class="box panel panel-default panel-shadow">
       <%= image_tag @articles.third.image.url(:medium) , class: 'second-img' %>
       <div  class = "overlay">
-        <h1 style = 'margin-top:70px; color:white !important;' class = "frontpage-article-title text-center"><%= @articles.third.title %></h1>
-        <p style = 'color:white !important;' class = "frontpage-article-description text-center"><%= @articles.third.description %></p><br>
+        <h1 style = 'margin-top:70px; color:white !important;' class = "frontpage-article-title text-center"><%= raw @articles.third.title %></h1>
+        <p style = 'color:white !important;' class = "frontpage-article-description text-center"><%=  raw @articles.third.description %></p><br>
         <div style = "float:none; margin-left:200px; ">
         <%= avatar_for(@articles.third.user,size:20) %>
         </div>
 
-        <p style = 'margin-left:-90px !important; color:#02b875 !important;' class = "frontpage-article-user "><%= @articles.fourth.user.firstname.titlecase + " " + @articles.fourth.user.lastname.titlecase %></p>
-        <p style = 'margin-left: -90px; color:white !important;' class = "frontpage-article-time "><%= @articles.fourth.created_at.strftime(" %b %d, %Y")  %></p>
+        <p style = 'margin-left:-90px !important; color:#02b875 !important;' class = "frontpage-article-user "><%= raw @articles.fourth.user.firstname.titlecase + " " + @articles.fourth.user.lastname.titlecase %></p>
+        <p style = 'margin-left: -90px; color:white !important;' class = "frontpage-article-time "><%= raw @articles.fourth.created_at.strftime(" %b %d, %Y")  %></p>
       </div>
     </div>
 
@@ -173,9 +173,9 @@
     <section id="pinBoot">
 
       <% 10.times do |i| %>
-      <article class="white-panel panel-shadow"><img src="<%= @articles.first.image.url(:medium)%>" alt="">
-        <h4><a href="#"><%= @articles.first.title %> </a></h4>
-        <p><%= @articles.first.description %> </p>
+      <article class="white-panel panel-shadow"><img src="<%= raw @articles.first.image.url(:medium)%>" alt="">
+        <h4><a href="#"><%= raw @articles.first.title %> </a></h4>
+        <p><%= raw @articles.first.description %> </p>
         <%= avatar_for(@articles.first.user,size:20) %>
         <p class = "frontpage-article-user"><%= @articles.first.user.firstname.titlecase + " " + @articles.first.user.lastname.titlecase %></p>
         <p class = "frontpage-article-time"><%= @articles.first.created_at.strftime(" %b %d, %Y")  %></p>

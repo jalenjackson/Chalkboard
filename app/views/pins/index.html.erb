@@ -189,7 +189,7 @@
     </div>
 
     <div class = "frontpage-article-spotlight" style="background:linear-gradient(to bottom, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0) -100%, rgba(0, 0, 0, 0.85) 100%),url(<%= @articles.first.image.url(:medium) %>) center center no-repeat; background-size:cover; "><p class = "box-text2">Article Of The Day <span style = "font-size:12px; color:white;">Read it! <i class="fa fa-pencil" aria-hidden="true"></i></span> <img style = "width:40px; height:40px; position:absolute; top:10px;left:10px;" src = "http://icons.iconarchive.com/icons/flat-icons.com/flat/512/Pencil-icon.png"></p>
-      <p style = "font-size:19px; color:rgb(220,220,220) !important; margin-top:4px; letter-spacing: 1px;" class = "text-center"><%= @articles.first.title %></p>
+      <p style = "font-size:19px; color:rgb(220,220,220) !important; margin-top:4px; letter-spacing: 1px;" class = "text-center"><%= raw @articles.first.title %></p>
       <% if @articles.first.user.occupation == "Teacher" %>
           <p class = "text-center"><span style = "color:white;">Created By:</span> <%= link_to @articles.first.user.firstname, "teachers/#{@articles.first.user.username}", class:'spotlight-link'  %></p>
       <% else %>
@@ -305,7 +305,7 @@
               <div class = "ccc">
                 <a href = "../articles/<%= article.id %>"><%= image_tag article.image.url(:medium), class: "videos-video-chosen-thumbnail-image videos-video-chosen-thumbnail-image#{index}" %></a>-->
                 <div style = "margin-top:150px;">
-                  <p class = "videos-video-title"><%= article.title %></p>
+                  <p class = "videos-video-title"><%= raw article.title %></p>
                   <p class = "videos-owner-name">by <%= link_to article.user.firstname, "teachers/#{article.user.username}"%></p>
                   <p class = "videos-created-at"><%= article.created_at.strftime(" %b %d, %Y") %>  <i class="fa fa-dot-circle-o" aria-hidden="true"></i> <b><%= article.impressionist_count(:filter=>:ip_address) %></b>
                     <% if article.impressionist_count(:filter=>:ip_address) == 1 %>
